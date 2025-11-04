@@ -28,11 +28,20 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://use.typekit.net" />
         <link rel="dns-prefetch" href="https://p.typekit.net" />
         
+        {/* Preload critical logo image for LCP optimization */}
+        <link 
+          rel="preload" 
+          href="/PrimaryLogo.webp" 
+          as="image" 
+          fetchPriority="high"
+        />
+        
         {/* Preload Adobe Fonts CSS for earliest fetch */}
         <link 
           rel="preload" 
           href={`https://use.typekit.net/${ICA_TYPEKIT_ID}.css`} 
           as="style" 
+          fetchPriority="high"
         />
         
         {/* Load fonts immediately to prevent FOUT */}
@@ -41,11 +50,18 @@ export default function RootLayout({
           href={`https://use.typekit.net/${ICA_TYPEKIT_ID}.css`}
         />
         
-        {/* Prevent FOUT - show content immediately with fallback fonts */}
+        {/* Prevent FOUT and CLS - show content immediately with fallback fonts */}
         <style dangerouslySetInnerHTML={{
           __html: `
-            /* Font loading optimization */
-            body { font-display: swap; }
+            /* Font loading optimization - prevent CLS */
+            body { 
+              font-display: swap;
+              font-size-adjust: 0.5;
+            }
+            /* Prevent layout shift during font load */
+            html {
+              font-size: 16px;
+            }
           `
         }} />
       </head>
