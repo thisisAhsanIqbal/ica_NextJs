@@ -4,6 +4,7 @@ import InfoHeader from './components/InfoHeader'
 import Header from './components/Header'
 import PromotionalHeader from './components/PromotionalHeader'
 import FontLoader from './components/FontLoader'
+import Template from './template'
 
 export const metadata: Metadata = {
   title: 'Next.js App',
@@ -33,13 +34,29 @@ export default function RootLayout({
           href={`https://use.typekit.net/${ICA_TYPEKIT_ID}.css`} 
           as="style" 
         />
+        
+        {/* Load fonts immediately to prevent FOUT */}
+        <link 
+          rel="stylesheet" 
+          href={`https://use.typekit.net/${ICA_TYPEKIT_ID}.css`}
+        />
+        
+        {/* Prevent FOUT - show content immediately with fallback fonts */}
+        <style dangerouslySetInnerHTML={{
+          __html: `
+            /* Font loading optimization */
+            body { font-display: swap; }
+          `
+        }} />
       </head>
       <body>
         <FontLoader />
         <InfoHeader />
         <Header />
         <PromotionalHeader />
-        {children}
+        <Template>
+          {children}
+        </Template>
       </body>
     </html>
   )
