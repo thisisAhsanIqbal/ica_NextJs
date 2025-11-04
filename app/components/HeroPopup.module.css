@@ -1,0 +1,132 @@
+.heroPopupModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.heroPopupModal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.heroPopupOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  cursor: pointer;
+}
+
+.heroPopupContent {
+  position: relative;
+  background: var(--ica-bg);
+  max-width: 600px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: 1rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  z-index: 10000;
+  padding: 2rem;
+}
+
+.heroPopupClose {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10001;
+  transition: opacity 0.2s ease;
+}
+
+.heroPopupClose:hover {
+  opacity: 0.7;
+}
+
+.promoCloseIcon {
+  width: 24px;
+  height: 24px;
+  stroke: var(--ica-green-deep);
+}
+
+.heroPopupTop {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.heroPopupImage {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+  background: var(--ica-mint);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heroPopupHeader {
+  text-align: center;
+}
+
+.heroPopupTitle {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--ica-green-deep);
+  margin: 0 0 1rem 0;
+}
+
+.heroPopupSubtitle {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.5;
+  color: rgba(0, 0, 0, 0.7);
+  margin: 0;
+}
+
+.heroPopupContentArea {
+  margin-top: 2rem;
+}
+
+.heroPopupScript {
+  font-family: var(--font-body);
+  color: var(--ica-green-deep);
+  line-height: 1.6;
+}
+
+/* Body scroll lock when popup is open */
+body.popup-open {
+  overflow: hidden;
+}
+
+@media (max-width: 600px) {
+  .heroPopupContent {
+    width: 95%;
+    padding: 1.5rem;
+  }
+
+  .heroPopupTitle {
+    font-size: 1.5rem;
+  }
+}
+
