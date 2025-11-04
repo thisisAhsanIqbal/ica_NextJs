@@ -6,7 +6,7 @@
   --hero-slider-height-small: 30vh;
   --hero-slider-height-desktop: 650px;
   --global-padding-mobile: clamp(2rem, 4vw, 3rem) 0.5rem;
-  --global-padding-desktop: clamp(3rem, 6vw, 5rem);
+  --global-padding-desktop: clamp(2rem, 6vw, 3rem);
   --global-gap-mobile: 2rem;
   --global-gap-desktop: clamp(2rem, 4vw, 4rem);
   --font-heading: "ivypresto-display", "Bodoni Moda", Georgia, serif;
@@ -29,7 +29,7 @@
 .sectionInner {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 clamp(0.5rem, 4vw, 1rem);
   width: 100%;
 }
 
@@ -47,23 +47,32 @@
   contain: layout;
 }
 
+@media (min-width: 701px) {
+  .heroGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(3rem, 6vw, 5rem);
+  }
+}
+
 .heroContent {
   display: flex;
   flex-direction: column;
-  gap: clamp(1rem, 2vw, 1.5rem);
+  gap: 0;
   text-align: left;
   order: 1;
+  justify-content: center;
+  padding: clamp(1rem, 3vw, 2rem) 0;
 }
 
 .heroHeadline {
   font-family: var(--font-heading);
   font-size: 40px;
-  line-height: 1 !important;
+  line-height: 1.1 !important;
   letter-spacing: -0.02em;
   font-weight: 500;
   font-style: normal;
   color: var(--ica-green-deep);
-  margin: 0 0 clamp(0.5rem, 2vw, 1.5rem) 0;
+  margin: 0 0 clamp(1rem, 2.5vw, 1.75rem) 0;
   text-align: left;
   overflow-wrap: break-word;
   word-wrap: break-word;
@@ -188,35 +197,37 @@
 
 .heroSubhead {
   font-family: var(--font-ui);
-  font-size: 20px;
-  line-height: 1.35em;
+  font-size: clamp(18px, 2.5vw, 22px);
+  line-height: 1.4em;
   font-weight: 600;
   font-style: normal;
-  color: rgba(0, 0, 0, 0.7);
-  margin: 0;
+  color: rgba(30, 49, 47, 0.85);
+  margin: 0 0 clamp(1rem, 2vw, 1.25rem) 0;
   text-align: left;
+  letter-spacing: -0.01em;
 }
 
 .heroParagraph {
   font-family: var(--font-body);
-  font-size: 20px;
-  line-height: 1.3;
+  font-size: clamp(16px, 2vw, 18px);
+  line-height: 1.6;
   font-weight: 400;
-  color: rgba(0, 0, 0, 0.7);
-  margin: 0;
-  text-align: justify;
+  color: rgba(30, 49, 47, 0.75);
+  margin: 0 0 clamp(1.5rem, 3vw, 2rem) 0;
+  text-align: left;
+  max-width: 100%;
 }
 
 /* Button Actions */
 .heroActions {
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
-  margin-top: 0.5rem;
-  margin-left: 5px;
-  padding: 3px;
+  gap: 1.25rem;
+  margin-top: clamp(0.5rem, 2vw, 1rem);
+  padding: 0;
   justify-content: flex-start;
   contain: layout style;
+  width: 100%;
 }
 
 .heroActionsRow {
@@ -252,26 +263,39 @@
   text-transform: uppercase;
   font-weight: 600;
   letter-spacing: 0.05em;
-  padding: 0.9rem 1.6rem;
-  border: none;
+  padding: clamp(0.875rem, 2vw, 1rem) clamp(1.5rem, 3vw, 2rem);
+  border: 2px solid var(--ica-green-deep);
   position: relative;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   text-decoration: none;
-  font-size: clamp(16px, 2.5vw, 18px);
+  font-size: clamp(14px, 2vw, 16px);
   border-radius: 0;
   line-height: 1.2;
   white-space: nowrap;
   background: var(--ica-green-deep);
   color: var(--ica-bg);
-  box-shadow: -6px 6px 0px 1px rgba(30, 49, 47, 0.45);
+  box-shadow: -6px 6px 0px 1px rgba(30, 49, 47, 0.35);
 }
 
 .btnIca:hover {
   background: var(--ica-bg);
   color: var(--ica-green-deep);
-  transform: translateY(-2px);
+  transform: translate(-2px, 2px);
+  box-shadow: -4px 4px 0px 1px rgba(30, 49, 47, 0.25);
+}
+
+.btnIca:active {
+  transform: translate(0, 0);
+  box-shadow: -2px 2px 0px 1px rgba(30, 49, 47, 0.2);
+}
+
+.btnIca:focus-visible {
+  outline: 2px solid var(--ica-teal);
+  outline-offset: 2px;
 }
 
 .btnIcaFullWidth {
@@ -288,9 +312,20 @@
   order: 2;
 }
 
+.heroMediaWrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  max-width: 100%;
+}
+
 .heroSlider {
   position: relative;
-  width: 90%;
+  width: 100%;
+  max-width: 100%;
   aspect-ratio: unset;
   height: 60vh;
   border-radius: 1.5rem;
@@ -378,6 +413,7 @@
     order: 1;
     text-align: left;
     align-items: flex-start;
+    padding: 1rem 0;
   }
 
   .heroMedia {
@@ -393,6 +429,11 @@
 
   .heroActions {
     justify-content: flex-start;
+    width: 100%;
+  }
+
+  .heroMediaWrapper {
+    width: 100%;
   }
 }
 

@@ -216,37 +216,39 @@ export default function Hero({
             {/* Media Column (Right) */}
             <div className={styles.heroMedia}>
               {heroImages && heroImages.length > 0 ? (
-                <div
-                  className={styles.heroSlider}
-                  ref={sliderRef}
-                  role="region"
-                  aria-label="Hero image gallery"
-                  onTouchStart={handleTouchStart}
-                  onTouchEnd={handleTouchEnd}
-                >
-                  {heroImages.map((image, index) => (
-                    <div
-                      key={index}
-                      className={`${styles.heroSlide} ${
-                        index === currentSlide ? styles.active : ''
-                      }`}
-                      role="img"
-                      aria-label={image.alt}
-                    >
-                      <Image
-                        src={image.src}
-                        alt={image.alt}
-                        width={image.width || 1100}
-                        height={image.height || 650}
-                        className={styles.heroSlideImg}
-                        priority={index === 0}
-                        loading={index === 0 ? 'eager' : 'lazy'}
-                        fetchPriority={index === 0 ? 'high' : 'auto'}
-                        decoding={index === 0 ? 'sync' : 'async'}
-                        sizes="(min-width: 1280px) 1100px, (min-width: 768px) 640px, 92vw"
-                      />
-                    </div>
-                  ))}
+                <div className={styles.heroMediaWrapper}>
+                  <div
+                    className={styles.heroSlider}
+                    ref={sliderRef}
+                    role="region"
+                    aria-label="Hero image gallery"
+                    onTouchStart={handleTouchStart}
+                    onTouchEnd={handleTouchEnd}
+                  >
+                    {heroImages.map((image, index) => (
+                      <div
+                        key={index}
+                        className={`${styles.heroSlide} ${
+                          index === currentSlide ? styles.active : ''
+                        }`}
+                        role="img"
+                        aria-label={image.alt}
+                      >
+                        <Image
+                          src={image.src}
+                          alt={image.alt}
+                          width={image.width || 1100}
+                          height={image.height || 650}
+                          className={styles.heroSlideImg}
+                          priority={index === 0}
+                          loading={index === 0 ? 'eager' : 'lazy'}
+                          fetchPriority={index === 0 ? 'high' : 'auto'}
+                          decoding={index === 0 ? 'sync' : 'async'}
+                          sizes="(min-width: 1280px) 1100px, (min-width: 768px) 640px, 92vw"
+                        />
+                      </div>
+                    ))}
+                  </div>
                 </div>
               ) : (
                 <div className={styles.heroPlaceholder} role="img" aria-label="Hero image placeholder">
