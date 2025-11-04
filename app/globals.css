@@ -1075,8 +1075,8 @@ code {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
-  margin-bottom: 10px;
+  gap: 1rem;
+  margin-bottom: 0;
 }
 
 .ica-headline {
@@ -1228,7 +1228,6 @@ code {
   width: 28px;
   height: 28px;
   object-fit: contain;
-  filter: brightness(0);
 }
 
 /* ========================================
@@ -1311,7 +1310,7 @@ code {
   
   .ica-content-section {
     flex-direction: row;
-    gap: 3rem;
+    gap: 2rem;
     align-items: center;
     text-align: left;
     padding: 0 30px;
@@ -1453,11 +1452,11 @@ code {
   .ica-content-section {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1.5rem;
     align-items: flex-start;
     text-align: left;
     width: 100%;
-    padding: 0;
+    justify-content: flex-start;
   }
   
   .ica-headline {
@@ -1499,6 +1498,7 @@ code {
     grid-template-columns: 200px 1fr 415px;
     gap: 0;
     padding: 5rem 0;
+    align-items: center;
   }
   
   .ica-footer-logo {
@@ -1562,6 +1562,7 @@ code {
     grid-template-columns: 240px 1fr 380px;
     gap: 0;
     padding: 6rem 0;
+    align-items: center;
   }
   
   .ica-footer-logo {
