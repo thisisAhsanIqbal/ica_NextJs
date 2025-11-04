@@ -3,6 +3,7 @@ import './globals.css'
 import InfoHeader from './components/InfoHeader'
 import Header from './components/Header'
 import PromotionalHeader from './components/PromotionalHeader'
+import Footer from './components/Footer'
 import FontLoader from './components/FontLoader'
 import Template from './template'
 
@@ -170,6 +171,7 @@ export default function RootLayout({
             {children}
           </Template>
         </main>
+        <Footer />
       </body>
     </html>
   )
