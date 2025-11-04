@@ -16,14 +16,14 @@ export default function Header() {
   }, [])
 
   return (
-    <header className="header">
+    <header className="header" role="banner">
       <div className="header-container">
         {/* Logo */}
         <div className="logo">
-          <Link href="/">
+          <Link href="/" aria-label="Illinois Conservatory for the Arts - Home">
             <Image
               src="/PrimaryLogo.webp"
-              alt="Logo"
+              alt="Illinois Conservatory for the Arts"
               width={180}
               height={60}
               priority
@@ -41,9 +41,12 @@ export default function Header() {
         <button 
           className="mobile-menu-button"
           onClick={toggleMenu}
-          aria-label="Toggle menu"
+          aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+          aria-expanded={isMenuOpen}
+          aria-controls="main-navigation"
+          type="button"
         >
-          <span className={isMenuOpen ? 'hamburger open' : 'hamburger'}>
+          <span className={isMenuOpen ? 'hamburger open' : 'hamburger'} aria-hidden="true">
             <span></span>
             <span></span>
             <span></span>
@@ -51,7 +54,13 @@ export default function Header() {
         </button>
 
         {/* Menu */}
-        <nav className={`nav-menu ${isMenuOpen ? 'active' : ''}`}>
+        <nav 
+          id="main-navigation"
+          className={`nav-menu ${isMenuOpen ? 'active' : ''}`}
+          role="navigation"
+          aria-label="Main navigation"
+          aria-hidden={!isMenuOpen ? 'true' : 'false'}
+        >
           <Link href="/the-school" className="nav-link" onClick={closeMenu}>
             <span className="nav-bullet"></span>
             <span className="nav-text">THE SCHOOL</span>
@@ -78,60 +87,98 @@ export default function Header() {
           </Link>
           
           {/* Shopping Cart in Mobile Menu */}
-          <button className="mobile-shop-button" aria-label="Shopping Cart" type="button" onClick={closeMenu}>
+          <button 
+            className="mobile-shop-button" 
+            aria-label="Shopping Cart" 
+            type="button" 
+            onClick={closeMenu}
+          >
             <Image
               src="/shop_icon.svg"
-              alt="Shopping Cart"
+              alt=""
               width={20}
               height={20}
               className="shop-icon"
               priority
               fetchPriority="high"
               loading="eager"
+              aria-hidden="true"
             />
             <span className="shop-text">Shopping Cart</span>
           </button>
           
           {/* Social Icons in Mobile Menu */}
-          <div className="mobile-social-icons">
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="social-icon" aria-label="Facebook">
+          <div className="mobile-social-icons" role="list" aria-label="Social media links">
+            <a 
+              href="https://www.facebook.com/ilconservatory" 
+              target="_blank" 
+              rel="noopener noreferrer me" 
+              className="social-icon" 
+              aria-label="Visit our Facebook page"
+              role="listitem"
+            >
               <Image
                 src="/asserts/fb.svg"
-                alt="Facebook"
+                alt=""
                 width={24}
                 height={24}
                 className="social-icon-img"
                 priority
+                aria-hidden="true"
               />
             </a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="social-icon" aria-label="Instagram">
+            <a 
+              href="https://www.instagram.com/ilconservatory/" 
+              target="_blank" 
+              rel="noopener noreferrer me" 
+              className="social-icon" 
+              aria-label="Visit our Instagram page"
+              role="listitem"
+            >
               <Image
                 src="/asserts/insta.svg"
-                alt="Instagram"
+                alt=""
                 width={24}
                 height={24}
                 className="social-icon-img"
                 priority
+                aria-hidden="true"
               />
             </a>
-            <a href="https://x.com" target="_blank" rel="noopener noreferrer" className="social-icon" aria-label="X (Twitter)">
+            <a 
+              href="https://x.com/ilconservatory" 
+              target="_blank" 
+              rel="noopener noreferrer me" 
+              className="social-icon" 
+              aria-label="Visit our X (Twitter) page"
+              role="listitem"
+            >
               <Image
                 src="/asserts/x.svg"
-                alt="X (Twitter)"
+                alt=""
                 width={24}
                 height={24}
                 className="social-icon-img"
                 priority
+                aria-hidden="true"
               />
             </a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="social-icon" aria-label="LinkedIn">
+            <a 
+              href="https://www.linkedin.com/company/ilconservatory" 
+              target="_blank" 
+              rel="noopener noreferrer me" 
+              className="social-icon" 
+              aria-label="Visit our LinkedIn page"
+              role="listitem"
+            >
               <Image
                 src="/asserts/linkedin.svg"
-                alt="LinkedIn"
+                alt=""
                 width={24}
                 height={24}
                 className="social-icon-img"
                 priority
+                aria-hidden="true"
               />
             </a>
           </div>
@@ -140,16 +187,17 @@ export default function Header() {
         {/* Actions */}
         <div className="header-actions">
           {/* Shop Button */}
-          <button className="cta-button" aria-label="Shop" type="button">
+          <button className="cta-button" aria-label="Shopping Cart" type="button">
             <Image
               src="/shop_icon.svg"
-              alt="Shop"
+              alt=""
               width={20}
               height={20}
               className="shop-icon"
               priority
               fetchPriority="high"
               loading="eager"
+              aria-hidden="true"
             />
           </button>
         </div>

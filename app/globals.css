@@ -107,9 +107,30 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+/* Skip to main content link (hidden by default, visible on focus) */
+.skip-to-main {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--ica-green-deep);
+  color: var(--ica-white);
+  padding: 8px 16px;
+  text-decoration: none;
+  z-index: 1000;
+  font-weight: 600;
+  border-radius: 0 0 4px 0;
+}
+
+.skip-to-main:focus {
+  top: 0;
+  outline: 2px solid var(--ica-teal);
+  outline-offset: 2px;
+}
+
 /* --- 5. SEMANTIC COLOR USAGE --- */
 h1, h2, h3, h4, h5, h6 {
   color: var(--color-heading);
+  margin: 0;
 }
 
 /* Example card component */
@@ -306,6 +327,18 @@ body {
   color: var(--ica-white);
 }
 
+.info-item a {
+  color: var(--ica-white);
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.info-item a:hover,
+.info-item a:focus {
+  color: var(--ica-white);
+  opacity: 0.9;
+}
+
 .info-icon {
   flex-shrink: 0;
   opacity: 0.9;
@@ -366,6 +399,37 @@ body {
   transition: color 0.3s ease;
 }
 
+/* Font sizes for screens above 470px */
+@media (min-width: 470px) {
+  .info-item,
+  .info-item a {
+    font-size: clamp(13px, 1.5vw, 14px);
+  }
+
+  .info-announcement {
+    font-size: clamp(13px, 1.5vw, 14px);
+  }
+}
+
+/* Font sizes for screens above 480px */
+@media (min-width: 481px) {
+  .promo-title {
+    font-size: clamp(16px, 1.5vw, 18px);
+  }
+
+  .promo-subtitle {
+    font-size: clamp(17px, 1.5vw, 18px);
+  }
+
+  .promo-label {
+    font-size: clamp(17px, 1.5vw, 18px);
+  }
+
+  .promo-button {
+    font-size: clamp(12px, 1.5vw, 14px);
+  }
+}
+
 .promo-row-2 {
   display: flex;
   align-items: center;
@@ -400,6 +464,7 @@ body {
   background: linear-gradient(rgba(255, 255, 255, 0) 50%, rgba(198, 214, 43, 0.48) 50%);
   display: inline;
   padding: 0;
+  margin: 0;
   line-height: 1.4;
   width: fit-content;
   white-space: nowrap;
@@ -413,7 +478,12 @@ body {
   color: var(--ica-green-deep);
   white-space: nowrap;
   text-transform: uppercase;
+  margin: 0;
   transition: color 0.3s ease;
+}
+
+.promo-label {
+  margin: 0;
 }
 
 .promo-button {
@@ -510,27 +580,13 @@ body {
   font-size: 1rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  transition: color 0.2s ease;
+  transition: opacity 0.2s ease;
   position: relative;
 }
 
 .nav-link:hover {
-  color: var(--ica-teal);
-}
-
-.nav-link::after {
-  content: '';
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background-color: var(--ica-teal);
-  transition: width 0.3s ease;
-}
-
-.nav-link:hover::after {
-  width: 100%;
+  color: var(--header-text);
+  opacity: 0.8;
 }
 
 .header-actions {
@@ -681,7 +737,6 @@ body {
     text-align: center;
     flex: none;
     min-width: auto;
-    font-size: clamp(10px, 1.5vw, 12px);
   }
 
   .header-container {
@@ -854,6 +909,7 @@ body {
     text-transform: uppercase;
     font-weight: 500;
     letter-spacing: 0.5px;
+    font-size: 16px;
   }
 
   /* Ensure mobile shop button and social icons are visible in active menu */

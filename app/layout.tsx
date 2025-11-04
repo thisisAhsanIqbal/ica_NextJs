@@ -7,8 +7,63 @@ import FontLoader from './components/FontLoader'
 import Template from './template'
 
 export const metadata: Metadata = {
-  title: 'Next.js App',
-  description: 'A simple Next.js application',
+  title: {
+    default: 'Illinois Conservatory for the Arts',
+    template: '%s | Illinois Conservatory for the Arts'
+  },
+  description: 'Illinois Conservatory for the Arts - Same Programming, New Name! Academy of the Arts is now Illinois Conservatory for the Arts. Located in Naperville, IL. Offering IMPACT: Musical Theater and IMPACT: Dance programs.',
+  keywords: ['Illinois Conservatory for the Arts', 'Naperville', 'Arts education', 'Musical Theater', 'Dance', 'Performing Arts', 'Conservatory', 'Arts programs'],
+  authors: [{ name: 'Illinois Conservatory for the Arts' }],
+  creator: 'Illinois Conservatory for the Arts',
+  publisher: 'Illinois Conservatory for the Arts',
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  metadataBase: new URL('https://ilconservatory.org'), // Update with actual domain
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://ilconservatory.org', // Update with actual domain
+    siteName: 'Illinois Conservatory for the Arts',
+    title: 'Illinois Conservatory for the Arts',
+    description: 'Same Programming, New Name! Academy of the Arts is now Illinois Conservatory for the Arts. Located in Naperville, IL.',
+    images: [
+      {
+        url: '/PrimaryLogo.webp',
+        width: 180,
+        height: 60,
+        alt: 'Illinois Conservatory for the Arts Logo',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary',
+    title: 'Illinois Conservatory for the Arts',
+    description: 'Same Programming, New Name! Academy of the Arts is now Illinois Conservatory for the Arts.',
+    images: ['/PrimaryLogo.webp'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  verification: {
+    // Add verification codes when available
+    // google: 'verification_token',
+    // yandex: 'verification_token',
+    // yahoo: 'verification_token',
+  },
 }
 
 // Adobe Fonts Configuration
@@ -19,9 +74,45 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  // Structured Data for SEO (JSON-LD)
+  const organizationSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'Illinois Conservatory for the Arts',
+    alternateName: 'ICA',
+    url: 'https://ilconservatory.org', // Update with actual domain
+    logo: 'https://ilconservatory.org/PrimaryLogo.webp', // Update with actual domain
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Naperville',
+      addressRegion: 'IL',
+      addressCountry: 'US',
+    },
+    contactPoint: {
+      '@type': 'ContactPoint',
+      telephone: '+1-630-243-5100',
+      contactType: 'Customer Service',
+      areaServed: 'US',
+      availableLanguage: 'English',
+    },
+    sameAs: [
+      'https://www.instagram.com/ilconservatory/',
+      'https://x.com/ilconservatory',
+      'https://www.linkedin.com/company/ilconservatory',
+    ],
+  }
+
   return (
     <html lang="en">
       <head>
+        {/* Structured Data for SEO (JSON-LD) */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationSchema),
+          }}
+        />
+        
         {/* Critical font preconnects for maximum LCP performance */}
         <link rel="preconnect" href="https://use.typekit.net" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://p.typekit.net" crossOrigin="anonymous" />
@@ -67,12 +158,18 @@ export default function RootLayout({
       </head>
       <body>
         <FontLoader />
+        {/* Skip to main content link for accessibility */}
+        <a href="#main-content" className="skip-to-main">
+          Skip to main content
+        </a>
         <InfoHeader />
         <Header />
         <PromotionalHeader />
-        <Template>
-          {children}
-        </Template>
+        <main id="main-content">
+          <Template>
+            {children}
+          </Template>
+        </main>
       </body>
     </html>
   )
