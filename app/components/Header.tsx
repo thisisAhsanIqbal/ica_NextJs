@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import styles from './Header.module.css'
 
 export default function Header() {
@@ -15,6 +15,29 @@ export default function Header() {
   const closeMenu = useCallback(() => {
     setIsMenuOpen(false)
   }, [])
+
+  // Change body and html background color when menu is open
+  useEffect(() => {
+    if (isMenuOpen) {
+      // Store original background colors
+      const originalBodyBg = document.body.style.backgroundColor
+      const originalHtmlBg = document.documentElement.style.backgroundColor
+      
+      // Set white background on both body and html for full coverage
+      document.body.style.backgroundColor = 'white'
+      document.documentElement.style.backgroundColor = 'white'
+      
+      return () => {
+        // Restore original background when menu closes
+        document.body.style.backgroundColor = originalBodyBg || ''
+        document.documentElement.style.backgroundColor = originalHtmlBg || ''
+      }
+    } else {
+      // Reset to default when menu closes
+      document.body.style.backgroundColor = ''
+      document.documentElement.style.backgroundColor = ''
+    }
+  }, [isMenuOpen])
 
   return (
     <header className={styles.header} role="banner">
@@ -38,6 +61,32 @@ export default function Header() {
           </Link>
         </div>
 
+        {/* Desktop Navigation Menu */}
+        <nav 
+          className={styles.desktopNavMenu}
+          role="navigation"
+          aria-label="Main navigation"
+        >
+          <Link href="/the-school" className={styles.desktopNavLink}>
+            THE SCHOOL
+          </Link>
+          <Link href="/impact" className={styles.desktopNavLink}>
+            IMPACT
+          </Link>
+          <Link href="/the-studio" className={styles.desktopNavLink}>
+            THE STUDIO
+          </Link>
+          <Link href="/about" className={styles.desktopNavLink}>
+            ABOUT
+          </Link>
+          <Link href="/events" className={styles.desktopNavLink}>
+            EVENTS
+          </Link>
+          <Link href="/support" className={styles.desktopNavLink}>
+            SUPPORT
+          </Link>
+        </nav>
+
         {/* Mobile Menu Button */}
         <button 
           className={styles.mobileMenuButton}
@@ -54,7 +103,7 @@ export default function Header() {
           </span>
         </button>
 
-        {/* Menu */}
+        {/* Mobile Dropdown Menu */}
         <nav 
           id="main-navigation"
           className={`${styles.navMenu} ${isMenuOpen ? 'active' : ''}`}

@@ -1,0 +1,337 @@
+/* components/School.module.css */
+
+/* CSS Variables */
+.icaSchool {
+    /* Component-specific variables only */
+    --global-padding-mobile: clamp(2rem, 4vw, 3rem) 05px;
+    --global-padding-desktop: clamp(3rem, 6vw, 5rem);
+    --global-gap-mobile: 2rem;
+    --global-gap-desktop: clamp(2rem, 4vw, 4rem);
+    /* Using global variables from globals.css:
+       --ica-green-deep, --ica-bg, --ica-lime, --font-heading, --font-ui */
+  
+    padding: var(--global-padding-desktop) 0;
+    background: var(--ica-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    contain: layout;
+  }
+  
+  .sectionInner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    width: 100%;
+  }
+  
+  .icaSchoolGrid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--global-gap-desktop);
+    align-items: center;
+  }
+  
+  .icaSchoolMedia {
+    position: relative;
+    display: flex;
+    margin: 0;
+    /* Ensure logo overlay is positioned relative to media container */
+    overflow: visible;
+  }
+  
+  .icaSchoolSlider {
+    position: relative;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    background: var(--ica-bg);
+    width: 100%;
+    height: 100%;
+    contain: layout style paint;
+    will-change: transform;
+    /* Prevent Swiper from causing layout shifts */
+    display: block !important;
+  }
+  
+  /* Override Swiper default styles to prevent layout conflicts */
+  .icaSchoolSlider :global(.swiper) {
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+  }
+  
+  .icaSchoolSlider :global(.swiper-wrapper) {
+    width: 100% !important;
+    height: 100% !important;
+    display: flex !important;
+    align-items: stretch !important;
+    box-sizing: border-box !important;
+  }
+  
+  /* Ensure SwiperSlide fills the container */
+  .icaSchoolSlider :global(.swiper-slide) {
+    width: 100% !important;
+    height: 100% !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0 !important;
+    box-sizing: border-box !important;
+  }
+  
+  .schoolSlide {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+  }
+  
+  .schoolSlideImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  
+  .icaSchoolPlaceholder {
+    width: 100%;
+    height: 100%;
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--ica-bg);
+    border: 2px dashed var(--ica-green-deep);
+    border-radius: 18px;
+  }
+  
+  .icaSchoolPlaceholderContent {
+    text-align: center;
+    color: var(--ica-green-deep);
+  }
+  
+  .icaSchoolPlaceholderIcon {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 1rem;
+  }
+  
+  .icaSchoolPlaceholderContent p {
+    font-family: var(--font-ui);
+    font-size: 1.1rem;
+    margin: 0;
+  }
+  
+  .schoolLogo {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 250px;
+    height: 118px;
+    filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.25));
+    pointer-events: none;
+    z-index: 10;
+  }
+  
+  .icaSchoolCopy {
+    width: 100%;
+  }
+  
+  .eyebrow {
+    font-size: 75px;
+    font-weight: 300;
+    line-height: 1;
+    color: var(--ica-green-deep);
+    margin: 0 0 0.6rem;
+    font-family: var(--font-heading) !important;
+    min-height: 1.1em;
+  }
+  
+  .eyebrow a {
+    color: inherit;
+    text-decoration: none;
+  }
+  
+  .eyebrow a:hover,
+  .eyebrow a:focus,
+  .eyebrow a:active {
+    color: inherit;
+    text-decoration: none;
+  }
+  
+  .icaSchoolCopy h3 {
+    font-size: 24px;
+    line-height: 1.3em;
+    margin: 0.4rem 0 1rem;
+    color: var(--ica-green-deep);
+    font-weight: 700;
+    font-family: var(--font-ui) !important;
+    text-transform: none;
+    min-height: 1.3em;
+  }
+  
+  .icaSchoolCopy p {
+    font-family: var(--font-body);
+    font-size: 22px;
+    line-height: 1.3;
+    font-weight: 400;
+    color: var(--ica-green-deep);
+    margin: 0 0 1rem 0;
+    text-align: justify;
+    min-height: 2.6em;
+  }
+  
+  .btnIcaLime {
+    font-size: 18px;
+    margin-top: 1rem;
+    text-align: center;
+    /* Button styles from ica-buttons.css */
+    font-family: var(--font-ui);
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    padding: 0.9rem 1.6rem;
+    border: none;
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    border-radius: 0;
+    line-height: 1.2;
+    background: var(--ica-lime);
+    color: var(--ica-green-deep);
+    box-shadow: -6px 6px 0px 1px rgba(158, 164, 129, 0.8);
+  }
+  
+  .btnIcaLime:hover {
+    transform: translateY(-2px);
+  }
+  
+  .btnIcaLimeFullWidth {
+    width: 100%;
+    display: block;
+  }
+  
+  /* ========================================
+     RESPONSIVE DESIGN
+     ======================================== */
+  
+  /* Desktop (1025px+) */
+  @media (min-width: 1025px) {
+    .icaSchoolSlider {
+      width: 530px !important;
+      height: 450px !important;
+    }
+  }
+  
+  /* Tablet (768px - 1024px) */
+  @media (max-width: 1024px) and (min-width: 768px) {
+    .icaSchoolSlider {
+      width: 100% !important;
+      max-width: 500px;
+      height: 50vh !important;
+    }
+  }
+  
+  /* Tablet Narrow (769px - 850px) */
+  @media (max-width: 850px) and (min-width: 769px) {
+    .eyebrow {
+      font-size: 65px;
+    }
+  }
+  
+  /* Mobile (0-767px) */
+  @media (max-width: 767px) {
+    .icaSchoolGrid {
+      grid-template-columns: 1fr;
+    }
+  
+    .icaSchoolSlider {
+      width: 100% !important;
+      height: 40vh !important;
+    }
+  
+    .sectionInner {
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+    }
+  }
+  
+  /* Mobile (0-560px) */
+  @media (max-width: 560px) {
+    .icaSchool {
+      padding: var(--global-padding-mobile);
+    }
+  
+    .icaSchoolGrid {
+      gap: var(--global-gap-mobile);
+    }
+  
+    .schoolLogo {
+      width: 180px;
+      height: 85px;
+    }
+  }
+  
+  /* Headline Font Size Breakpoints */
+  @media (max-width: 480px) {
+    .icaSchoolCopy h3 {
+      font-size: 28px;
+      line-height: 1.0em;
+    }
+  }
+  
+  @media (min-width: 481px) and (max-width: 560px) {
+    .icaSchoolCopy h3 {
+      font-size: 28px;
+      line-height: 1.0em;
+    }
+  }
+  
+  @media (min-width: 561px) and (max-width: 767px) {
+    .icaSchoolCopy h3 {
+      font-size: 32px;
+  }
+  }
+  
+  @media (min-width: 768px) and (max-width: 830px) {
+    .icaSchoolCopy h3 {
+      font-size: 17px;
+    }
+  }
+  
+  @media (min-width: 831px) and (max-width: 930px) {
+    .icaSchoolCopy h3 {
+      font-size: 19px;
+    }
+  }
+  
+  @media (min-width: 931px) and (max-width: 960px) {
+    .icaSchoolCopy h3 {
+      font-size: 21px;
+    }
+  }
+  
+  @media (min-width: 961px) and (max-width: 1024px) {
+    .icaSchoolCopy h3 {
+      font-size: 22px;
+    }
+  }
+  
+  @media (min-width: 1025px) and (max-width: 1199px) {
+    .icaSchoolCopy h3 {
+      font-size: 18px;
+    }
+  }
+  
+  @media (min-width: 1200px) {
+    .icaSchoolCopy h3 {
+      font-size: 20px;
+    }
+  }
+  

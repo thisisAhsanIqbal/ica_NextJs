@@ -21,7 +21,7 @@
 }
 
 .logo {
-  flex: 1;
+  flex: 0 0 auto;
   flex-shrink: 0;
 }
 
@@ -42,6 +42,49 @@
 
 .logoImage:hover {
   opacity: 0.8;
+}
+
+/* Desktop Navigation Menu */
+.desktopNavMenu {
+  display: none;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 0 2rem;
+}
+
+.desktopNavLink {
+  font-family: var(--font-ui);
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--ica-green-deep);
+  text-decoration: none;
+  padding: 0.5rem 0;
+  position: relative;
+  transition: color 0.3s ease;
+  white-space: nowrap;
+}
+
+.desktopNavLink::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--ica-teal);
+  transition: width 0.3s ease;
+}
+
+.desktopNavLink:hover {
+  color: var(--ica-teal);
+}
+
+.desktopNavLink:hover::after {
+  width: 100%;
 }
 
 .navMenu {
@@ -100,7 +143,7 @@
 
 .ctaButton:active { transform: translateY(0); }
 
-/* Menu Button - Show on all screens */
+/* Menu Button - Show on mobile only */
 .mobileMenuButton {
   display: block;
   background: none;
@@ -244,6 +287,7 @@
   .headerContainer { padding: 1rem; }
   .logoImage { max-height: 90px; min-height: 90px; }
 
+  .desktopNavMenu { display: none; }
   .headerActions { display: none; }
 
   .mobileShopButton {
@@ -276,10 +320,13 @@
   .mobileShopButton:hover { background-color: rgba(23, 150, 140, 0.05); }
 }
 
-/* Desktop: hide mobile-only controls, show header actions */
+/* Desktop: hide mobile-only controls, show header actions and desktop nav */
 @media (min-width: 921px) {
+  .desktopNavMenu { display: flex; }
+  .mobileMenuButton { display: none; }
   .mobileShopButton { display: none; }
   .headerActions { display: flex; }
+  .navMenu { display: none; }
 }
 
 /* Tablet adjustments */

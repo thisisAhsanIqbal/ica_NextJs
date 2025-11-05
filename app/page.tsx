@@ -1,5 +1,6 @@
 import Hero from './components/Hero';
 import ArtsAreas from './components/ArtsAreas';
+import School from './components/School';
 
 export default function Home() {
   const artsAreasData = {
@@ -82,6 +83,40 @@ export default function Home() {
         ]}
       />
       <ArtsAreas {...artsAreasData} />
+      <School
+        title="The School"
+        headline="High-level arts meets high-achieving academics"
+        paragraphs={[
+          'Illinois Conservatory for the Arts is a non-profit educational institution dedicated to providing exceptional arts education and programming.',
+          'ICA is committed to providing high-level arts programming that integrates seamlessly with rigorous academic standards. Our mission is to nurture artistic excellence while fostering academic achievement.'
+        ]}
+        cta={{
+          label: 'Learn More',
+          url: '/the-school'
+        }}
+        logoSrc="/asserts/home/Icon The Studio Cream.png"
+        logoAlt="The Studio icon"
+        slides={[
+          {
+            src: '/asserts/home/The-School-1.webp',
+            alt: 'The School at Illinois Conservatory for the Arts',
+            width: 530,
+            height: 450
+          },
+          {
+            src: '/asserts/home/The-School-2.webp',
+            alt: 'The School at Illinois Conservatory for the Arts',
+            width: 530,
+            height: 450
+          },
+          {
+            src: '/asserts/home/AOTA-NEHAMASHOTSbranding.webp',
+            alt: 'Academy of the Arts event at Illinois Conservatory for the Arts',
+            width: 530,
+            height: 450
+          }
+        ]}
+      />
     </>
   )
 }
