@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useId } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from './Hero.module.css';
@@ -43,12 +43,25 @@ export default function Hero({
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isDonateOpen, setIsDonateOpen] = useState(false);
   const [isNewsletterOpen, setIsNewsletterOpen] = useState(false);
+  const [isInitialMount, setIsInitialMount] = useState(true);
   const sliderRef = useRef<HTMLDivElement>(null);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Handle initial mount - delay auto-rotation until after page transition
+  useEffect(() => {
+    // Wait for page transition to complete (500ms) + small buffer
+    const mountTimer = setTimeout(() => {
+      setIsInitialMount(false);
+    }, 600);
+
+    return () => clearTimeout(mountTimer);
+  }, []);
 
   // Auto-rotate slider
   useEffect(() => {
     if (heroImages.length <= 1) return;
+    // Don't start auto-rotation until after initial mount/page transition
+    if (isInitialMount) return;
 
     const startAutoRotation = () => {
       if (intervalRef.current) return;
@@ -84,7 +97,7 @@ export default function Hero({
         slider.removeEventListener('focusout', startAutoRotation);
       }
     };
-  }, [heroImages.length]);
+  }, [heroImages.length, isInitialMount]);
 
   // Keyboard navigation (only when slider is focused)
   useEffect(() => {
@@ -138,7 +151,7 @@ export default function Hero({
     }
   };
 
-  const heroId = `hero-${Math.random().toString(36).substring(2, 11)}`;
+  const heroId = useId();
 
   return (
     <>
@@ -245,7 +258,7 @@ export default function Hero({
                           key={`${image.src}-${index}`}
                           className={`${styles.heroHomeSlide} ${
                             isActive ? styles.heroHomeSlideActive : ''
-                          }`}
+                          } ${isInitialMount && index === 0 ? styles.heroHomeSlideInitial : ''}`}
                           role="img"
                           aria-label={image.alt}
                           aria-hidden={!isActive}

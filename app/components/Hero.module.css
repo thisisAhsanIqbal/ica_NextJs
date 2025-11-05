@@ -391,11 +391,21 @@
   visibility: hidden;
 }
 
+/* First slide on initial load - no transition to prevent conflict with page fade-in */
+.heroHomeSlideInitial {
+  transition: none !important;
+}
+
 .heroHomeSlideActive {
   opacity: 1 !important;
   z-index: 3;
   pointer-events: auto;
   visibility: visible !important;
+}
+
+/* After initial mount, restore transition for active slides */
+.heroHomeSlide:not(.heroHomeSlideInitial).heroHomeSlideActive {
+  transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Next.js Image component wrapper */

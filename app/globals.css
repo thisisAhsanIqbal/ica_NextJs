@@ -210,6 +210,12 @@ code {
   transition: opacity 0.2s ease;
 }
 
+/* Exclude Hero slider from page transition opacity rule to prevent animation conflicts */
+.page-transition .heroHomeSlider,
+.page-transition .heroHomeSlider * {
+  transition: opacity 0.2s ease;
+}
+
 
 /* Font loading - show content immediately with fallback fonts */
 /* No visibility hiding - prevents blank screen */
