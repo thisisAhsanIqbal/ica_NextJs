@@ -1,6 +1,37 @@
 import Hero from './components/Hero';
+import ArtsAreas from './components/ArtsAreas';
 
 export default function Home() {
+  const artsAreasData = {
+    heading: 'Arts Areas',
+    items: [
+      {
+        iconSrc: '/asserts/home/Icon Music.png',
+        iconAlt: 'Performing Arts icon',
+        title: 'Performing Arts',
+        subs: ['Dance', 'Music', 'Theatre'],
+      },
+      {
+        iconSrc: '/asserts/home/Icon Art.png',
+        iconAlt: 'Visual Arts icon',
+        title: 'Visual Arts',
+        subs: ['Drawing', 'Painting', 'Ceramics & Sculpture'],
+      },
+      {
+        iconSrc: '/asserts/home/Icon Media.png',
+        iconAlt: 'Media Arts icon',
+        title: 'Media Arts',
+        subs: ['Graphic Design', 'Animation', 'Photo & Video'],
+      },
+      {
+        iconSrc: '/asserts/home/Icon Lightbulb.png',
+        iconAlt: 'Arts Business icon',
+        title: 'Arts Business',
+        subs: ['Entrepreneurship', 'Finance', 'Marketing'],
+      },
+    ],
+  };
+
   return (
     <>
       <Hero
@@ -50,6 +81,7 @@ export default function Home() {
           }
         ]}
       />
+      <ArtsAreas {...artsAreasData} />
     </>
   )
 }

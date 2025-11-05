@@ -1,11 +1,25 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Optimize images for better LCP
+  // Cloudflare Images CDN configuration
   images: {
+    // Cloudflare Images CDN - supports both Cloudflare Images and regular domains
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'imagedelivery.net', // Cloudflare Images CDN
+      },
+      {
+        protocol: 'https',
+        hostname: '**.cloudflareusercontent.com', // Cloudflare Images alternative
+      },
+    ],
     formats: ['image/avif', 'image/webp'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     minimumCacheTTL: 60,
+    // Enable responsive images
+    dangerouslyAllowSVG: true,
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
   // Enable compression
   compress: true,

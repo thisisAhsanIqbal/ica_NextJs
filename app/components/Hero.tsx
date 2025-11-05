@@ -86,18 +86,28 @@ export default function Hero({
     };
   }, [heroImages.length]);
 
-  // Keyboard navigation
+  // Keyboard navigation (only when slider is focused)
   useEffect(() => {
+    if (heroImages.length <= 1) return;
+    
+    const slider = sliderRef.current;
+    if (!slider) return;
+
     const handleKeyDown = (e: KeyboardEvent) => {
+      // Only handle if slider is focused or contains focused element
+      if (!slider.contains(document.activeElement)) return;
+      
       if (e.key === 'ArrowLeft') {
+        e.preventDefault();
         setCurrentSlide((prev) => (prev - 1 + heroImages.length) % heroImages.length);
       } else if (e.key === 'ArrowRight') {
+        e.preventDefault();
         setCurrentSlide((prev) => (prev + 1) % heroImages.length);
       }
     };
 
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    slider.addEventListener('keydown', handleKeyDown);
+    return () => slider.removeEventListener('keydown', handleKeyDown);
   }, [heroImages.length]);
 
   // Touch/swipe support
@@ -128,49 +138,49 @@ export default function Hero({
     }
   };
 
-  const heroId = `hero-${Math.random().toString(36).substr(2, 9)}`;
+  const heroId = `hero-${Math.random().toString(36).substring(2, 11)}`;
 
   return (
     <>
       <section
-        className={styles.hero}
+        className={styles.heroHome}
         id={heroId}
         role="banner"
         aria-labelledby={`${heroId}-headline`}
       >
-        <div className={styles.sectionInner}>
-          <div className={styles.heroGrid}>
+        <div className={styles.heroHomeSectionInner}>
+          <div className={styles.heroHomeGrid}>
             {/* Content Column (Left) */}
-            <div className={styles.heroContent} role="main">
+            <div className={styles.heroHomeContent} role="main">
               {headline && (
                 <h1
-                  className={styles.heroHeadline}
+                  className={styles.heroHomeHeadline}
                   id={`${heroId}-headline`}
                   dangerouslySetInnerHTML={{ __html: headline }}
                 />
               )}
 
               {subhead && (
-                <p className={styles.heroSubhead}>{subhead}</p>
+                <p className={styles.heroHomeSubhead}>{subhead}</p>
               )}
 
               {paragraph && (
-                <p className={styles.heroParagraph}>{paragraph}</p>
+                <p className={styles.heroHomeParagraph}>{paragraph}</p>
               )}
 
               {(primaryButton?.url || secondaryButton?.label || tertiaryButton?.label) && (
                 <div
-                  className={styles.heroActions}
+                  className={styles.heroHomeActions}
                   id={`hero-actions-${heroId}`}
                   role="group"
                   aria-label="Hero section actions"
                 >
                   {/* First Row: Two Buttons */}
-                  <div className={styles.heroActionsRow}>
+                  <div className={styles.heroHomeActionsRow}>
                     {primaryButton?.url && (
                       <Link
                         href={primaryButton.url}
-                        className={styles.btnIca}
+                        className={styles.heroHomeBtnIca}
                         id={`hero-btn-primary-${heroId}`}
                         aria-describedby={`${heroId}-headline`}
                       >
@@ -181,7 +191,7 @@ export default function Hero({
                     {secondaryButton?.label && (
                       <button
                         type="button"
-                        className={styles.btnIca}
+                        className={styles.heroHomeBtnIca}
                         id={`hero-btn-secondary-${heroId}`}
                         onClick={() => setIsDonateOpen(true)}
                         aria-haspopup="dialog"
@@ -195,10 +205,10 @@ export default function Hero({
 
                   {/* Second Row: Full-width Button */}
                   {tertiaryButton?.label && (
-                    <div className={styles.heroActionsRow}>
+                    <div className={styles.heroHomeActionsRow}>
                       <button
                         type="button"
-                        className={`${styles.btnIca} ${styles.btnIcaFullWidth}`}
+                        className={`${styles.heroHomeBtnIca} ${styles.heroHomeBtnIcaFullWidth}`}
                         id={`hero-btn-tertiary-${heroId}`}
                         onClick={() => setIsNewsletterOpen(true)}
                         aria-haspopup="dialog"
@@ -214,46 +224,55 @@ export default function Hero({
             </div>
 
             {/* Media Column (Right) */}
-            <div className={styles.heroMedia}>
+            <div className={styles.heroHomeMedia}>
               {heroImages && heroImages.length > 0 ? (
-                <div className={styles.heroMediaWrapper}>
+                <div className={styles.heroHomeMediaWrapper}>
                   <div
-                    className={styles.heroSlider}
+                    className={styles.heroHomeSlider}
                     ref={sliderRef}
                     role="region"
                     aria-label="Hero image gallery"
+                    tabIndex={0}
+                    aria-live="polite"
+                    aria-atomic="true"
                     onTouchStart={handleTouchStart}
                     onTouchEnd={handleTouchEnd}
                   >
-                    {heroImages.map((image, index) => (
-                      <div
-                        key={index}
-                        className={`${styles.heroSlide} ${
-                          index === currentSlide ? styles.active : ''
-                        }`}
-                        role="img"
-                        aria-label={image.alt}
-                      >
-                        <Image
-                          src={image.src}
-                          alt={image.alt}
-                          width={image.width || 1100}
-                          height={image.height || 650}
-                          className={styles.heroSlideImg}
-                          priority={index === 0}
-                          loading={index === 0 ? 'eager' : 'lazy'}
-                          fetchPriority={index === 0 ? 'high' : 'auto'}
-                          decoding={index === 0 ? 'sync' : 'async'}
-                          sizes="(min-width: 1280px) 1100px, (min-width: 768px) 640px, 92vw"
-                        />
-                      </div>
-                    ))}
+                    {heroImages.map((image, index) => {
+                      const isActive = index === currentSlide;
+                      return (
+                        <div
+                          key={`${image.src}-${index}`}
+                          className={`${styles.heroHomeSlide} ${
+                            isActive ? styles.heroHomeSlideActive : ''
+                          }`}
+                          role="img"
+                          aria-label={image.alt}
+                          aria-hidden={!isActive}
+                        >
+                          <Image
+                            src={image.src}
+                            alt={image.alt}
+                            width={image.width || 1100}
+                            height={image.height || 650}
+                            className={styles.heroHomeSlideImg}
+                            priority={index === 0}
+                            loading={index === 0 ? 'eager' : 'lazy'}
+                            sizes="(max-width: 480px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 550px, 1100px"
+                            quality={90}
+                            onError={(e) => {
+                              console.error('Failed to load image:', image.src, e);
+                            }}
+                          />
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
               ) : (
-                <div className={styles.heroPlaceholder} role="img" aria-label="Hero image placeholder">
-                  <div className={styles.heroPlaceholderContent}>
-                    <span className={styles.heroPlaceholderIcon} aria-hidden="true">
+                <div className={styles.heroHomePlaceholder} role="img" aria-label="Hero image placeholder">
+                  <div className={styles.heroHomePlaceholderContent}>
+                    <span className={styles.heroHomePlaceholderIcon} aria-hidden="true">
                       🎵
                     </span>
                     <p>Hero images loading...</p>
