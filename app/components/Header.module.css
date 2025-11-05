@@ -17,9 +17,11 @@
   align-items: center;
   justify-content: space-between;
   gap: 2rem;
+  position: relative;
 }
 
 .logo {
+  flex: 1;
   flex-shrink: 0;
 }
 
@@ -43,29 +45,25 @@
 }
 
 .navMenu {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-  flex: 1;
-  justify-content: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: var(--header-bg);
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0;
+  gap: 0;
+  box-shadow: 0 4px 6px -1px var(--header-shadow);
+  border-top: 1px solid var(--header-border);
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0;
+  visibility: hidden;
+  z-index: 102;
 }
 
-.navLink {
-  font-family: var(--font-ui);
-  color: var(--header-text);
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 1rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  transition: opacity 0.2s ease;
-  position: relative;
-}
-
-.navLink:hover {
-  color: var(--header-text);
-  opacity: 0.8;
-}
 
 .headerActions {
   flex-shrink: 0;
@@ -102,14 +100,15 @@
 
 .ctaButton:active { transform: translateY(0); }
 
-/* Mobile Menu Button */
+/* Menu Button - Show on all screens */
 .mobileMenuButton {
-  display: none;
+  display: block;
   background: none;
   border: none;
   cursor: pointer;
   padding: 0.5rem;
   z-index: 101;
+  order: 2;
 }
 
 .hamburger {
@@ -134,139 +133,118 @@
 .hamburgerOpen span:nth-child(2) { opacity: 0; }
 .hamburgerOpen span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
 
-/* Mobile Nav */
+/* Active state for dropdown menu - applies to all screens */
+.navMenu:global(.active) {
+  max-height: 800px;
+  opacity: 1;
+  visibility: visible;
+  padding: 0;
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease 0.1s, visibility 0s 0s;
+}
+
+/* Navigation link styles - applies to all screens */
+.navLink {
+  font-size: 1rem;
+  width: 100%;
+  padding: 1.25rem 1.5rem;
+  min-height: 56px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  text-decoration: none;
+  color: var(--ica-green-deep);
+  font-family: var(--font-ui);
+}
+
+.navBullet { width: 8px; height: 8px; background-color: var(--ica-teal); flex-shrink: 0; display: block; }
+.navText { text-transform: uppercase; font-weight: 500; letter-spacing: 0.5px; font-size: 16px; }
+
+.navLink:active { background-color: rgba(23, 150, 140, 0.1); }
+.navLink:hover { background-color: rgba(23, 150, 140, 0.05); }
+
+/* Social icons - available on all screens */
+.mobileSocialIcons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  width: 100%;
+  padding: 2rem 1.5rem 1.5rem 1.5rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  margin-top: 0;
+}
+
+.socialIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05), inset 0 1px 2px rgba(255, 255, 255, 0.3), 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease, background 0.3s ease;
+  text-decoration: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  position: relative;
+  overflow: hidden;
+}
+
+.socialIcon::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.socialIcon:active {
+  transform: scale(0.95);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1), inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.socialIcon:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), inset 0 1px 2px rgba(255, 255, 255, 0.4), 0 2px 0 rgba(255, 255, 255, 0.3);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.08) 100%);
+}
+
+.socialIcon:hover::before { opacity: 1; }
+
+.socialIconImg {
+  width: 24px;
+  height: 24px;
+  pointer-events: none;
+  object-fit: contain;
+  filter: brightness(0);
+  position: relative;
+  z-index: 1;
+  transition: filter 0.3s ease;
+}
+
+.socialIcon:hover .socialIconImg { filter: brightness(0) drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1)); }
+
+/* Mobile-specific adjustments */
 @media (max-width: 920px) {
-  .headerContainer { padding: 1rem; position: relative; }
-  .logo { flex: 1; }
+  .headerContainer { padding: 1rem; }
   .logoImage { max-height: 90px; min-height: 90px; }
 
   .headerActions { display: none; }
-
-  .mobileMenuButton { display: block; order: 2; }
-
-  .navMenu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background-color: var(--header-bg);
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 0;
-    gap: 0;
-    box-shadow: 0 4px 6px -1px var(--header-shadow);
-    border-top: 1px solid var(--header-border);
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    opacity: 0;
-    visibility: hidden;
-  }
-
-  /* combine with .active class on the element */
-  .navMenu.active {
-    max-height: 800px;
-    opacity: 1;
-    visibility: visible;
-    padding: 0;
-    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease 0.1s, visibility 0s 0s;
-  }
-
-  .navLink {
-    font-size: 1rem;
-    width: 100%;
-    padding: 1.25rem 1.5rem;
-    min-height: 56px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    transition: background-color 0.2s ease;
-    cursor: pointer;
-    -webkit-tap-highlight-color: transparent;
-    touch-action: manipulation;
-    text-decoration: none;
-    color: var(--ica-green-deep);
-    font-family: var(--font-ui);
-  }
-
-  .navBullet { width: 8px; height: 8px; background-color: var(--ica-teal); flex-shrink: 0; display: block; }
-  .navText { text-transform: uppercase; font-weight: 500; letter-spacing: 0.5px; font-size: 16px; }
-
-  .navLink:active { background-color: rgba(23, 150, 140, 0.1); }
-  .navLink:hover { background-color: rgba(23, 150, 140, 0.05); }
-
-  /* Mobile-specific controls embedded in menu */
-  .mobileSocialIcons {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1.5rem;
-    width: 100%;
-    padding: 2rem 1.5rem 1.5rem 1.5rem;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-    margin-top: 0;
-  }
-
-  .socialIcon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 44px;
-    height: 44px;
-    min-width: 44px;
-    min-height: 44px;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
-    border-radius: 50%;
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05), inset 0 1px 2px rgba(255, 255, 255, 0.3), 0 1px 0 rgba(255, 255, 255, 0.2);
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease, background 0.3s ease;
-    text-decoration: none;
-    cursor: pointer;
-    -webkit-tap-highlight-color: transparent;
-    touch-action: manipulation;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .socialIcon::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
-  }
-
-  .socialIcon:active {
-    transform: scale(0.95);
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1), inset 0 1px 2px rgba(0, 0, 0, 0.1);
-  }
-
-  .socialIcon:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), inset 0 1px 2px rgba(255, 255, 255, 0.4), 0 2px 0 rgba(255, 255, 255, 0.3);
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.08) 100%);
-  }
-
-  .socialIcon:hover::before { opacity: 1; }
-
-  .socialIconImg {
-    width: 24px;
-    height: 24px;
-    pointer-events: none;
-    object-fit: contain;
-    filter: brightness(0);
-    position: relative;
-    z-index: 1;
-    transition: filter 0.3s ease;
-  }
-
-  .socialIcon:hover .socialIconImg { filter: brightness(0) drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1)); }
 
   .mobileShopButton {
     display: flex;
@@ -298,24 +276,19 @@
   .mobileShopButton:hover { background-color: rgba(23, 150, 140, 0.05); }
 }
 
-/* Desktop: hide mobile-only controls */
+/* Desktop: hide mobile-only controls, show header actions */
 @media (min-width: 921px) {
-  .mobileShopButton,
-  .mobileSocialIcons { display: none; }
+  .mobileShopButton { display: none; }
   .headerActions { display: flex; }
 }
 
 /* Tablet adjustments */
-@media (max-width: 1024px) {
+@media (max-width: 1024px) and (min-width: 921px) {
   .headerContainer { padding: 1rem 1.5rem; }
-  .navMenu { gap: 1.5rem; }
-  .navLink { font-size: 0.95rem; }
 }
 
 @media (max-width: 480px) {
   .headerContainer { padding: 0.75rem; }
-  .navMenu { padding: 1rem; }
-  .navLink { font-size: 0.9rem; }
 }
 
 

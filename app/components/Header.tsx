@@ -60,7 +60,7 @@ export default function Header() {
           className={`${styles.navMenu} ${isMenuOpen ? 'active' : ''}`}
           role="navigation"
           aria-label="Main navigation"
-          aria-hidden={!isMenuOpen ? 'true' : 'false'}
+          aria-hidden={!isMenuOpen}
         >
           <Link href="/the-school" className={styles.navLink} onClick={closeMenu}>
             <span className={styles.navBullet}></span>
@@ -119,7 +119,7 @@ export default function Header() {
               role="listitem"
             >
               <Image
-                src="/asserts/fb.svg"
+                src="/asserts/home/fb.svg"
                 alt=""
                 width={24}
                 height={24}
