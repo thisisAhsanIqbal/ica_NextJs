@@ -25,7 +25,6 @@ import {
   EffectFade, 
   Navigation, 
   Pagination,
-  EffectSlide,
   EffectCube,
   EffectCoverflow,
   EffectFlip,
@@ -85,7 +84,7 @@ export default function SwiperWrapper({
   
   if (autoplay) modules.push(Autoplay);
   if (effect === 'fade') modules.push(EffectFade);
-  if (effect === 'slide') modules.push(EffectSlide);
+  // Note: 'slide' is the default effect and doesn't require a module
   if (effect === 'cube') modules.push(EffectCube);
   if (effect === 'coverflow') modules.push(EffectCoverflow);
   if (effect === 'flip') modules.push(EffectFlip);
