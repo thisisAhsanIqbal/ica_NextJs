@@ -23,10 +23,6 @@ const nextConfig = {
   },
   // Enable compression
   compress: true,
-  // Optimize production builds
-  swcMinify: true,
-  // Optimize fonts
-  optimizeFonts: true,
   // Reduce JavaScript bundle size
   experimental: {
     optimizeCss: true,
