@@ -21,7 +21,7 @@ export default function ArtsAreas({
   items,
 }: ArtsAreasProps) {
   const sectionRef = useRef<HTMLElement>(null);
-  const cardsRef = useRef<HTMLElement[]>([]);
+  const cardsRef = useRef<(HTMLElement | null)[]>([]);
 
   // Scroll-triggered animation
   useEffect(() => {
@@ -99,7 +99,7 @@ export default function ArtsAreas({
             return (
               <li key={index} className={styles.artsAreasItem}>
                 <article
-                  ref={(el) => {
+                  ref={(el: HTMLElement | null) => {
                     if (el) cardsRef.current[index] = el;
                   }}
                   className={styles.artsAreasCard}
