@@ -1,7 +1,8 @@
+// components/DonatePopup.tsx
 'use client';
 
 import { useEffect } from 'react';
-import styles from './HeroPopup.module.css';
+import styles from './HeroPopup.module.css'; // Note: This uses a separate CSS file
 
 interface DonatePopupProps {
   isOpen: boolean;
@@ -10,32 +11,29 @@ interface DonatePopupProps {
 
 export default function DonatePopup({ isOpen, onClose }: DonatePopupProps) {
   useEffect(() => {
+    // Prevent body scroll when popup is open
     if (isOpen) {
       document.body.classList.add('popup-open');
     } else {
       document.body.classList.remove('popup-open');
     }
 
+    // Cleanup function to remove the class
     return () => {
       document.body.classList.remove('popup-open');
     };
   }, [isOpen]);
 
+  // Handle keyboard escape
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && isOpen) {
+      if (e.key === 'Escape') {
         onClose();
       }
     };
-
-    if (isOpen) {
-      document.addEventListener('keydown', handleEscape);
-    }
-
-    return () => {
-      document.removeEventListener('keydown', handleEscape);
-    };
-  }, [isOpen, onClose]);
+    document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, [onClose]);
 
   if (!isOpen) return null;
 
@@ -44,9 +42,9 @@ export default function DonatePopup({ isOpen, onClose }: DonatePopupProps) {
       className={`${styles.heroPopupModal} ${isOpen ? styles.active : ''}`}
       id="donate-popup"
       role="dialog"
+      aria-modal="true"
       aria-labelledby="donate-popup-title"
       aria-hidden={!isOpen}
-      aria-modal="true"
     >
       <div className={styles.heroPopupOverlay} onClick={onClose} />
       <div className={styles.heroPopupContent}>
@@ -54,7 +52,6 @@ export default function DonatePopup({ isOpen, onClose }: DonatePopupProps) {
           className={styles.heroPopupClose}
           onClick={onClose}
           aria-label="Close donate popup"
-          type="button"
         >
           <svg className={styles.promoCloseIcon} viewBox="0 0 24 24" fill="none">
             <path
@@ -69,27 +66,25 @@ export default function DonatePopup({ isOpen, onClose }: DonatePopupProps) {
 
         <div className={styles.heroPopupTop}>
           <div className={styles.heroPopupImage}>
-            {/* Logo image placeholder */}
+            {/* Logo image can go here */}
           </div>
           <div className={styles.heroPopupHeader}>
             <h2 id="donate-popup-title" className={styles.heroPopupTitle}>
               DONATE TODAY!
             </h2>
             <p className={styles.heroPopupSubtitle}>
-              Illinois Conservatory for the Arts is a 501c3 not-for-profit arts institution. Your support helps us continue providing high-level arts programming and education.
+              Illinois Conservatory for the Arts is a 501c3 not-for-profit arts institution...
             </p>
           </div>
         </div>
 
         <div className={styles.heroPopupContentArea}>
           <div className={styles.heroPopupScript}>
-            {/* Donate form iframe or component will go here */}
-            <p>Donate form will be integrated here.</p>
+            {/* Donate form iframe or component would go here */}
+            <p>Your donation form component or iframe goes here.</p>
           </div>
         </div>
       </div>
     </div>
   );
 }
-
-

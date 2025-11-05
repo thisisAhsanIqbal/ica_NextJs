@@ -1,5 +1,14 @@
 import type { Metadata } from 'next'
 import './globals.css'
+// Swiper CSS imports - Global setup for use across all components
+// Any component can import and use Swiper components:
+// import { Swiper, SwiperSlide } from 'swiper/react';
+// import { Autoplay, EffectFade, Navigation, Pagination } from 'swiper/modules';
+import 'swiper/css'
+import 'swiper/css/effect-fade'
+import 'swiper/css/autoplay'
+import 'swiper/css/navigation'
+import 'swiper/css/pagination'
 import InfoHeader from './components/InfoHeader'
 import Header from './components/Header'
 import PromotionalHeader from './components/PromotionalHeader'
@@ -126,6 +135,15 @@ export default function RootLayout({
           href="/PrimaryLogo.webp" 
           as="image" 
           fetchPriority="high"
+        />
+        
+        {/* Preload hero image for LCP optimization (hero is likely LCP element) */}
+        <link 
+          rel="preload" 
+          href="/asserts/home/High-level-arts-meets-high-achieving-academics.webp" 
+          as="image" 
+          fetchPriority="high"
+          type="image/webp"
         />
         
         {/* Preload Adobe Fonts CSS for earliest fetch */}

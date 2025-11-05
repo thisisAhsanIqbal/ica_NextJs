@@ -1,10 +1,12 @@
+/* components/HeroPopup.module.css */
+
 .heroPopupModal {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 9999;
+  z-index: 1000;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -24,21 +26,28 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(5px);
   cursor: pointer;
 }
 
 .heroPopupContent {
   position: relative;
-  background: var(--ica-bg);
+  z-index: 1001;
+  background: #fff;
+  padding: 2.5rem;
+  border-radius: 8px;
   max-width: 600px;
   width: 90%;
   max-height: 90vh;
   overflow-y: auto;
-  border-radius: 1rem;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-  z-index: 10000;
-  padding: 2rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  transform: scale(0.95);
+  transition: transform 0.3s ease;
+}
+
+.heroPopupModal.active .heroPopupContent {
+  transform: scale(1);
 }
 
 .heroPopupClose {
@@ -49,85 +58,40 @@
   border: none;
   cursor: pointer;
   padding: 0.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 10001;
-  transition: opacity 0.2s ease;
-}
-
-.heroPopupClose:hover {
-  opacity: 0.7;
+  color: #333;
 }
 
 .promoCloseIcon {
   width: 24px;
   height: 24px;
-  stroke: var(--ica-green-deep);
+  stroke: #555;
 }
 
-.heroPopupTop {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  margin-bottom: 2rem;
-}
-
-.heroPopupImage {
-  width: 100px;
-  height: 100px;
-  margin: 0 auto;
-  background: var(--ica-mint);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.heroPopupClose:hover .promoCloseIcon {
+  stroke: #000;
 }
 
 .heroPopupHeader {
   text-align: center;
+  margin-bottom: 1.5rem;
 }
 
 .heroPopupTitle {
-  font-family: var(--font-heading);
-  font-size: 2rem;
-  font-weight: 600;
-  color: var(--ica-green-deep);
-  margin: 0 0 1rem 0;
+  font-family: var(--font-ui, "Termina", sans-serif);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--ica-green-deep, #1e312f);
+  margin: 0 0 0.5rem 0;
 }
 
 .heroPopupSubtitle {
-  font-family: var(--font-body);
-  font-size: 1rem;
-  line-height: 1.5;
-  color: rgba(0, 0, 0, 0.7);
-  margin: 0;
+  font-family: var(--font-body, "roboto-condensed", sans-serif);
+  font-size: 1.1rem;
+  line-height: 1.4;
+  color: #333;
 }
 
 .heroPopupContentArea {
-  margin-top: 2rem;
+  border-top: 1px solid #eee;
+  padding-top: 1.5rem;
 }
-
-.heroPopupScript {
-  font-family: var(--font-body);
-  color: var(--ica-green-deep);
-  line-height: 1.6;
-}
-
-/* Body scroll lock when popup is open */
-body.popup-open {
-  overflow: hidden;
-}
-
-@media (max-width: 600px) {
-  .heroPopupContent {
-    width: 95%;
-    padding: 1.5rem;
-  }
-
-  .heroPopupTitle {
-    font-size: 1.5rem;
-  }
-}
-
-

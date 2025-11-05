@@ -1,0 +1,30 @@
+/* Back To Top */
+.backToTop {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  width: 80px;
+  height: 80px;
+  max-width: 80px;
+  max-height: 80px;
+  background-color: transparent;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
+  z-index: 9999;
+}
+
+.backToTop:hover { transform: translateY(-2px); }
+
+.show { background-color: var(--ica-mint); padding: 5px; opacity: 1; visibility: visible; transform: translateY(0); }
+
+.backToTopLogo { width: 100%; height: 100%; object-fit: contain; border-radius: 50%; }
+

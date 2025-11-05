@@ -2,53 +2,23 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { useEffect, useState, useCallback } from 'react'
+import BackToTop from './BackToTop'
+import styles from './Footer.module.css'
 
 export default function Footer() {
-  const [isBackToTopVisible, setIsBackToTopVisible] = useState(false)
-
-  useEffect(() => {
-    // Debounce scroll handler for better performance
-    let ticking = false
-
-    const toggleVisibility = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          const scrollY = window.scrollY || window.pageYOffset
-          setIsBackToTopVisible(scrollY > 300)
-          ticking = false
-        })
-        ticking = true
-      }
-    }
-
-    // Use passive listener for better scroll performance
-    window.addEventListener('scroll', toggleVisibility, { passive: true })
-    return () => {
-      window.removeEventListener('scroll', toggleVisibility)
-    }
-  }, [])
-
-  const scrollToTop = useCallback(() => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    })
-  }, [])
-
   return (
-    <footer className="ica-footer" role="contentinfo">
-      <div className="ica-footer-container">
-        <div className="ica-footer-grid">
+    <footer className={styles.icaFooter} role="contentinfo">
+      <div className={styles.icaFooterContainer}>
+        <div className={styles.icaFooterGrid}>
           {/* 1. Logo Section */}
-          <div className="ica-logo-section">
+          <div className={styles.icaLogoSection}>
             <Link href="/" aria-label="Illinois Conservatory for the Arts - Home">
               <Image
                 src="/asserts/Stamp-Logo-300x300.webp"
                 alt="Illinois Conservatory for the Arts"
                 width={170}
                 height={170}
-                className="ica-footer-logo"
+                className={styles.icaFooterLogo}
                 loading="lazy"
                 sizes="(max-width: 479px) 160px, (max-width: 767px) 180px, (max-width: 1199px) 170px, (max-width: 1439px) 190px, 220px"
               />
@@ -56,14 +26,14 @@ export default function Footer() {
           </div>
 
           {/* 2. Content Section (Headline + Buttons) */}
-          <section className="ica-content-section" aria-labelledby="footer-tagline">
-            <h2 id="footer-tagline" className="ica-headline">
+          <section className={styles.icaContentSection} aria-labelledby="footer-tagline">
+            <h2 id="footer-tagline" className={styles.icaHeadline}>
               High-level arts <em>meets</em><br />high-achieving academics.
             </h2>
-            <div className="ica-buttons">
+            <div className={styles.icaButtons}>
               <a 
                 href="mailto:info@ilconservatory.org" 
-                className="ica-button" 
+                className={styles.icaButton} 
                 aria-label="Email us at info@ilconservatory.org"
               >
                 <Image
@@ -71,7 +41,7 @@ export default function Footer() {
                   alt=""
                   width={18}
                   height={18}
-                  className="ica-footer-icon"
+                  className={styles.icaFooterIcon}
                   aria-hidden="true"
                   loading="lazy"
                 />
@@ -79,7 +49,7 @@ export default function Footer() {
               </a>
               <button
                 type="button"
-                className="ica-button"
+                className={styles.icaButton}
                 onClick={() => window.open('https://m.me/100066957470546', '_blank')}
                 aria-label="Chat now on Messenger"
               >
@@ -88,7 +58,7 @@ export default function Footer() {
                   alt=""
                   width={18}
                   height={18}
-                  className="ica-footer-icon"
+                  className={styles.icaFooterIcon}
                   aria-hidden="true"
                   loading="lazy"
                 />
@@ -98,8 +68,8 @@ export default function Footer() {
           </section>
 
           {/* 3. Badges Section */}
-          <section className="ica-badges-section" aria-label="Program areas">
-            <div className="ica-badge">
+          <section className={styles.icaBadgesSection} aria-label="Program areas">
+            <div className={styles.icaBadge}>
               <Link href="/the-school" aria-label="The School">
                 <Image
                   src="/asserts/Icon-The-School-300x142.webp"
@@ -111,7 +81,7 @@ export default function Footer() {
                 />
               </Link>
             </div>
-            <div className="ica-badge">
+            <div className={styles.icaBadge}>
               <Link href="/impact" aria-label="IMPACT">
                 <Image
                   src="/asserts/Icon-IMPACT-300x110.webp"
@@ -123,7 +93,7 @@ export default function Footer() {
                 />
               </Link>
             </div>
-            <div className="ica-badge">
+            <div className={styles.icaBadge}>
               <Link href="/the-studio" aria-label="The Studio">
                 <Image
                   src="/asserts/Icon-The-Studio-300x151.webp"
@@ -138,14 +108,14 @@ export default function Footer() {
           </section>
 
           {/* 4. Navigation + Social Row */}
-          <div className="ica-nav-social-row">
-            <nav className="ica-footer-nav" aria-label="Footer navigation">
+          <div className={styles.icaNavSocialRow}>
+            <nav className={styles.icaFooterNav} aria-label="Footer navigation">
               <Link href="/about" prefetch={true}>WHO WE ARE</Link>
               <Link href="/blog" prefetch={true}>CURTAIN UP! THE BLOG</Link>
               <Link href="/support" prefetch={true}>SUPPORT ICA</Link>
               <Link href="/sitemap" prefetch={true}>SITEMAP</Link>
             </nav>
-            <nav className="ica-footer-social" aria-label="Social media links">
+            <nav className={styles.icaFooterSocial} aria-label="Social media links">
               <a
                 href="https://www.facebook.com/ilconservatory"
                 target="_blank"
@@ -157,7 +127,7 @@ export default function Footer() {
                   alt=""
                   width={32}
                   height={32}
-                  className="ica-footer-social-icon"
+                  className={styles.icaFooterSocialIcon}
                   aria-hidden="true"
                 />
               </a>
@@ -172,7 +142,7 @@ export default function Footer() {
                   alt=""
                   width={32}
                   height={32}
-                  className="ica-footer-social-icon"
+                  className={styles.icaFooterSocialIcon}
                   aria-hidden="true"
                 />
               </a>
@@ -187,7 +157,7 @@ export default function Footer() {
                   alt=""
                   width={32}
                   height={32}
-                  className="ica-footer-social-icon"
+                  className={styles.icaFooterSocialIcon}
                   aria-hidden="true"
                 />
               </a>
@@ -202,7 +172,7 @@ export default function Footer() {
                   alt=""
                   width={32}
                   height={32}
-                  className="ica-footer-social-icon"
+                  className={styles.icaFooterSocialIcon}
                   aria-hidden="true"
                 />
               </a>
@@ -212,8 +182,8 @@ export default function Footer() {
       </div>
 
       {/* Copyright Bar */}
-      <div className="ica-copyright">
-        <div className="ica-footer-container">
+      <div className={styles.icaCopyright}>
+        <div className={styles.icaFooterContainer}>
           <address className="not-italic">
             <span>NAPERVILLE, ILLINOIS</span>
           </address>
@@ -225,9 +195,9 @@ export default function Footer() {
       </div>
 
       {/* Website Credit */}
-      <div className="ica-website-credit">
-        <div className="ica-footer-container">
-          <p className="ica-credit-text">
+      <div className={styles.icaWebsiteCredit}>
+        <div className={styles.icaFooterContainer}>
+          <p className={styles.icaCreditText}>
             Website Design and Development by{' '}
             <a href="https://muhammadahsaniqbal.com/" target="_blank" rel="noopener noreferrer">
               Muhammad Ahsan Iqbal
@@ -236,23 +206,7 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Back to Top Button */}
-      <button
-        type="button"
-        className={`back-to-top ${isBackToTopVisible ? 'show' : ''}`}
-        onClick={scrollToTop}
-        aria-label="Back to top"
-      >
-        <Image
-          src="/asserts/Stamp-Logo-300x300.webp"
-          alt=""
-          width={80}
-          height={80}
-          className="back-to-top-logo"
-          loading="lazy"
-          aria-hidden="true"
-        />
-      </button>
+      <BackToTop />
     </footer>
   )
 }

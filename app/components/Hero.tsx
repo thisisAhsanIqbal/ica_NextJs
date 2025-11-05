@@ -1,11 +1,16 @@
+// components/Hero.tsx
 'use client';
 
-import { useEffect, useRef, useState, useId } from 'react';
+// Import Swiper components (CSS is globally available via layout.tsx)
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, EffectFade } from 'swiper/modules';
+
+import { useState, useId } from 'react'; // Keep for popups
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from './Hero.module.css';
 import DonatePopup from './DonatePopup';
-import NewsletterPopup from './NewsletterPopup';
+import NewsletterPopup from './NewsletterPopup'; // Assuming you create a similar popup
 
 interface HeroImage {
   src: string;
@@ -40,160 +45,57 @@ export default function Hero({
   tertiaryButton,
   heroImages,
 }: HeroProps) {
-  const [currentSlide, setCurrentSlide] = useState(0);
+  // 2. We only need state for the popups now
   const [isDonateOpen, setIsDonateOpen] = useState(false);
   const [isNewsletterOpen, setIsNewsletterOpen] = useState(false);
-  const [isInitialMount, setIsInitialMount] = useState(true);
-  const sliderRef = useRef<HTMLDivElement>(null);
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Handle initial mount - delay auto-rotation until after page transition
-  useEffect(() => {
-    // Wait for page transition to complete (500ms) + small buffer
-    const mountTimer = setTimeout(() => {
-      setIsInitialMount(false);
-    }, 600);
+  // 3. ALL the slider-related useEffects, useRefs, 
+  //    and handleTouch functions have been DELETED.
 
-    return () => clearTimeout(mountTimer);
-  }, []);
-
-  // Auto-rotate slider
-  useEffect(() => {
-    if (heroImages.length <= 1) return;
-    // Don't start auto-rotation until after initial mount/page transition
-    if (isInitialMount) return;
-
-    const startAutoRotation = () => {
-      if (intervalRef.current) return;
-      
-      intervalRef.current = setInterval(() => {
-        setCurrentSlide((prev) => (prev + 1) % heroImages.length);
-      }, 5000);
-    };
-
-    const pauseAutoRotation = () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-        intervalRef.current = null;
-      }
-    };
-
-    startAutoRotation();
-
-    const slider = sliderRef.current;
-    if (slider) {
-      slider.addEventListener('mouseenter', pauseAutoRotation);
-      slider.addEventListener('mouseleave', startAutoRotation);
-      slider.addEventListener('focusin', pauseAutoRotation);
-      slider.addEventListener('focusout', startAutoRotation);
-    }
-
-    return () => {
-      pauseAutoRotation();
-      if (slider) {
-        slider.removeEventListener('mouseenter', pauseAutoRotation);
-        slider.removeEventListener('mouseleave', startAutoRotation);
-        slider.removeEventListener('focusin', pauseAutoRotation);
-        slider.removeEventListener('focusout', startAutoRotation);
-      }
-    };
-  }, [heroImages.length, isInitialMount]);
-
-  // Keyboard navigation (only when slider is focused)
-  useEffect(() => {
-    if (heroImages.length <= 1) return;
-    
-    const slider = sliderRef.current;
-    if (!slider) return;
-
-    const handleKeyDown = (e: KeyboardEvent) => {
-      // Only handle if slider is focused or contains focused element
-      if (!slider.contains(document.activeElement)) return;
-      
-      if (e.key === 'ArrowLeft') {
-        e.preventDefault();
-        setCurrentSlide((prev) => (prev - 1 + heroImages.length) % heroImages.length);
-      } else if (e.key === 'ArrowRight') {
-        e.preventDefault();
-        setCurrentSlide((prev) => (prev + 1) % heroImages.length);
-      }
-    };
-
-    slider.addEventListener('keydown', handleKeyDown);
-    return () => slider.removeEventListener('keydown', handleKeyDown);
-  }, [heroImages.length]);
-
-  // Touch/swipe support
-  const touchStartX = useRef(0);
-  const touchEndX = useRef(0);
-
-  const handleTouchStart = (e: React.TouchEvent) => {
-    touchStartX.current = e.changedTouches[0].screenX;
-  };
-
-  const handleTouchEnd = (e: React.TouchEvent) => {
-    touchEndX.current = e.changedTouches[0].screenX;
-    handleSwipe();
-  };
-
-  const handleSwipe = () => {
-    const swipeThreshold = 50;
-    const diff = touchStartX.current - touchEndX.current;
-
-    if (Math.abs(diff) > swipeThreshold) {
-      if (diff > 0) {
-        // Swipe left - next slide
-        setCurrentSlide((prev) => (prev + 1) % heroImages.length);
-      } else {
-        // Swipe right - previous slide
-        setCurrentSlide((prev) => (prev - 1 + heroImages.length) % heroImages.length);
-      }
-    }
-  };
-
-  const heroId = useId();
+  // Use useId() for stable SSR-safe IDs (fixes hydration mismatch)
+  const reactId = useId();
+  const heroId = `hero-${reactId.replace(/:/g, '-')}`;
 
   return (
     <>
       <section
-        className={styles.heroHome}
+        className={styles.hero}
         id={heroId}
-        role="banner"
         aria-labelledby={`${heroId}-headline`}
       >
-        <div className={styles.heroHomeSectionInner}>
-          <div className={styles.heroHomeGrid}>
+        <div className={styles.sectionInner}>
+          <div className={styles.heroGrid}>
             {/* Content Column (Left) */}
-            <div className={styles.heroHomeContent} role="main">
+            <div className={styles.heroContent}>
               {headline && (
                 <h1
-                  className={styles.heroHomeHeadline}
+                  className={styles.heroHeadline}
                   id={`${heroId}-headline`}
                   dangerouslySetInnerHTML={{ __html: headline }}
                 />
               )}
 
               {subhead && (
-                <p className={styles.heroHomeSubhead}>{subhead}</p>
+                <p className={styles.heroSubhead}>{subhead}</p>
               )}
 
               {paragraph && (
-                <p className={styles.heroHomeParagraph}>{paragraph}</p>
+                <p className={styles.heroParagraph}>{paragraph}</p>
               )}
 
               {(primaryButton?.url || secondaryButton?.label || tertiaryButton?.label) && (
                 <div
-                  className={styles.heroHomeActions}
+                  className={styles.heroActions}
                   id={`hero-actions-${heroId}`}
                   role="group"
                   aria-label="Hero section actions"
                 >
                   {/* First Row: Two Buttons */}
-                  <div className={styles.heroHomeActionsRow}>
+                  <div className={styles.heroActionsRow}>
                     {primaryButton?.url && (
                       <Link
                         href={primaryButton.url}
-                        className={styles.heroHomeBtnIca}
+                        className={styles.btnIca}
                         id={`hero-btn-primary-${heroId}`}
                         aria-describedby={`${heroId}-headline`}
                       >
@@ -204,7 +106,7 @@ export default function Hero({
                     {secondaryButton?.label && (
                       <button
                         type="button"
-                        className={styles.heroHomeBtnIca}
+                        className={styles.btnIca}
                         id={`hero-btn-secondary-${heroId}`}
                         onClick={() => setIsDonateOpen(true)}
                         aria-haspopup="dialog"
@@ -218,10 +120,10 @@ export default function Hero({
 
                   {/* Second Row: Full-width Button */}
                   {tertiaryButton?.label && (
-                    <div className={styles.heroHomeActionsRow}>
+                    <div className={styles.heroActionsRow}>
                       <button
                         type="button"
-                        className={`${styles.heroHomeBtnIca} ${styles.heroHomeBtnIcaFullWidth}`}
+                        className={`${styles.btnIca} ${styles.btnIcaFullWidth}`}
                         id={`hero-btn-tertiary-${heroId}`}
                         onClick={() => setIsNewsletterOpen(true)}
                         aria-haspopup="dialog"
@@ -237,55 +139,52 @@ export default function Hero({
             </div>
 
             {/* Media Column (Right) */}
-            <div className={styles.heroHomeMedia}>
+            <div className={styles.heroMedia}>
               {heroImages && heroImages.length > 0 ? (
-                <div className={styles.heroHomeMediaWrapper}>
-                  <div
-                    className={styles.heroHomeSlider}
-                    ref={sliderRef}
-                    role="region"
-                    aria-label="Hero image gallery"
-                    tabIndex={0}
-                    aria-live="polite"
-                    aria-atomic="true"
-                    onTouchStart={handleTouchStart}
-                    onTouchEnd={handleTouchEnd}
-                  >
-                    {heroImages.map((image, index) => {
-                      const isActive = index === currentSlide;
-                      return (
-                        <div
-                          key={`${image.src}-${index}`}
-                          className={`${styles.heroHomeSlide} ${
-                            isActive ? styles.heroHomeSlideActive : ''
-                          } ${isInitialMount && index === 0 ? styles.heroHomeSlideInitial : ''}`}
-                          role="img"
-                          aria-label={image.alt}
-                          aria-hidden={!isActive}
-                        >
-                          <Image
-                            src={image.src}
-                            alt={image.alt}
-                            width={image.width || 1100}
-                            height={image.height || 650}
-                            className={styles.heroHomeSlideImg}
-                            priority={index === 0}
-                            loading={index === 0 ? 'eager' : 'lazy'}
-                            sizes="(max-width: 480px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 550px, 1100px"
-                            quality={90}
-                            onError={(e) => {
-                              console.error('Failed to load image:', image.src, e);
-                            }}
-                          />
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
+                // 4. Replace the custom slider div with the Swiper component
+                <Swiper
+                  className={styles.heroSlider} // Use your existing class for sizing
+                  modules={[Autoplay, EffectFade]} // Add modules
+                  effect="fade" // Use fade effect like the guide
+                  fadeEffect={{ crossFade: true }}
+                  autoplay={{
+                    delay: 5000,
+                    disableOnInteraction: true, // Pauses on hover/touch
+                  }}
+                  loop={true}
+                  keyboard={true} // Enables keyboard navigation
+                  style={{
+                    // Ensure Swiper respects your border-radius
+                    borderRadius: '1.5rem',
+                    overflow: 'hidden',
+                  }}
+                  role="region"
+                  aria-label="Hero image gallery"
+                >
+                  {heroImages.map((image, index) => (
+                    <SwiperSlide key={index}>
+                      <div className={styles.heroSlide}>
+                        <Image
+                          src={image.src}
+                          alt={image.alt}
+                          fill
+                          className={styles.heroSlideImg}
+                          priority={index === 0}
+                          loading={index === 0 ? 'eager' : 'lazy'}
+                          fetchPriority={index === 0 ? 'high' : 'auto'}
+                          sizes="(min-width: 1280px) 1100px, (min-width: 768px) 640px, 92vw"
+                          quality={index === 0 ? 90 : 85}
+                          placeholder={index === 0 ? 'blur' : undefined}
+                          blurDataURL={index === 0 ? 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTEwMCIgaGVpZ2h0PSI2NTAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjExMDAiIGhlaWdodD0iNjUwIiBmaWxsPSIjRjlGNkY0Ii8+PC9zdmc+' : undefined}
+                        />
+                      </div>
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
               ) : (
-                <div className={styles.heroHomePlaceholder} role="img" aria-label="Hero image placeholder">
-                  <div className={styles.heroHomePlaceholderContent}>
-                    <span className={styles.heroHomePlaceholderIcon} aria-hidden="true">
+                <div className={styles.heroPlaceholder} role="img" aria-label="Hero image placeholder">
+                  <div className={styles.heroPlaceholderContent}>
+                    <span className={styles.heroPlaceholderIcon} aria-hidden="true">
                       🎵
                     </span>
                     <p>Hero images loading...</p>
@@ -299,8 +198,7 @@ export default function Hero({
 
       {/* Popups */}
       <DonatePopup isOpen={isDonateOpen} onClose={() => setIsDonateOpen(false)} />
-      <NewsletterPopup isOpen={isNewsletterOpen} onClose={() => setIsNewsletterOpen(false)} />
+      {/* <NewsletterPopup isOpen={isNewsletterOpen} onClose={() => setIsNewsletterOpen(false)} /> */}
     </>
   );
 }
-

@@ -1,17 +1,19 @@
+import styles from './PromotionalHeader.module.css'
+
 export default function PromotionalHeader() {
   return (
-    <section className="promotional-header" aria-label="Promotional announcements">
+    <section className={styles.promotionalHeader} aria-label="Promotional announcements">
       {/* IMPACT: Musical Theater */}
-      <article className="promo-banner promo-musical" aria-labelledby="musical-title">
-        <div className="promo-banner-container">
-          <div className="promo-label" role="text">Register Today!</div>
-          <div className="promo-row-2">
-            <div className="promo-content-group">
-              <h2 className="promo-title" id="musical-title">IMPACT: Musical Theater</h2>
-              <p className="promo-subtitle">Summer 2025 Registration</p>
+      <article className={`${styles.promoBanner} ${styles.promoMusical}`} aria-labelledby="musical-title">
+        <div className={styles.promoBannerContainer}>
+          <div className={styles.promoLabel} role="text">Register Today!</div>
+          <div className={styles.promoRow2}>
+            <div className={styles.promoContentGroup}>
+              <h2 className={styles.promoTitle} id="musical-title">IMPACT: Musical Theater</h2>
+              <p className={styles.promoSubtitle}>Summer 2025 Registration</p>
             </div>
-            <div className="promo-action">
-              <button type="button" className="promo-button" aria-label="Save my spot for IMPACT: Musical Theater Summer 2025 Registration">
+            <div className={styles.promoAction}>
+              <button type="button" className={styles.promoButton} aria-label="Save my spot for IMPACT: Musical Theater Summer 2025 Registration">
                 Save My Spot!
               </button>
             </div>
@@ -20,16 +22,16 @@ export default function PromotionalHeader() {
       </article>
 
       {/* IMPACT: Dance */}
-      <article className="promo-banner promo-dance" aria-labelledby="dance-title">
-        <div className="promo-banner-container">
-          <div className="promo-label" role="text">Register Today!</div>
-          <div className="promo-row-2">
-            <div className="promo-content-group">
-              <h2 className="promo-title" id="dance-title">IMPACT: DANCE</h2>
-              <p className="promo-subtitle">Winter Session</p>
+      <article className={`${styles.promoBanner} ${styles.promoDance}`} aria-labelledby="dance-title">
+        <div className={styles.promoBannerContainer}>
+          <div className={styles.promoLabel} role="text">Register Today!</div>
+          <div className={styles.promoRow2}>
+            <div className={styles.promoContentGroup}>
+              <h2 className={styles.promoTitle} id="dance-title">IMPACT: DANCE</h2>
+              <p className={styles.promoSubtitle}>Winter Session</p>
             </div>
-            <div className="promo-action">
-              <button type="button" className="promo-button" aria-label="Register now for IMPACT: Dance Winter Session">
+            <div className={styles.promoAction}>
+              <button type="button" className={styles.promoButton} aria-label="Register now for IMPACT: Dance Winter Session">
                 Register Now!
               </button>
             </div>

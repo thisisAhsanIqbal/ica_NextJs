@@ -1,0 +1,321 @@
+/* Header (main) */
+.header {
+  background-color: var(--header-bg);
+  border-bottom: 1px solid var(--header-border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 1px 3px 0 var(--header-shadow);
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.headerContainer {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.logo {
+  flex-shrink: 0;
+}
+
+.logoImage {
+  height: auto;
+  width: auto;
+  max-height: 90px;
+  min-height: 90px;
+  max-width: 180px;
+  min-width: 150px;
+  object-fit: contain;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  background-color: transparent;
+  display: block;
+  aspect-ratio: 3 / 1;
+  will-change: opacity;
+}
+
+.logoImage:hover {
+  opacity: 0.8;
+}
+
+.navMenu {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex: 1;
+  justify-content: center;
+}
+
+.navLink {
+  font-family: var(--font-ui);
+  color: var(--header-text);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: opacity 0.2s ease;
+  position: relative;
+}
+
+.navLink:hover {
+  color: var(--header-text);
+  opacity: 0.8;
+}
+
+.headerActions {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.ctaButton {
+  font-family: var(--font-ui);
+  background-color: var(--ica-teal);
+  color: var(--ica-white);
+  border: none;
+  padding: 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px -1px rgba(23, 150, 140, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+}
+
+.shopIcon { flex-shrink: 0; }
+
+.ctaButton:hover {
+  background-color: var(--ica-green-deep);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(30, 49, 47, 0.3);
+}
+
+.ctaButton:active { transform: translateY(0); }
+
+/* Mobile Menu Button */
+.mobileMenuButton {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  z-index: 101;
+}
+
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 24px;
+  height: 18px;
+  position: relative;
+}
+
+.hamburger span {
+  display: block;
+  height: 2px;
+  width: 100%;
+  background-color: var(--header-text);
+  transition: all 0.3s ease;
+  border-radius: 2px;
+}
+
+.hamburgerOpen span:nth-child(1) { transform: rotate(45deg) translate(8px, 8px); }
+.hamburgerOpen span:nth-child(2) { opacity: 0; }
+.hamburgerOpen span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
+
+/* Mobile Nav */
+@media (max-width: 920px) {
+  .headerContainer { padding: 1rem; position: relative; }
+  .logo { flex: 1; }
+  .logoImage { max-height: 90px; min-height: 90px; }
+
+  .headerActions { display: none; }
+
+  .mobileMenuButton { display: block; order: 2; }
+
+  .navMenu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--header-bg);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0;
+    gap: 0;
+    box-shadow: 0 4px 6px -1px var(--header-shadow);
+    border-top: 1px solid var(--header-border);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  /* combine with .active class on the element */
+  .navMenu.active {
+    max-height: 800px;
+    opacity: 1;
+    visibility: visible;
+    padding: 0;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease 0.1s, visibility 0s 0s;
+  }
+
+  .navLink {
+    font-size: 1rem;
+    width: 100%;
+    padding: 1.25rem 1.5rem;
+    min-height: 56px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    transition: background-color 0.2s ease;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    text-decoration: none;
+    color: var(--ica-green-deep);
+    font-family: var(--font-ui);
+  }
+
+  .navBullet { width: 8px; height: 8px; background-color: var(--ica-teal); flex-shrink: 0; display: block; }
+  .navText { text-transform: uppercase; font-weight: 500; letter-spacing: 0.5px; font-size: 16px; }
+
+  .navLink:active { background-color: rgba(23, 150, 140, 0.1); }
+  .navLink:hover { background-color: rgba(23, 150, 140, 0.05); }
+
+  /* Mobile-specific controls embedded in menu */
+  .mobileSocialIcons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    width: 100%;
+    padding: 2rem 1.5rem 1.5rem 1.5rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    margin-top: 0;
+  }
+
+  .socialIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05), inset 0 1px 2px rgba(255, 255, 255, 0.3), 0 1px 0 rgba(255, 255, 255, 0.2);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease, background 0.3s ease;
+    text-decoration: none;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .socialIcon::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  .socialIcon:active {
+    transform: scale(0.95);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1), inset 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+
+  .socialIcon:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), inset 0 1px 2px rgba(255, 255, 255, 0.4), 0 2px 0 rgba(255, 255, 255, 0.3);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.08) 100%);
+  }
+
+  .socialIcon:hover::before { opacity: 1; }
+
+  .socialIconImg {
+    width: 24px;
+    height: 24px;
+    pointer-events: none;
+    object-fit: contain;
+    filter: brightness(0);
+    position: relative;
+    z-index: 1;
+    transition: filter 0.3s ease;
+  }
+
+  .socialIcon:hover .socialIconImg { filter: brightness(0) drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1)); }
+
+  .mobileShopButton {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    margin-top: 0;
+    padding: 1.25rem 1.5rem;
+    min-height: 56px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 0;
+    background-color: transparent;
+    color: var(--ica-green-deep);
+    box-shadow: none;
+    font-size: 1rem;
+    gap: 0.75rem;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    transition: background-color 0.2s ease;
+    font-family: var(--font-ui);
+  }
+
+  .shopText { font-weight: 400; text-transform: none; }
+
+  .mobileShopButton .shopIcon { width: 20px; height: 20px; flex-shrink: 0; pointer-events: none; filter: brightness(0); }
+  .mobileShopButton:active { background-color: rgba(23, 150, 140, 0.1); }
+  .mobileShopButton:hover { background-color: rgba(23, 150, 140, 0.05); }
+}
+
+/* Desktop: hide mobile-only controls */
+@media (min-width: 921px) {
+  .mobileShopButton,
+  .mobileSocialIcons { display: none; }
+  .headerActions { display: flex; }
+}
+
+/* Tablet adjustments */
+@media (max-width: 1024px) {
+  .headerContainer { padding: 1rem 1.5rem; }
+  .navMenu { gap: 1.5rem; }
+  .navLink { font-size: 0.95rem; }
+}
+
+@media (max-width: 480px) {
+  .headerContainer { padding: 0.75rem; }
+  .navMenu { padding: 1rem; }
+  .navLink { font-size: 0.9rem; }
+}
+
+

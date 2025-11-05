@@ -1,0 +1,152 @@
+/* Footer */
+.icaFooter { background: var(--ica-bg); color: var(--ica-green-deep); padding: 0; width: 100%; font-family: var(--font-ui); position: relative; }
+.icaFooterContainer { max-width: 1280px; margin: 0 auto; padding: 0 1rem; width: 100%; }
+
+.icaFooterGrid {
+  display: grid;
+  gap: 2rem;
+  padding: 2rem 0;
+  align-items: center;
+  text-align: center;
+  grid-template-areas: 'logo' 'content' 'badges' 'navsocial';
+}
+
+.icaLogoSection { grid-area: logo; width: 100%; display: flex; justify-content: center; align-items: center; }
+.icaFooterLogo { width: 160px; height: 160px; border-radius: 50%; object-fit: contain; }
+
+.icaContentSection { grid-area: content; width: 100%; display: flex; flex-direction: column; align-items: center; gap: 1rem; margin-bottom: 0; }
+.icaHeadline { font-family: var(--font-heading); font-size: 35px; font-weight: 600; line-height: 1.3; margin: 0; text-align: center; color: var(--ica-green-deep); }
+.icaHeadline em { font-style: italic; font-weight: 600; }
+
+.icaButtons { display: flex; flex-direction: row; gap: 1.5rem; align-items: center; justify-content: center; width: 100%; }
+.icaButton {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+  padding: 0.5rem 0.7rem; border: 2px solid var(--ica-green-deep); background: transparent; color: var(--ica-green-deep);
+  text-decoration: none; font-family: var(--font-ui); font-weight: 600; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.5px;
+  transition: all 0.3s ease; min-width: 100px; max-width: 100%; border-radius: 0; cursor: pointer; white-space: nowrap;
+}
+.icaButton:hover { background: var(--ica-lavender); color: var(--ica-green-deep); border-color: var(--ica-lavender); }
+.icaFooterIcon { width: 16px; height: 16px; object-fit: contain; flex-shrink: 0; }
+
+.icaBadgesSection { grid-area: badges; display: flex; flex-direction: row; justify-content: center; align-items: center; gap: 1rem; }
+.icaBadge { display: inline-flex; align-items: center; justify-content: center; transition: transform 0.3s ease; }
+.icaBadge:hover { transform: scale(1.1); }
+.icaBadge img { width: 95px; height: 95px; object-fit: contain; }
+
+.icaNavSocialRow { grid-area: navsocial; display: flex; flex-direction: column; gap: 1.5rem; width: 100%; padding-top: 1rem; }
+.icaFooterNav { display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 1.5rem; width: 100%; flex-wrap: wrap; line-height: 0.5; }
+.icaFooterNav a { color: var(--ica-green-deep); text-decoration: none; font-family: var(--font-ui); font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; transition: color 0.3s ease; padding: 0.25rem 0; }
+.icaFooterNav a:hover { color: var(--ica-teal); }
+
+.icaFooterSocial { display: flex; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; align-items: center; }
+.icaFooterSocial a { display: flex; align-items: center; justify-content: center; width: 28px; height: 28px; transition: transform 0.3s ease, opacity 0.3s ease; flex-shrink: 0; }
+.icaFooterSocial a:hover { transform: scale(1.1); opacity: 0.8; }
+.icaFooterSocialIcon { width: 28px; height: 28px; object-fit: contain; }
+
+/* Small mobile */
+@media (min-width: 480px) {
+  .icaFooterLogo { width: 200px; height: 200px; }
+  .icaHeadline { font-size: 40px; }
+  .icaButtons { gap: 2rem; }
+  .icaButton { font-size: 0.75rem; padding: 0.75rem 1.5rem; min-width: 130px; }
+  .icaFooterIcon { width: 16px; height: 16px; }
+  .icaBadge img { width: 125px; height: 65px; }
+  .icaFooterNav { gap: 2rem; }
+  .icaFooterNav a { font-size: 0.8rem; }
+  .icaFooterSocial { gap: 1.75rem; }
+  .icaFooterSocial a { width: 28px; height: 28px; }
+  .icaFooterSocialIcon { width: 28px; height: 28px; }
+  .icaNavSocialRow { padding-top: 1.25rem; }
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+  .icaFooterContainer { padding: 0 2rem; }
+  .icaFooterGrid { padding: 3rem 0; gap: 2.5rem; }
+  .icaFooterLogo { width: 180px; height: 180px; }
+  .icaContentSection { flex-direction: row; gap: 2rem; align-items: center; text-align: left; padding: 0 30px; }
+  .icaHeadline { font-size: 32px; text-align: left; flex: 1; }
+  .icaButtons { flex-direction: row; align-items: flex-end; flex: 1; gap: 2.5rem; }
+  .icaButton { font-size: 0.875rem; padding: 0.5rem 0.5rem; min-width: 150px; }
+  .icaFooterIcon { width: 16px; height: 16px; }
+  .icaBadge img { width: 150px; height: 45px; }
+  .icaFooterNav { justify-content: center; gap: 2.5rem; }
+  .icaFooterNav a { font-size: 0.875rem; }
+  .icaFooterSocial { margin-top: 1rem; justify-content: space-between; gap: 1.5rem; }
+  .icaFooterSocial a { width: 32px; height: 32px; }
+  .icaFooterSocialIcon { width: 32px; height: 32px; }
+  .icaNavSocialRow { padding-top: 1.5rem; }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .icaFooterContainer { padding: 0 2rem; }
+  .icaFooterGrid { display: grid; grid-template-columns: 150px 1fr 415px; grid-template-areas: 'logo   content   badges' 'logo   content   navsocial'; gap: 2rem; align-items: center; padding: 3rem 0; text-align: left; }
+  .icaBadge img { width: 130px; height: 40px; }
+  .icaNavSocialRow { display: grid; grid-template-columns: 4fr 1fr; align-items: flex-start; column-gap: 2rem; width: 85%; padding-top: 2rem; }
+  .icaFooterNav { justify-content: flex-start; gap: 0rem; flex-direction: column; align-items: flex-start; line-height: 1.5rem; }
+  .icaFooterNav a { font-size: 1.2rem; padding: 0.25rem 0; }
+  .icaFooterSocial { justify-content: flex-end; gap: 0.75rem; flex-direction: column; margin-top: 0; }
+  .icaFooterSocial a { width: 32px; height: 32px; }
+  .icaFooterSocialIcon { width: 32px; height: 32px; }
+  .icaLogoSection { justify-content: flex-start; align-items: flex-start; }
+  .icaFooterLogo { width: 170px; height: 170px; }
+  .icaContentSection { display: flex; flex-direction: column; gap: 1.5rem; align-items: flex-start; text-align: left; width: 100%; justify-content: flex-start; }
+  .icaHeadline { font-size: 2.25rem; line-height: 1.2; text-align: left; margin: 0; }
+  .icaButtons { flex-direction: row; gap: 2rem; align-items: flex-start; justify-content: flex-start; }
+  .icaButton { font-size: 10px; padding: 0.5rem 1rem; min-width: 140px; }
+  .icaFooterIcon { width: 22px; height: 22px; }
+  .icaBadgesSection { justify-content: flex-start; width: 100%; }
+}
+
+/* Large Desktop */
+@media (min-width: 1200px) {
+  .icaFooterGrid { grid-template-columns: 200px 1fr 415px; gap: 0; padding: 5rem 0; align-items: center; }
+  .icaFooterLogo { width: 190px; height: 190px; }
+  .icaHeadline { font-size: 36px; line-height: 1.15; }
+  .icaButtons { gap: 2.5rem; }
+  .icaButton { font-size: 0.875rem; padding: 1rem 2rem; min-width: 160px; }
+  .icaFooterIcon { width: 22px; height: 22px; }
+  .icaBadge img { width: 90px; height: 75px; }
+  .icaFooterNav a { padding: 0.4rem 0; }
+  .icaFooterSocial { gap: 1rem; }
+  .icaFooterSocial a { width: 32px; height: 32px; }
+  .icaFooterSocialIcon { width: 32px; height: 32px; }
+  .icaNavSocialRow { padding-top: 2.5rem; }
+}
+
+/* Extra Large */
+@media (min-width: 1440px) {
+  .icaFooterGrid { grid-template-columns: 240px 1fr 380px; gap: 0; padding: 6rem 0; align-items: center; }
+  .icaFooterLogo { width: 220px; height: 220px; }
+  .icaHeadline { font-size: 42px; }
+  .icaButtons { gap: 3rem; }
+  .icaButton { font-size: 0.9rem; padding: 1rem 0.2rem; min-width: 170px; }
+  .icaFooterIcon { width: 22px; height: 22px; }
+  .icaBadge img { width: 100px; height: 90px; }
+  .icaFooterNav a { padding: 0.5rem 0; }
+  .icaFooterSocial { gap: 1.2rem; }
+  .icaFooterSocial a { width: 32px; height: 32px; }
+  .icaFooterSocialIcon { width: 32px; height: 32px; }
+  .icaNavSocialRow { padding-top: 1rem; }
+}
+
+/* Copyright Bar */
+.icaCopyright { background: var(--ica-green-deep); color: var(--ica-white); padding: 1rem 0; text-align: center; }
+.icaCopyright address { margin: 0 0 0.25rem 0; font-family: var(--font-ui); font-size: 9px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; opacity: 0.9; line-height: 1.4; color: var(--ica-bg); font-style: normal; }
+.icaCopyright p { margin: 0; font-family: var(--font-ui); font-size: 9px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; opacity: 0.9; line-height: 1.4; color: var(--ica-bg); }
+
+@media (min-width: 768px) { .icaCopyright { padding: 1.25rem 0; } .icaCopyright address { font-size: 0.75rem; } .icaCopyright p { font-size: 0.75rem; } }
+@media (min-width: 1024px) { .icaCopyright address { font-size: 0.8rem; } .icaCopyright p { font-size: 0.8rem; } }
+@media (min-width: 1440px) { .icaCopyright address { font-size: 0.85rem; } .icaCopyright p { font-size: 0.85rem; } }
+
+/* Website Credit */
+.icaWebsiteCredit { background-color: rgba(30, 49, 47, 0.05); padding: 0.75rem 0; text-align: center; font-size: 0.75rem; font-family: var(--font-ui); font-weight: 400; line-height: 1.4; border-top: 1px solid rgba(30, 49, 47, 0.1); }
+.icaWebsiteCredit p { margin: 0; color: var(--ica-green-deep); }
+.icaCreditText { font-family: var(--font-ui); font-size: 8px; }
+.icaWebsiteCredit a { color: var(--ica-green-deep); text-decoration: none; font-weight: 600; transition: color 0.3s ease; }
+.icaWebsiteCredit a:hover { color: var(--ica-teal); text-decoration: underline; }
+@media (max-width: 350px) { .icaCreditText { font-size: 7px; } }
+@media (min-width: 480px) { .icaCreditText { font-size: 9px; } }
+
+

@@ -1,557 +1,563 @@
-/* ========================================
-   CSS VARIABLES - Modern Responsive Design
-   ======================================== */
-.heroHome {
-  --hero-padding-xs: clamp(1rem, 3vw, 1.5rem);
-  --hero-padding-sm: clamp(1.5rem, 4vw, 2rem);
-  --hero-padding-md: clamp(2rem, 5vw, 3rem);
-  --hero-padding-lg: clamp(2.5rem, 6vw, 4rem);
-  
-  --hero-gap-xs: clamp(1.5rem, 4vw, 2rem);
-  --hero-gap-sm: clamp(2rem, 5vw, 3rem);
-  --hero-gap-md: clamp(3rem, 6vw, 4rem);
-  --hero-gap-lg: clamp(4rem, 7vw, 5rem);
-  
-  --hero-slider-height-xs: clamp(200px, 40vh, 250px);
-  --hero-slider-height-sm: clamp(250px, 45vh, 350px);
-  --hero-slider-height-md: clamp(350px, 50vh, 450px);
-  --hero-slider-height-lg: clamp(450px, 55vh, 550px);
-  --hero-slider-height-xl: clamp(550px, 60vh, 650px);
-  
-  --hero-headline-size-xs: clamp(1.75rem, 6vw, 2.375rem);
-  --hero-headline-size-sm: clamp(2.375rem, 5.5vw, 3.25rem);
-  --hero-headline-size-md: clamp(3.25rem, 5vw, 4rem);
-  --hero-headline-size-lg: clamp(4rem, 4.5vw, 4.375rem);
-  
-  --hero-subhead-size-xs: clamp(0.95rem, 2.5vw, 1.125rem);
-  --hero-subhead-size-sm: clamp(1.125rem, 2.5vw, 1.25rem);
-  --hero-subhead-size-md: clamp(1.25rem, 2vw, 1.375rem);
-  
-  --hero-paragraph-size-xs: clamp(0.875rem, 2vw, 1rem);
-  --hero-paragraph-size-sm: clamp(1rem, 1.875vw, 1.125rem);
-  --hero-paragraph-size-md: clamp(1.125rem, 1.75vw, 1.125rem);
-  
-  --hero-btn-size-xs: clamp(0.75rem, 2vw, 0.875rem);
-  --hero-btn-size-sm: clamp(0.875rem, 1.875vw, 1rem);
-  --hero-btn-size-md: clamp(1rem, 1.75vw, 1rem);
-  
-  --hero-btn-padding-x-xs: clamp(1rem, 3vw, 1.5rem);
-  --hero-btn-padding-x-sm: clamp(1.5rem, 3vw, 1.75rem);
-  --hero-btn-padding-x-md: clamp(1.75rem, 3vw, 2rem);
-  
-  --hero-btn-padding-y-xs: clamp(0.75rem, 2vw, 0.875rem);
-  --hero-btn-padding-y-sm: clamp(0.875rem, 2vw, 1rem);
-  --hero-btn-padding-y-md: clamp(1rem, 2vw, 1rem);
+
+/* components/Hero.module.css */
+
+/* CSS Variables */
+.hero {
+  --ica-green-deep: #1e312f;
+  --ica-bg: #f9f6f4;
+  --hero-slider-height-mobile: 35vh;
+  --hero-slider-height-small: 28vh;
+  --hero-slider-height-desktop: 650px;
+  --global-padding-mobile: clamp(1.5rem, 4vw, 2.5rem);
+  --global-padding-desktop: clamp(3rem, 6vw, 5rem);
+  --global-gap-mobile: 2rem;
+  --global-gap-desktop: clamp(2rem, 4vw, 4rem);
+  --font-heading: "ivypresto-display", "Bodoni Moda", Georgia, serif;
+  --font-ui: "Termina", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-body: "roboto-condensed", system-ui, sans-serif;
 
   background-color: var(--ica-bg);
-  padding-block: var(--hero-padding-md);
+  padding-block: var(--global-padding-desktop);
   position: relative;
-  width: 100%;
-  overflow-x: hidden;
 }
 
-.heroHome * {
+.hero * {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-smooth: always;
   box-sizing: border-box;
 }
 
-/* ========================================
-   CONTAINER LAYOUT
-   ======================================== */
-.heroHomeSectionInner {
+.sectionInner {
   max-width: 1280px;
   margin: 0 auto;
-  padding-inline: clamp(1rem, 4vw, 3rem);
+  padding: 0 2rem;
   width: 100%;
 }
 
+@media (max-width: 700px) {
+  .sectionInner {
+    padding: 0 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .sectionInner {
+    padding: 0 1rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .sectionInner {
+    padding: 0 0.875rem;
+  }
+}
+
 /* ========================================
-   GRID LAYOUT - Mobile First Approach
+   DESKTOP GRID LAYOUT (701px+)
    ======================================== */
-.heroHomeGrid {
+.heroGrid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--hero-gap-xs);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--global-gap-desktop);
   align-items: center;
-  width: 100%;
+  height: auto;
+  min-height: auto;
+  max-height: none;
+  contain: layout;
 }
 
-/* Tablet Portrait (600px+) */
-@media (min-width: 600px) {
-  .heroHomeGrid {
-    gap: var(--hero-gap-sm);
-  }
-}
-
-/* Tablet Landscape / Small Desktop (768px+) */
-@media (min-width: 768px) {
-  .heroHomeGrid {
-    grid-template-columns: 1fr 1fr;
-    gap: var(--hero-gap-md);
-    align-items: center;
-  }
-}
-
-/* Desktop (1024px+) */
-@media (min-width: 1024px) {
-  .heroHomeGrid {
-    gap: var(--hero-gap-lg);
-  }
-}
-
-/* ========================================
-   CONTENT COLUMN
-   ======================================== */
-.heroHomeContent {
+.heroContent {
   display: flex;
   flex-direction: column;
-  gap: 0;
+  gap: clamp(1rem, 2vw, 1.5rem);
   text-align: left;
   order: 1;
-  justify-content: center;
-  padding: var(--hero-padding-xs) 0;
-  width: 100%;
 }
 
-@media (min-width: 768px) {
-  .heroHomeContent {
-    padding: var(--hero-padding-sm) 0;
-  }
-}
-
-@media (min-width: 1024px) {
-  .heroHomeContent {
-    padding: var(--hero-padding-md) 0;
-  }
-}
-
-/* ========================================
-   TYPOGRAPHY
-   ======================================== */
-.heroHomeHeadline {
+.heroHeadline {
   font-family: var(--font-heading);
-  font-size: var(--hero-headline-size-xs);
-  line-height: 1.1;
+  font-size: 40px;
+  line-height: 1 !important;
   letter-spacing: -0.02em;
   font-weight: 500;
   font-style: normal;
   color: var(--ica-green-deep);
-  margin: 0 0 clamp(0.75rem, 2vw, 1.75rem) 0;
+  margin: 0 0 clamp(0.5rem, 2vw, 1.5rem) 0;
   text-align: left;
   overflow-wrap: break-word;
   word-wrap: break-word;
   hyphens: auto;
+  transition: font-family 0.1s ease-out;
 }
 
-@media (min-width: 600px) {
-  .heroHomeHeadline {
-    font-size: var(--hero-headline-size-sm);
-  }
-}
-
-@media (min-width: 768px) {
-  .heroHomeHeadline {
-    font-size: var(--hero-headline-size-md);
-  }
-}
-
-@media (min-width: 1024px) {
-  .heroHomeHeadline {
-    font-size: var(--hero-headline-size-lg);
-  }
-}
-
-.heroHomeHeadline em {
+.heroHeadline em {
   font-style: italic;
   font-family: var(--font-heading);
   font-weight: 500;
 }
 
-.heroHomeSubhead {
+/* Fluid Typography - Exact Breakpoints */
+@media (max-width: 379px) {
+  .heroHeadline {
+    font-size: 40px !important;
+  }
+}
+
+@media (min-width: 380px) and (max-width: 399px) {
+  .heroHeadline {
+    font-size: 42px !important;
+  }
+}
+
+@media (min-width: 400px) and (max-width: 449px) {
+  .heroHeadline {
+    font-size: 45px !important;
+  }
+}
+
+@media (min-width: 450px) and (max-width: 499px) {
+  .heroHeadline {
+    font-size: 51px !important;
+  }
+}
+
+@media (min-width: 500px) and (max-width: 549px) {
+  .heroHeadline {
+    font-size: 57px !important;
+  }
+}
+
+@media (min-width: 550px) and (max-width: 599px) {
+  .heroHeadline {
+    font-size: 64px !important;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 649px) {
+  .heroHeadline {
+    font-size: 70px !important;
+  }
+}
+
+@media (min-width: 650px) and (max-width: 699px) {
+  .heroHeadline {
+    font-size: 75px !important;
+  }
+}
+
+@media (min-width: 700px) and (max-width: 749px) {
+  .heroHeadline {
+    font-size: 38px !important;
+  }
+}
+
+@media (min-width: 750px) and (max-width: 799px) {
+  .heroHeadline {
+    font-size: 40px !important;
+  }
+}
+
+@media (min-width: 800px) and (max-width: 849px) {
+  .heroHeadline {
+    font-size: 42px !important;
+  }
+}
+
+@media (min-width: 850px) and (max-width: 899px) {
+  .heroHeadline {
+    font-size: 45px !important;
+  }
+}
+
+@media (min-width: 900px) and (max-width: 949px) {
+  .heroHeadline {
+    font-size: 50px !important;
+  }
+}
+
+@media (min-width: 950px) and (max-width: 999px) {
+  .heroHeadline {
+    font-size: 55px !important;
+  }
+}
+
+@media (min-width: 1000px) and (max-width: 1049px) {
+  .heroHeadline {
+    font-size: 56px !important;
+  }
+}
+
+@media (min-width: 1050px) and (max-width: 1099px) {
+  .heroHeadline {
+    font-size: 60px !important;
+  }
+}
+
+@media (min-width: 1100px) and (max-width: 1199px) {
+  .heroHeadline {
+    font-size: 63px !important;
+  }
+}
+
+@media (min-width: 1200px) {
+  .heroHeadline {
+    font-size: 70px !important;
+  }
+}
+
+.heroSubhead {
   font-family: var(--font-ui);
-  font-size: var(--hero-subhead-size-xs);
-  line-height: 1.4;
+  font-size: 20px;
+  line-height: 1.35em;
   font-weight: 600;
   font-style: normal;
-  color: rgba(30, 49, 47, 0.85);
-  margin: 0 0 clamp(0.75rem, 2vw, 1.25rem) 0;
+  color: rgba(0, 0, 0, 0.7);
+  margin: 0;
   text-align: left;
-  letter-spacing: -0.01em;
 }
 
-@media (min-width: 600px) {
-  .heroHomeSubhead {
-    font-size: var(--hero-subhead-size-sm);
-  }
-}
-
-@media (min-width: 768px) {
-  .heroHomeSubhead {
-    font-size: var(--hero-subhead-size-md);
-  }
-}
-
-.heroHomeParagraph {
+.heroParagraph {
   font-family: var(--font-body);
-  font-size: var(--hero-paragraph-size-xs);
-  line-height: 1.6;
+  font-size: 20px;
+  line-height: 1.3;
   font-weight: 400;
-  color: rgba(30, 49, 47, 0.75);
-  margin: 0 0 clamp(1rem, 3vw, 2rem) 0;
-  text-align: left;
-  max-width: 100%;
+  color: rgba(0, 0, 0, 0.7);
+  margin: 0;
+  text-align: justify;
 }
 
-@media (min-width: 600px) {
-  .heroHomeParagraph {
-    font-size: var(--hero-paragraph-size-sm);
-  }
-}
-
-@media (min-width: 768px) {
-  .heroHomeParagraph {
-    font-size: var(--hero-paragraph-size-md);
-  }
-}
-
-/* ========================================
-   BUTTON ACTIONS - Fully Responsive
-   ======================================== */
-.heroHomeActions {
+/* Button Actions */
+.heroActions {
   display: flex;
   flex-direction: column;
-  gap: clamp(0.75rem, 2vw, 1.25rem);
-  margin-top: clamp(0.5rem, 2vw, 1rem);
-  padding: 0;
+  gap: 1.2rem;
+  margin-top: 0.5rem;
+  margin-left: 5px;
+  padding: 3px;
   justify-content: flex-start;
-  width: 100%;
+  contain: layout style;
 }
 
-.heroHomeActionsRow {
+.heroActionsRow {
   display: flex;
-  flex-direction: column;
-  gap: clamp(0.75rem, 2vw, 1.25rem);
+  align-items: stretch;
+  visibility: visible;
+  opacity: 1;
   width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  gap: 1.75rem;
+  justify-content: stretch;
 }
 
-@media (min-width: 480px) {
-  .heroHomeActionsRow {
-    flex-direction: row;
-    gap: clamp(1rem, 2.5vw, 1.75rem);
-  }
+.heroActionsRow:first-child {
+  flex-direction: row;
+  flex-wrap: nowrap;
 }
 
-.heroHomeActionsRow:last-child {
+.heroActionsRow:last-child {
+  flex-direction: row;
+  flex-wrap: nowrap;
   gap: 0;
 }
 
-.heroHomeBtnIca {
+.btnIca {
   flex: 1 1 0;
   min-width: 0;
   width: 100%;
   text-align: center;
+  gap: 1.5rem;
+  /* Button styles from ica-buttons.css */
   font-family: var(--font-ui);
   text-transform: uppercase;
   font-weight: 600;
-  font-size: var(--hero-btn-size-xs);
   letter-spacing: 0.05em;
-  line-height: 1.2;
-  padding: var(--hero-btn-padding-y-xs) var(--hero-btn-padding-x-xs);
-  border: 2px solid var(--ica-green-deep);
+  padding: 0.9rem 1.6rem;
+  border: none;
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  font-size: clamp(16px, 2.5vw, 18px);
   border-radius: 0;
+  line-height: 1.2;
+  white-space: nowrap;
   background: var(--ica-green-deep);
   color: var(--ica-bg);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  text-decoration: none;
-  white-space: nowrap;
-  box-shadow: -6px 6px 0px 1px rgba(30, 49, 47, 0.35);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: -6px 6px 0px 1px rgba(30, 49, 47, 0.45);
 }
 
-@media (min-width: 600px) {
-  .heroHomeBtnIca {
-    font-size: var(--hero-btn-size-sm);
-    padding: var(--hero-btn-padding-y-sm) var(--hero-btn-padding-x-sm);
-  }
-}
-
-@media (min-width: 768px) {
-  .heroHomeBtnIca {
-    font-size: var(--hero-btn-size-md);
-    padding: var(--hero-btn-padding-y-md) var(--hero-btn-padding-x-md);
-  }
-}
-
-.heroHomeBtnIca:hover {
+.btnIca:hover {
   background: var(--ica-bg);
   color: var(--ica-green-deep);
-  transform: translate(-2px, 2px);
-  box-shadow: -4px 4px 0px 1px rgba(30, 49, 47, 0.25);
+  transform: translateY(-2px);
 }
 
-.heroHomeBtnIca:active {
-  transform: translate(0, 0);
-  box-shadow: -2px 2px 0px 1px rgba(30, 49, 47, 0.2);
-}
-
-.heroHomeBtnIca:focus-visible {
-  outline: 2px solid var(--ica-teal);
-  outline-offset: 2px;
-}
-
-.heroHomeBtnIcaFullWidth {
+.btnIcaFullWidth {
   flex: 1 1 auto;
   min-width: 100%;
   text-align: center;
 }
 
-/* ========================================
-   MEDIA COLUMN - Image Slider
-   ======================================== */
-.heroHomeMedia {
+/* Media Column */
+.heroMedia {
   display: flex;
   justify-content: center;
   align-items: center;
   order: 2;
+  /* Prevent layout shift */
+  min-height: 300px;
   width: 100%;
 }
 
-.heroHomeMediaWrapper {
+.heroSlider {
   position: relative;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.5rem;
-  max-width: 100%;
-}
-
-.heroHomeSlider {
-  outline: none;
-  position: relative;
-  width: 100%;
-  max-width: 100%;
-  height: var(--hero-slider-height-xs);
-  border-radius: clamp(0.75rem, 2vw, 1.5rem);
+  width: 90%;
+  aspect-ratio: 1100 / 650; /* Fixed aspect ratio to prevent CLS */
+  height: 60vh;
+  border-radius: 1.5rem;
   overflow: hidden;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
   background: var(--ica-bg);
-  contain: layout style;
+  min-height: 300px;
+  contain: layout style paint;
   will-change: transform;
-}
-
-@media (min-width: 480px) {
-  .heroHomeSlider {
-    height: var(--hero-slider-height-sm);
-  }
-}
-
-@media (min-width: 600px) {
-  .heroHomeSlider {
-    height: var(--hero-slider-height-md);
-  }
-}
-
-@media (min-width: 768px) {
-  .heroHomeSlider {
-    height: var(--hero-slider-height-lg);
-  }
-}
-
-@media (min-width: 1024px) {
-  .heroHomeSlider {
-    height: var(--hero-slider-height-xl);
-  }
-}
-
-@media (min-width: 1280px) {
-  .heroHomeSlider {
-    max-height: 650px;
-  }
-}
-
-.heroHomeSlider:focus-visible {
-  outline: 2px solid var(--ica-teal);
-  outline-offset: 4px;
-  border-radius: clamp(0.75rem, 2vw, 1.5rem);
-}
-
-.heroHomeSlide {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 1;
-  pointer-events: none;
-  visibility: hidden;
-}
-
-/* First slide on initial load - no transition to prevent conflict with page fade-in */
-.heroHomeSlideInitial {
-  transition: none !important;
-}
-
-.heroHomeSlideActive {
-  opacity: 1 !important;
-  z-index: 3;
-  pointer-events: auto;
-  visibility: visible !important;
-}
-
-/* After initial mount, restore transition for active slides */
-.heroHomeSlide:not(.heroHomeSlideInitial).heroHomeSlideActive {
-  transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Next.js Image component wrapper */
-.heroHomeSlide > span {
+  /* Prevent Swiper from causing layout shifts */
   display: block !important;
+}
+
+/* Override Swiper default styles to prevent layout conflicts */
+.heroSlider :global(.swiper) {
   width: 100% !important;
   height: 100% !important;
-  position: relative !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
-.heroHomeSlideImg {
+.heroSlider :global(.swiper-wrapper) {
   width: 100% !important;
   height: 100% !important;
-  object-fit: cover !important;
-  display: block !important;
-  opacity: 1 !important;
-  position: relative !important;
+  display: flex !important;
+  align-items: stretch !important;
 }
 
-/* Target the actual img element inside Next.js Image wrapper */
-.heroHomeSlide > span > img,
-.heroHomeSlide > span > img[src] {
+/* Ensure SwiperSlide fills the container - using :global() for Swiper classes */
+.heroSlider :global(.swiper-slide) {
   width: 100% !important;
   height: 100% !important;
-  object-fit: cover !important;
-  display: block !important;
-  opacity: 1 !important;
-  visibility: visible !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0 !important;
+  box-sizing: border-box !important;
 }
 
-/* Ensure active slide images are visible */
-.heroHomeSlideActive > span > img,
-.heroHomeSlideActive > span > img[src] {
-  opacity: 1 !important;
-  visibility: visible !important;
-}
-
-.heroHomePlaceholder {
+/* Swiper slide container - needs to be relative for Next.js Image fill prop */
+.heroSlide {
   position: relative;
   width: 100%;
-  height: var(--hero-slider-height-xs);
-  border-radius: clamp(0.75rem, 2vw, 1.5rem);
+  height: 100%;
+  min-height: 100%;
+}
+
+.heroSlideImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.heroPlaceholder {
+  position: relative;
+  width: 90%;
+  height: 60vh;
+  border-radius: 1.5rem;
   background: var(--ica-bg);
+  min-height: 300px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-@media (min-width: 480px) {
-  .heroHomePlaceholder {
-    height: var(--hero-slider-height-sm);
-  }
-}
-
-@media (min-width: 600px) {
-  .heroHomePlaceholder {
-    height: var(--hero-slider-height-md);
-  }
-}
-
-@media (min-width: 768px) {
-  .heroHomePlaceholder {
-    height: var(--hero-slider-height-lg);
-  }
-}
-
-@media (min-width: 1024px) {
-  .heroHomePlaceholder {
-    height: var(--hero-slider-height-xl);
-  }
-}
-
-.heroHomePlaceholderContent {
+.heroPlaceholderContent {
   text-align: center;
   color: rgba(0, 0, 0, 0.5);
 }
 
-.heroHomePlaceholderIcon {
-  font-size: clamp(2rem, 5vw, 3rem);
+.heroPlaceholderIcon {
+  font-size: 3rem;
   display: block;
   margin-bottom: 1rem;
 }
 
+/* Desktop Slider Max Height */
+@media (min-width: 1280px) {
+  .heroSlider {
+    max-height: var(--hero-slider-height-desktop);
+    aspect-ratio: unset;
+  }
+}
+
 /* ========================================
-   ACCESSIBILITY & PERFORMANCE
+   MOBILE LAYOUT (0-700px)
    ======================================== */
+@media (max-width: 700px) {
+  .hero {
+    padding: var(--global-padding-mobile) 0;
+  }
+
+  .heroGrid {
+    grid-template-columns: 1fr;
+    gap: var(--global-gap-mobile);
+    width: 100%;
+  }
+
+  .heroContent {
+    order: 1;
+    text-align: left;
+    align-items: flex-start;
+    width: 100%;
+    padding: 0;
+    margin-bottom: 1.5rem;
+  }
+
+  .heroHeadline {
+    margin-bottom: 1rem;
+  }
+
+  .heroSubhead {
+    margin-bottom: 0.75rem;
+  }
+
+  .heroParagraph {
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+  }
+
+  .heroMedia {
+    order: 2;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 250px;
+    margin-top: 1rem;
+  }
+
+  .heroSlider,
+  .heroPlaceholder {
+    height: var(--hero-slider-height-mobile) !important;
+    width: 100% !important;
+    min-height: 250px !important;
+    max-width: 100%;
+    max-height: 35vh;
+    aspect-ratio: unset;
+  }
+
+  .heroActions {
+    justify-content: flex-start;
+    width: 100%;
+    margin-top: 1rem;
+    gap: 1rem;
+  }
+
+  .heroActionsRow {
+    width: 100%;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 510px) {
+  .heroActionsRow:first-child {
+    gap: 1rem;
+    justify-content: flex-start;
+    align-items: stretch;
+    flex-wrap: wrap;
+  }
+
+  .heroActionsRow:last-child {
+    gap: 0;
+    justify-content: flex-start;
+    align-items: stretch;
+  }
+
+  .btnIca {
+    font-size: 14px;
+    padding: 0.75rem 1.2rem;
+    min-width: 0;
+    flex: 1 1 auto;
+  }
+
+  .btnIcaFullWidth {
+    width: 100%;
+  }
+}
+
+@media (max-width: 479px) {
+  .hero {
+    padding: 1.5rem 0;
+  }
+
+  .sectionInner {
+    padding: 0 1rem;
+  }
+
+  .heroGrid {
+    gap: 1.5rem;
+  }
+
+  .heroHeadline {
+    font-size: clamp(28px, 8vw, 40px) !important;
+    margin-bottom: 1rem;
+  }
+
+  .heroSubhead {
+    font-size: 18px;
+    margin-bottom: 0.75rem;
+  }
+
+  .heroParagraph {
+    font-size: 16px;
+    line-height: 1.4;
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .heroSlider,
+  .heroPlaceholder {
+    height: var(--hero-slider-height-small) !important;
+    aspect-ratio: unset !important;
+  }
+
+  .btnIca {
+    font-size: 12px !important;
+  }
+}
 
 /* Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
-  .heroHomeSlide {
-    transition: none;
-  }
-  
-  .heroHomeBtnIca {
+  .heroSlide {
     transition: none;
   }
 }
 
 /* Print Styles */
 @media print {
-  .heroHome {
+  .hero {
     background: none !important;
     color: var(--ica-green-deep) !important;
-    padding: 1rem 0;
   }
 
-  .heroHomeSlider,
-  .heroHomePlaceholder {
+  .heroSlider,
+  .heroPlaceholder {
     display: none;
   }
 
-  .heroHomeGrid {
+  .heroGrid {
     grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-  
-  .heroHomeActions {
-    display: none;
-  }
-}
-
-/* High DPI / Retina Displays */
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-  .heroHomeSlider {
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-  }
-}
-
-/* Landscape orientation adjustments */
-@media (orientation: landscape) and (max-height: 600px) {
-  .heroHome {
-    padding-block: var(--hero-padding-xs);
-  }
-  
-  .heroHomeSlider {
-    height: clamp(200px, 35vh, 300px);
-  }
-}
-
-/* Ultra-wide screens (1920px+) */
-@media (min-width: 1920px) {
-  .heroHomeSectionInner {
-    max-width: 1440px;
-  }
-  
-  .heroHomeGrid {
-    gap: clamp(5rem, 8vw, 6rem);
   }
 }

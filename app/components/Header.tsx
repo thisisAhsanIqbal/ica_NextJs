@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { useState, useCallback } from 'react'
+import styles from './Header.module.css'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -16,10 +17,10 @@ export default function Header() {
   }, [])
 
   return (
-    <header className="header" role="banner">
-      <div className="header-container">
+    <header className={styles.header} role="banner">
+      <div className={styles.headerContainer}>
         {/* Logo */}
-        <div className="logo">
+        <div className={styles.logo}>
           <Link href="/" aria-label="Illinois Conservatory for the Arts - Home">
             <Image
               src="/PrimaryLogo.webp"
@@ -28,7 +29,7 @@ export default function Header() {
               height={60}
               priority
               fetchPriority="high"
-              className="logo-image"
+              className={styles.logoImage}
               sizes="(max-width: 920px) 150px, 180px"
               quality={90}
               placeholder="blur"
@@ -39,14 +40,14 @@ export default function Header() {
 
         {/* Mobile Menu Button */}
         <button 
-          className="mobile-menu-button"
+          className={styles.mobileMenuButton}
           onClick={toggleMenu}
           aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
           aria-expanded={isMenuOpen}
           aria-controls="main-navigation"
           type="button"
         >
-          <span className={isMenuOpen ? 'hamburger open' : 'hamburger'} aria-hidden="true">
+          <span className={isMenuOpen ? `${styles.hamburger} ${styles.hamburgerOpen}` : styles.hamburger} aria-hidden="true">
             <span></span>
             <span></span>
             <span></span>
@@ -56,39 +57,39 @@ export default function Header() {
         {/* Menu */}
         <nav 
           id="main-navigation"
-          className={`nav-menu ${isMenuOpen ? 'active' : ''}`}
+          className={`${styles.navMenu} ${isMenuOpen ? 'active' : ''}`}
           role="navigation"
           aria-label="Main navigation"
           aria-hidden={!isMenuOpen ? 'true' : 'false'}
         >
-          <Link href="/the-school" className="nav-link" onClick={closeMenu}>
-            <span className="nav-bullet"></span>
-            <span className="nav-text">THE SCHOOL</span>
+          <Link href="/the-school" className={styles.navLink} onClick={closeMenu}>
+            <span className={styles.navBullet}></span>
+            <span className={styles.navText}>THE SCHOOL</span>
           </Link>
-          <Link href="/impact" className="nav-link" onClick={closeMenu}>
-            <span className="nav-bullet"></span>
-            <span className="nav-text">IMPACT</span>
+          <Link href="/impact" className={styles.navLink} onClick={closeMenu}>
+            <span className={styles.navBullet}></span>
+            <span className={styles.navText}>IMPACT</span>
           </Link>
-          <Link href="/the-studio" className="nav-link" onClick={closeMenu}>
-            <span className="nav-bullet"></span>
-            <span className="nav-text">THE STUDIO</span>
+          <Link href="/the-studio" className={styles.navLink} onClick={closeMenu}>
+            <span className={styles.navBullet}></span>
+            <span className={styles.navText}>THE STUDIO</span>
           </Link>
-          <Link href="/about" className="nav-link" onClick={closeMenu}>
-            <span className="nav-bullet"></span>
-            <span className="nav-text">ABOUT</span>
+          <Link href="/about" className={styles.navLink} onClick={closeMenu}>
+            <span className={styles.navBullet}></span>
+            <span className={styles.navText}>ABOUT</span>
           </Link>
-          <Link href="/events" className="nav-link" onClick={closeMenu}>
-            <span className="nav-bullet"></span>
-            <span className="nav-text">EVENTS</span>
+          <Link href="/events" className={styles.navLink} onClick={closeMenu}>
+            <span className={styles.navBullet}></span>
+            <span className={styles.navText}>EVENTS</span>
           </Link>
-          <Link href="/support" className="nav-link" onClick={closeMenu}>
-            <span className="nav-bullet"></span>
-            <span className="nav-text">SUPPORT</span>
+          <Link href="/support" className={styles.navLink} onClick={closeMenu}>
+            <span className={styles.navBullet}></span>
+            <span className={styles.navText}>SUPPORT</span>
           </Link>
           
           {/* Shopping Cart in Mobile Menu */}
           <button 
-            className="mobile-shop-button" 
+            className={styles.mobileShopButton} 
             aria-label="Shopping Cart" 
             type="button" 
             onClick={closeMenu}
@@ -98,22 +99,22 @@ export default function Header() {
               alt=""
               width={20}
               height={20}
-              className="shop-icon"
+              className={styles.shopIcon}
               priority
               fetchPriority="high"
               loading="eager"
               aria-hidden="true"
             />
-            <span className="shop-text">Shopping Cart</span>
+            <span className={styles.shopText}>Shopping Cart</span>
           </button>
           
           {/* Social Icons in Mobile Menu */}
-          <div className="mobile-social-icons" role="list" aria-label="Social media links">
+          <div className={styles.mobileSocialIcons} role="list" aria-label="Social media links">
             <a 
               href="https://www.facebook.com/ilconservatory" 
               target="_blank" 
               rel="noopener noreferrer me" 
-              className="social-icon" 
+              className={styles.socialIcon} 
               aria-label="Visit our Facebook page"
               role="listitem"
             >
@@ -122,7 +123,7 @@ export default function Header() {
                 alt=""
                 width={24}
                 height={24}
-                className="social-icon-img"
+                className={styles.socialIconImg}
                 priority
                 aria-hidden="true"
               />
@@ -131,7 +132,7 @@ export default function Header() {
               href="https://www.instagram.com/ilconservatory/" 
               target="_blank" 
               rel="noopener noreferrer me" 
-              className="social-icon" 
+              className={styles.socialIcon} 
               aria-label="Visit our Instagram page"
               role="listitem"
             >
@@ -140,7 +141,7 @@ export default function Header() {
                 alt=""
                 width={24}
                 height={24}
-                className="social-icon-img"
+                className={styles.socialIconImg}
                 priority
                 aria-hidden="true"
               />
@@ -149,7 +150,7 @@ export default function Header() {
               href="https://x.com/ilconservatory" 
               target="_blank" 
               rel="noopener noreferrer me" 
-              className="social-icon" 
+              className={styles.socialIcon} 
               aria-label="Visit our X (Twitter) page"
               role="listitem"
             >
@@ -158,7 +159,7 @@ export default function Header() {
                 alt=""
                 width={24}
                 height={24}
-                className="social-icon-img"
+                className={styles.socialIconImg}
                 priority
                 aria-hidden="true"
               />
@@ -167,7 +168,7 @@ export default function Header() {
               href="https://www.linkedin.com/company/ilconservatory" 
               target="_blank" 
               rel="noopener noreferrer me" 
-              className="social-icon" 
+              className={styles.socialIcon} 
               aria-label="Visit our LinkedIn page"
               role="listitem"
             >
@@ -176,7 +177,7 @@ export default function Header() {
                 alt=""
                 width={24}
                 height={24}
-                className="social-icon-img"
+                className={styles.socialIconImg}
                 priority
                 aria-hidden="true"
               />
@@ -185,15 +186,15 @@ export default function Header() {
         </nav>
 
         {/* Actions */}
-        <div className="header-actions">
+        <div className={styles.headerActions}>
           {/* Shop Button */}
-          <button className="cta-button" aria-label="Shopping Cart" type="button">
+          <button className={styles.ctaButton} aria-label="Shopping Cart" type="button">
             <Image
               src="/shop_icon.svg"
               alt=""
               width={20}
               height={20}
-              className="shop-icon"
+              className={styles.shopIcon}
               priority
               fetchPriority="high"
               loading="eager"
