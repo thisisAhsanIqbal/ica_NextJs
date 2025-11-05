@@ -21,7 +21,7 @@ export default function ArtsAreas({
   items,
 }: ArtsAreasProps) {
   const sectionRef = useRef<HTMLElement>(null);
-  const cardsRef = useRef<HTMLDivElement[]>([]);
+  const cardsRef = useRef<HTMLElement[]>([]);
 
   // Scroll-triggered animation
   useEffect(() => {
