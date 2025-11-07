@@ -1,6 +1,5 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import styles from './ArtsAreas.module.css';
 
@@ -20,54 +19,6 @@ export default function ArtsAreas({
   heading = 'Arts Areas',
   items,
 }: ArtsAreasProps) {
-  const sectionRef = useRef<HTMLElement>(null);
-  const cardsRef = useRef<(HTMLElement | null)[]>([]);
-
-  // Scroll-triggered animation
-  useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
-
-    // Check if IntersectionObserver is supported
-    if (typeof IntersectionObserver === 'undefined') {
-      // Fallback: immediately show content
-      section.classList.add(styles.artsAreasAnimateIn);
-      cardsRef.current.forEach((card) => {
-        if (card) card.classList.add(styles.artsAreasAnimateIn);
-      });
-      return;
-    }
-
-    // Create intersection observer for section
-    const sectionObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add(styles.artsAreasAnimateIn);
-            // Animate cards with staggered delays (handled by CSS)
-            cardsRef.current.forEach((card) => {
-              if (card) {
-                card.classList.add(styles.artsAreasAnimateIn);
-              }
-            });
-            sectionObserver.unobserve(entry.target);
-          }
-        });
-      },
-      {
-        threshold: 0.2, // Trigger when 20% visible
-        rootMargin: '50px 0px -50px 0px', // Start 50px before viewport
-      }
-    );
-
-    sectionObserver.observe(section);
-
-    // Cleanup
-    return () => {
-      sectionObserver.disconnect();
-    };
-  }, []);
-
   // Split title into first word and remaining words
   const splitTitle = (title: string) => {
     const words = title.split(' ');
@@ -85,7 +36,6 @@ export default function ArtsAreas({
 
   return (
     <section
-      ref={sectionRef}
       className={styles.artsAreas}
       aria-labelledby="programs-heading"
     >
@@ -98,12 +48,7 @@ export default function ArtsAreas({
             const { firstWord, remainingWords } = splitTitle(item.title);
             return (
               <li key={index} className={styles.artsAreasItem}>
-                <article
-                  ref={(el: HTMLElement | null) => {
-                    if (el) cardsRef.current[index] = el;
-                  }}
-                  className={styles.artsAreasCard}
-                >
+                <article className={styles.artsAreasCard}>
                   <div className={styles.artsAreasCardContent}>
                     {item.iconSrc && (
                       <Image
@@ -150,4 +95,3 @@ export default function ArtsAreas({
     </section>
   );
 }
-

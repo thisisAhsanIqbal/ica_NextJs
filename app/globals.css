@@ -1,3 +1,4 @@
+@import "tailwindcss";
 /* --- 1. YOUR BRAND PALETTE (FROM GUIDE) --- */
 /* (HEX for fallback, OKLCH for modern browsers) */
 :root {
@@ -56,6 +57,11 @@
   --font-heading: "ivypresto-display", "Bodoni Moda", Georgia, "Times New Roman", serif;
   --font-ui: "Termina", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-body: "roboto-condensed", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  /* Component-specific variables */
+  --testimonials-container-padding: clamp(1rem, 4vw, 2rem);
+  --testimonials-container-max-width: 1200px;
+  --testimonials-section-gap: 2rem;
+  --global-padding-desktop: clamp(3rem, 6vw, 5rem);
 }
 
 * {

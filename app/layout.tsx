@@ -9,11 +9,11 @@ import 'swiper/css/effect-fade'
 import 'swiper/css/autoplay'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
-import InfoHeader from './components/InfoHeader'
-import Header from './components/Header'
-import PromotionalHeader from './components/PromotionalHeader'
-import Footer from './components/Footer'
-import FontLoader from './components/FontLoader'
+import InfoHeader from './components/shared/InfoHeader'
+import Header from './components/shared/Header'
+import PromotionalHeader from './components/shared/PromotionalHeader'
+import Footer from './components/shared/Footer'
+import FontLoader from './components/ui/FontLoader'
 import Template from './template'
 
 export const metadata: Metadata = {
@@ -113,7 +113,7 @@ export default function RootLayout({
   }
 
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         {/* Structured Data for SEO (JSON-LD) */}
         <script

@@ -1,0 +1,90 @@
+/* components/Studio.module.css */
+
+/* CSS Variables */
+.icaStudio {
+  --ica-green-deep: #1e312f;
+  --ica-bg: #f9f6f4;
+  --ica-mint: #D4E4E1; /* Using Mint from the CSS file */
+  
+  background: var(--ica-mint);
+  font-display: swap;
+}
+
+.studioHighlight {
+  background: linear-gradient(180deg,rgba(255,255,255,0) 50%, rgba(255,255,255,0.48) 50%);
+  background-repeat: no-repeat;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  font-family: var(--font-ui) !important;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ica-green-deep) !important;
+  margin: 1.0rem 0 0.5rem 0;
+  text-align: left;
+  line-height: 2.6em;
+  text-transform: uppercase;
+  display: inline;
+}
+
+.studioCtaButtons {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1.2rem;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+/* === ADDED BUTTON STYLES === */
+.btnIca, .btnIcaWhite {
+  font-family: var(--font-ui);
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  padding: 0.9rem 1.6rem;
+  border: none;
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  font-size: clamp(16px, 2.5vw, 18px);
+  border-radius: 0;
+  line-height: 1.2;
+  white-space: nowrap;
+  flex: 1 1 0;
+  min-width: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.btnIca {
+  background: var(--ica-green-deep);
+  color: var(--ica-bg);
+  box-shadow: -6px 6px 0px 1px rgba(30, 49, 47, 0.45);
+}
+.btnIca:hover {
+  background: var(--ica-bg);
+  color: var(--ica-green-deep);
+  transform: translateY(-2px);
+}
+
+.btnIcaWhite {
+  background: var(--ica-bg);
+  color: var(--ica-green-deep);
+  box-shadow: -6px 6px 0px 1px rgba(30, 49, 47, 0.25);
+  border: 2px solid var(--ica-green-deep);
+}
+.btnIcaWhite:hover {
+  background: var(--ica-green-deep);
+  color: var(--ica-bg);
+  transform: translateY(-2px);
+}
+/* === END BUTTON STYLES === */
+
+@media (max-width: 767px) {
+  .studioCtaButtons {
+    flex-direction: row;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+}

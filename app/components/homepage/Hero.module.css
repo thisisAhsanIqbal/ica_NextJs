@@ -1,0 +1,157 @@
+/* components/Hero.module.css */
+
+/* CSS Variables */
+.hero {
+  --ica-green-deep: #1e312f;
+  --ica-bg: #f9f6f4;
+  --hero-slider-height-mobile: 35vh;
+  --hero-slider-height-small: 28vh;
+  --hero-slider-height-desktop: 650px;
+  /* Font variables are defined globally in globals.css :root, no need to redefine here */
+
+  /* background-color: var(--ica-bg); Removed to allow Tailwind utility classes to control background */
+  position: relative;
+}
+
+/* Slider aspect ratios are handled in FeatureSection.module.css via .heroSlider class */
+
+.hero * {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-smooth: always;
+  box-sizing: border-box;
+}
+
+/* Hero Headline - Responsive Font Sizes */
+.hero h1 {
+  font-size: 40px;
+}
+
+/* Below 450px: 45px */
+@media (min-width: 450px) {
+  .hero h1 {
+    font-size: 45px;
+  }
+}
+
+/* Below 500px: 50px */
+@media (min-width: 500px) {
+  .hero h1 {
+    font-size: 50px;
+  }
+}
+
+/* Below 550px: 54px */
+@media (min-width: 550px) {
+  .hero h1 {
+    font-size: 54px;
+  }
+}
+
+/* Below 600px: 60px */
+@media (min-width: 600px) {
+  .hero h1 {
+    font-size: 60px;
+  }
+}
+
+/* Below 650px: 65px */
+@media (min-width: 650px) {
+  .hero h1 {
+    font-size: 65px;
+  }
+}
+
+/* Below 700px: 70px */
+@media (min-width: 700px) {
+  .hero h1 {
+    font-size: 70px;
+  }
+}
+
+/* Below 750px: 75px */
+@media (min-width: 750px) {
+  .hero h1 {
+    font-size: 75px;
+  }
+}
+
+/* 768px-1000px: 50px */
+@media (min-width: 768px) and (max-width: 1000px) {
+  .hero h1 {
+    font-size: 42px;
+  }
+}
+
+/* 1001px-1199px: clamp(53px, 0.5vw, 65px) */
+@media (min-width: 1001px) and (max-width: 1199px) {
+  .hero h1 {
+    font-size: clamp(53px, 0.5vw, 65px);
+  }
+}
+
+/* 1200px and above: clamp(65px, 0.3vw, 68px) */
+@media (min-width: 1200px) {
+  .hero h1 {
+    font-size: clamp(65px, 0.3vw, 68px);
+  }
+}
+
+.btnIca {
+  font-size: clamp(16px, 2.5vw, 18px);
+  flex: 1 1 0;
+  min-width: 0;
+  width: 100%;
+  text-align: center;
+  gap: 1.5rem;
+  /* Button styles from ica-buttons.css */
+  font-family: var(--font-ui);
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  padding: 0.9rem 1.6rem;
+  border: none;
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  border-radius: 0;
+  line-height: 1.2;
+  background: var(--ica-green-deep);
+  color: var(--ica-bg);
+  box-shadow: -6px 6px 0px 1px rgba(30, 49, 47, 0.45);
+}
+
+.btnIca:hover {
+  background: var(--ica-bg);
+  color: var(--ica-green-deep);
+  transform: translateY(-2px);
+}
+
+
+@media (max-width: 510px) {
+  .btnIca {
+    font-size: 16px;
+    padding: 0.75rem 1.2rem;
+    min-width: 0;
+    flex: 1 1 auto;
+  }
+}
+
+
+@media (max-width: 400px) {
+  .btnIca {
+    font-size: 12px !important;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .heroSlide {
+    transition: none;
+  }
+}
+
+/* Print Styles - Now handled by Tailwind print: utilities */

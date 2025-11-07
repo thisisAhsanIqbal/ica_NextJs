@@ -1,8 +1,9 @@
 'use client'
 
-import Link from 'next/link'
 import Image from 'next/image'
-import BackToTop from './BackToTop'
+import Link from 'next/link'
+import BackToTop from '../ui/BackToTop'
+import Button from '../ui/Button'
 import styles from './Footer.module.css'
 
 export default function Footer() {
@@ -31,9 +32,11 @@ export default function Footer() {
               High-level arts <em>meets</em><br />high-achieving academics.
             </h2>
             <div className={styles.icaButtons}>
-              <a 
+              <Button 
                 href="mailto:info@ilconservatory.org" 
-                className={styles.icaButton} 
+                variant="outline"
+                size="small"
+                className="flex items-center justify-center gap-2"
                 aria-label="Email us at info@ilconservatory.org"
               >
                 <Image
@@ -46,10 +49,12 @@ export default function Footer() {
                   loading="lazy"
                 />
                 EMAIL US
-              </a>
-              <button
+              </Button>
+              <Button
                 type="button"
-                className={styles.icaButton}
+                variant="outline"
+                size="small"
+                className="flex items-center justify-center gap-2"
                 onClick={() => window.open('https://m.me/100066957470546', '_blank')}
                 aria-label="Chat now on Messenger"
               >
@@ -63,7 +68,7 @@ export default function Footer() {
                   loading="lazy"
                 />
                 CHAT NOW
-              </button>
+              </Button>
             </div>
           </section>
 

@@ -7,13 +7,23 @@ import styles from './Header.module.css'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isImpactSubmenuOpen, setIsImpactSubmenuOpen] = useState(true)
 
   const toggleMenu = useCallback(() => {
     setIsMenuOpen(prev => !prev)
+    // Keep submenu open when main menu closes
+    // Submenu will be visible when menu reopens
   }, [])
 
   const closeMenu = useCallback(() => {
     setIsMenuOpen(false)
+    // Keep submenu state - don't close it
+  }, [])
+
+  const toggleImpactSubmenu = useCallback((e: React.MouseEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+    setIsImpactSubmenuOpen(prev => !prev)
   }, [])
 
   // Change body and html background color when menu is open
@@ -38,6 +48,18 @@ export default function Header() {
       document.documentElement.style.backgroundColor = ''
     }
   }, [isMenuOpen])
+
+  // Close menu on escape key press
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isMenuOpen) {
+        closeMenu()
+      }
+    }
+    
+    document.addEventListener('keydown', handleEscape)
+    return () => document.removeEventListener('keydown', handleEscape)
+  }, [isMenuOpen, closeMenu])
 
   return (
     <header className={styles.header} role="banner">
@@ -87,7 +109,7 @@ export default function Header() {
           </Link>
         </nav>
 
-        {/* Mobile Menu Button */}
+        {/* Mobile Menu Button - Transforms to X when menu is open */}
         <button 
           className={styles.mobileMenuButton}
           onClick={toggleMenu}
@@ -103,22 +125,57 @@ export default function Header() {
           </span>
         </button>
 
-        {/* Mobile Dropdown Menu */}
+        {/* Mobile Dropdown Menu - Below Header */}
         <nav 
           id="main-navigation"
-          className={`${styles.navMenu} ${isMenuOpen ? 'active' : ''}`}
+          className={`${styles.navMenu} ${isMenuOpen ? styles.navMenuOpen : ''}`}
           role="navigation"
           aria-label="Main navigation"
           aria-hidden={!isMenuOpen}
         >
+
           <Link href="/the-school" className={styles.navLink} onClick={closeMenu}>
             <span className={styles.navBullet}></span>
             <span className={styles.navText}>THE SCHOOL</span>
           </Link>
-          <Link href="/impact" className={styles.navLink} onClick={closeMenu}>
-            <span className={styles.navBullet}></span>
-            <span className={styles.navText}>IMPACT</span>
-          </Link>
+          
+          {/* IMPACT with Submenu */}
+          <div className={styles.navItemWithSubmenu}>
+            <button
+              className={styles.navLink}
+              onClick={toggleImpactSubmenu}
+              aria-expanded={isImpactSubmenuOpen}
+              aria-haspopup="true"
+            >
+              <span className={styles.navBullet}></span>
+              <span className={styles.navText}>IMPACT</span>
+            </button>
+            <ul 
+              className={`${styles.submenu} ${isImpactSubmenuOpen ? styles.submenuOpen : ''}`}
+              role="menu"
+              aria-label="IMPACT submenu"
+            >
+              <li role="none">
+                <Link href="/impact/impact-dance" className={styles.submenuLink} onClick={closeMenu} role="menuitem">
+                  <span className={styles.submenuBullet}></span>
+                  <span className={styles.submenuText}>IMPACT DANCE</span>
+                </Link>
+              </li>
+              <li role="none">
+                <Link href="/impact/impact-mt-winter" className={styles.submenuLink} onClick={closeMenu} role="menuitem">
+                  <span className={styles.submenuBullet}></span>
+                  <span className={styles.submenuText}>IMPACT MT WINTER</span>
+                </Link>
+              </li>
+              <li role="none">
+                <Link href="/impact/impact-mt-summer" className={styles.submenuLink} onClick={closeMenu} role="menuitem">
+                  <span className={styles.submenuBullet}></span>
+                  <span className={styles.submenuText}>IMPACT MT SUMMER</span>
+                </Link>
+              </li>
+            </ul>
+          </div>
+
           <Link href="/the-studio" className={styles.navLink} onClick={closeMenu}>
             <span className={styles.navBullet}></span>
             <span className={styles.navText}>THE STUDIO</span>

@@ -1,0 +1,146 @@
+/* components/School.module.css */
+
+/* CSS Variables */
+.icaSchool {
+  background: var(--ica-bg);
+}
+
+.eyebrow {
+  font-size: 75px;
+  font-weight: 300;
+  line-height: 1;
+  color: var(--ica-green-deep);
+  margin: 0 0 0.6rem;
+  font-family: var(--font-heading) !important;
+  min-height: 1.1em;
+}
+
+.eyebrow a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.eyebrow a:hover,
+.eyebrow a:focus,
+.eyebrow a:active {
+  color: inherit;
+  text-decoration: none;
+}
+
+.icaSchoolCopy h3 {
+  font-size: 24px;
+  line-height: 1.3em;
+  margin: 0.4rem 0 1rem;
+  color: var(--ica-green-deep);
+  font-weight: 700;
+  font-family: var(--font-ui) !important;
+  text-transform: none;
+  min-height: 1.3em;
+}
+
+.icaSchoolCopy p {
+  font-family: var(--font-body);
+  font-size: 22px;
+  line-height: 1.3;
+  font-weight: 400;
+  color: var(--ica-green-deep);
+  margin: 0 0 1rem 0;
+  text-align: justify;
+  min-height: 2.6em;
+}
+
+.btnIcaLime {
+  font-size: 18px;
+  margin-top: 1rem;
+  text-align: center;
+  /* Button styles from ica-buttons.css */
+  font-family: var(--font-ui);
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  padding: 0.9rem 1.6rem;
+  border: none;
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  border-radius: 0;
+  line-height: 1.2;
+  background: var(--ica-lime);
+  color: var(--ica-green-deep);
+  box-shadow: -6px 6px 0px 1px rgba(158, 164, 129, 0.8);
+}
+
+.btnIcaLime:hover {
+  transform: translateY(-2px);
+}
+
+.btnIcaLimeFullWidth {
+  width: 100%;
+  display: block;
+}
+
+/* ===== RESPONSIVE TYPOGRAPHY ===== */
+@media (max-width: 850px) and (min-width: 769px) {
+  .eyebrow {
+    font-size: 65px;
+  }
+}
+
+/* Headline Font Size Breakpoints */
+@media (max-width: 480px) {
+  .icaSchoolCopy h3 {
+    font-size: 28px;
+    line-height: 1.0em;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 560px) {
+  .icaSchoolCopy h3 {
+    font-size: 28px;
+    line-height: 1.0em;
+  }
+}
+
+@media (min-width: 561px) and (max-width: 767px) {
+  .icaSchoolCopy h3 {
+    font-size: 32px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 830px) {
+  .icaSchoolCopy h3 {
+    font-size: 17px;
+  }
+}
+
+@media (min-width: 831px) and (max-width: 930px) {
+  .icaSchoolCopy h3 {
+    font-size: 19px;
+  }
+}
+
+@media (min-width: 931px) and (max-width: 960px) {
+  .icaSchoolCopy h3 {
+    font-size: 21px;
+  }
+}
+
+@media (min-width: 961px) and (max-width: 1024px) {
+  .icaSchoolCopy h3 {
+    font-size: 22px;
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1199px) {
+  .icaSchoolCopy h3 {
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .icaSchoolCopy h3 {
+    font-size: 20px;
+  }
+}

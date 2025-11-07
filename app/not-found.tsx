@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import Button from './components/ui/Button'
 import styles from './not-found.module.css'
 
 export default function NotFound() {
@@ -26,12 +26,12 @@ export default function NotFound() {
           </p>
           
           <div className={styles.buttonGroup}>
-            <Link href="/" className={styles.primaryButton}>
+            <Button href="/" variant="primary">
               Return Home
-            </Link>
-            <Link href="/the-school" className={styles.secondaryButton}>
+            </Button>
+            <Button href="/the-school" variant="outline">
               Learn About The School
-            </Link>
+            </Button>
           </div>
         </div>
       </div>

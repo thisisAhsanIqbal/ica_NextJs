@@ -64,7 +64,7 @@ For simpler, reusable sliders, use the `SwiperWrapper` component:
 ```tsx
 'use client';
 
-import SwiperWrapper from './components/SwiperWrapper';
+import SwiperWrapper from './components/ui/SwiperWrapper';
 import Image from 'next/image';
 
 export default function ImageCarousel() {
