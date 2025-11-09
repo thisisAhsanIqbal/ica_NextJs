@@ -1,0 +1,129 @@
+/* app/fonts.css */
+/* Centralized font configuration and optimization for the entire application */
+/* Note: font-display is handled by Adobe Fonts (TypeKit) automatically */
+
+/* ============================================
+   FONT OPTIMIZATION - Core Web Vitals (CLS, INP, LCP)
+   ============================================ */
+html {
+  /* Prevent layout shift during font load - Critical for CLS */
+  font-size: 16px;
+  /* Optimize font rendering for better INP */
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  /* Critical: Prevent CLS by adjusting font size during load */
+  font-size-adjust: 0.5;
+  /* Prevent fake bold/italic synthesis - improves rendering performance */
+  font-synthesis: none;
+  /* Optimize font rendering */
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================================
+   FONT CSS VARIABLES
+   ============================================ */
+:root {
+  /* Heading Font: IvyPresto Display (from Adobe Fonts) */
+  --font-heading: "ivypresto-display", "Bodoni Moda", Georgia, "Times New Roman", serif;
+  
+  /* UI Font: Termina (from Adobe Fonts) */
+  --font-ui: "Termina", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  
+  /* Body Font: Roboto Condensed (from Adobe Fonts) */
+  --font-body: "roboto-condensed", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+/* ============================================
+   GLOBAL TYPOGRAPHY RULES with Optimization
+   ============================================ */
+
+/* Headings (H1, H2) - Use ivypresto-display */
+/* Critical for LCP - Hero headings use this font */
+h1, h2 {
+  font-family: var(--font-heading);
+  /* Font optimization for Core Web Vitals */
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Prevent layout shift - match fallback font metrics */
+  font-size-adjust: 0.5;
+}
+
+/* H3 - Use Termina */
+h3 {
+  font-family: var(--font-ui);
+  /* Font optimization for Core Web Vitals */
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Prevent layout shift */
+  font-size-adjust: 0.5;
+}
+
+/* Paragraphs - Use roboto-condensed */
+p {
+  font-family: var(--font-body);
+  /* Default font size for all paragraphs globally */
+  font-size: 22px;
+  color: var(--ica-green-deep);
+  font-weight: 400;
+  /* Font optimization for Core Web Vitals */
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Prevent layout shift */
+  font-size-adjust: 0.5;
+}
+
+/* ============================================
+   UTILITY CLASSES (Optional - for Tailwind-like usage)
+   ============================================ */
+.font-heading {
+  font-family: var(--font-heading);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size-adjust: 0.5;
+}
+
+.font-ui {
+  font-family: var(--font-ui);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size-adjust: 0.5;
+}
+
+.font-body {
+  font-family: var(--font-body);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size-adjust: 0.5;
+}
+
+/* ============================================
+   FONT LOADING PERFORMANCE - Core Web Vitals
+   ============================================ */
+/* Prevent font synthesis (fake bold/italic) - improves INP */
+* {
+  font-synthesis: none;
+}
+
+/* Font loading state management */
+html.fonts-loading {
+  /* Show content immediately with fallback fonts - prevents CLS */
+  visibility: visible;
+}
+
+html.fonts-loaded {
+  /* Fonts are loaded - smooth transition */
+  visibility: visible;
+}
+

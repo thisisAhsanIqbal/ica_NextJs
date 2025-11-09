@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import './fonts.css' // Import fonts configuration first
 import './globals.css'
 // Swiper CSS imports - Global setup for use across all components
 // Any component can import and use Swiper components:
@@ -123,30 +124,18 @@ export default function RootLayout({
           }}
         />
         
-        {/* Critical font preconnects for maximum LCP performance */}
+        {/* ============================================
+            FONT LOADING OPTIMIZATION - Core Web Vitals
+            Priority: LCP > CLS > INP
+            ============================================ */}
+        
+        {/* Step 1: Preconnect to Adobe Fonts domains - Critical for LCP */}
         <link rel="preconnect" href="https://use.typekit.net" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://p.typekit.net" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://use.typekit.net" />
         <link rel="dns-prefetch" href="https://p.typekit.net" />
         
-        {/* Preload critical logo image for LCP optimization */}
-        <link 
-          rel="preload" 
-          href="/PrimaryLogo.webp" 
-          as="image" 
-          fetchPriority="high"
-        />
-        
-        {/* Preload hero image for LCP optimization (hero is likely LCP element) */}
-        <link 
-          rel="preload" 
-          href="/asserts/home/High-level-arts-meets-high-achieving-academics.webp" 
-          as="image" 
-          fetchPriority="high"
-          type="image/webp"
-        />
-        
-        {/* Preload Adobe Fonts CSS for earliest fetch */}
+        {/* Step 2: Preload Adobe Fonts CSS with highest priority - Critical for LCP */}
         <link 
           rel="preload" 
           href={`https://use.typekit.net/${ICA_TYPEKIT_ID}.css`} 
@@ -154,26 +143,28 @@ export default function RootLayout({
           fetchPriority="high"
         />
         
-        {/* Load fonts immediately to prevent FOUT */}
+        {/* Step 3: Load fonts immediately with high priority - Prevents FOUT and improves LCP */}
         <link 
           rel="stylesheet" 
           href={`https://use.typekit.net/${ICA_TYPEKIT_ID}.css`}
         />
         
-        {/* Prevent FOUT and CLS - show content immediately with fallback fonts */}
-        <style dangerouslySetInnerHTML={{
-          __html: `
-            /* Font loading optimization - prevent CLS */
-            body { 
-              font-display: swap;
-              font-size-adjust: 0.5;
-            }
-            /* Prevent layout shift during font load */
-            html {
-              font-size: 16px;
-            }
-          `
-        }} />
+        {/* Step 4: Preload critical logo image for LCP optimization */}
+        <link 
+          rel="preload" 
+          href="/PrimaryLogo.webp" 
+          as="image" 
+          fetchPriority="high"
+        />
+        
+        {/* Step 5: Preload hero image for LCP optimization (hero is likely LCP element) */}
+        <link 
+          rel="preload" 
+          href="/asserts/home/High-level-arts-meets-high-achieving-academics.webp" 
+          as="image" 
+          fetchPriority="high"
+          type="image/webp"
+        />
       </head>
       <body>
         <FontLoader />

@@ -52,12 +52,9 @@
   }
 }
 
-/* Type (IvyPresto, Termina & Roboto Condensed from Adobe Fonts) */
+/* Font variables moved to fonts.css - imported in layout.tsx */
+/* Component-specific variables */
 :root {
-  --font-heading: "ivypresto-display", "Bodoni Moda", Georgia, "Times New Roman", serif;
-  --font-ui: "Termina", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --font-body: "roboto-condensed", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-  /* Component-specific variables */
   --testimonials-container-padding: clamp(1rem, 4vw, 2rem);
   --testimonials-container-max-width: 1200px;
   --testimonials-section-gap: 2rem;
@@ -116,6 +113,8 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0;
 }
 
+/* Global typography rules moved to fonts.css - imported in layout.tsx */
+
 /* Prevent layout shift from images */
 img {
   max-width: 100%;
@@ -153,11 +152,8 @@ h1 {
   color: var(--ica-green-deep);
 }
 
-p {
-  font-size: 1.2rem;
-  color: #666;
-  margin-bottom: 1rem;
-}
+/* Note: Global p styles moved to semantic typography section above */
+/* This p rule is for specific use cases only */
 
 code {
   background-color: #f4f4f4;

@@ -2,7 +2,6 @@
 
 import FeatureSection from './FeatureSection';
 import Button from '../ui/Button';
-import styles from './School.module.css';
 
 interface SchoolProps {
   title?: string;
@@ -58,7 +57,7 @@ function School({
       logoSrc={logoSrc}
       logoAlt={logoAlt}
       mediaPosition="left"
-      sectionClassName={styles.icaSchool}
+      sectionClassName="bg-[var(--ica-bg)] [&_h2]:!font-[var(--font-heading)] [&_h2]:!text-[clamp(80px,6vw,87px)] [&_h3]:!font-[var(--font-ui)] [&_h3]:!text-[clamp(23px,2.5vw,25px)] [&_h3]:!font-semibold [&_p]:!font-[var(--font-body)] [&_p]:!font-normal [&_p]:!text-[var(--ica-green-deep)] [&_p]:!text-[21px] [&_.order-1]:order-2 [&_.order-2]:order-1 [&_.swiper]:max-md:aspect-[16/10] [&_.swiper]:max-md:h-auto [&_.swiper]:max-md:min-h-[300px] [&_.swiper]:max-md:max-h-[450px] [&_.swiper]:md:max-lg:aspect-[9/16] [&_.swiper]:md:max-lg:h-auto [&_.swiper]:md:max-lg:max-h-[550px] [&_.swiper]:lg:aspect-square [&_.swiper]:lg:h-auto [&_.swiper]:lg:max-h-none [&_.swiper_img]:max-md:object-[center_25%] [&_.swiper_img]:md:max-lg:object-[center_30%] [&_.swiper_img]:lg:object-[center_30%] [&_.swiper_img]:xl:object-center"
     >
       {paragraphs.map((paragraph, index) => (
         <p key={index}>{paragraph}</p>

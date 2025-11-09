@@ -1,41 +1,5 @@
 /* components/Impact.module.css */
-
-/* CSS Variables */
-.icaImpact {
-  /* All color and font variables are defined globally in globals.css */
-  background: var(--ica-lavender);
-  position: relative;
-}
-
-.icaImpact * {
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-smooth: always;
-  box-sizing: border-box;
-}
-
-
-/* Ensure title uses ivypresto-display */
-.icaImpact :global(h2) {
-  font-family: var(--font-heading) !important;
-  font-size: clamp(80px, 6vw, 85px) !important;
-}
-
-/* Ensure headline uses Termina */
-.icaImpact :global(h3) {
-  font-family: var(--font-ui) !important;
-  font-size: clamp(21px, 2.5vw, 22px) !important;
-}
-
-/* Ensure paragraphs use brand body font (roboto-condensed) */
-.icaImpact :global(p) {
-  font-family: var(--font-body) !important;
-  font-weight: 400 !important;
-  color: var(--ica-green-deep) !important;
-  font-size: clamp(19px, 2.5vw, 22px) !important;
-  margin-bottom: 1rem !important;
-}
+/* Component-specific styles - Typography and slider styles moved to Tailwind classes in Impact.tsx */
 
 .sessionInfoContainer {
   margin: 0.2rem 0 0 0;
@@ -44,7 +8,7 @@
   gap: 1.0rem;
 }
 
-p.sessionInfo {
+h3.sessionInfo {
   font-family: var(--font-ui) !important;
   font-size: clamp(19px, 2.5vw, 22px) !important;
   font-weight: 600 !important;
@@ -64,40 +28,4 @@ p.sessionInfo {
 }
 
 
-/* IMPACT slider - Responsive aspect ratios */
-/* Mobile: 16:10 aspect ratio (landscape) */
-@media (max-width: 767px) {
-  .icaImpact :global(.swiper) {
-    aspect-ratio: 16 / 10 !important;
-    height: auto !important;
-    min-height: 300px !important;
-    max-height: 450px !important;
-  }
-}
-
-/* Tablet: 9:16 aspect ratio (portrait orientation) */
-@media (min-width: 768px) and (max-width: 1024px) {
-  .icaImpact :global(.swiper) {
-    aspect-ratio: 9 / 16 !important;
-    height: auto !important;
-    max-height: 550px !important;
-  }
-}
-
-/* Desktop: 1:1 aspect ratio (square) */
-@media (min-width: 1025px) {
-  .icaImpact :global(.swiper) {
-    aspect-ratio: 1 / 1 !important;
-    height: auto !important;
-    max-height: none !important;
-  }
-}
-
-
-/* Print Styles */
-@media print {
-  .icaImpact {
-    background: none !important;
-    color: var(--ica-green-deep) !important;
-  }
-}
+/* Slider responsive styles moved to Tailwind classes in Impact.tsx */
