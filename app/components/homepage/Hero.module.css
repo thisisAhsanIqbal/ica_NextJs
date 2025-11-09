@@ -147,6 +147,14 @@
   }
 }
 
+/* Hero Button Font Sizes - Min 15px, Max 16px */
+.hero button,
+.hero a[href],
+.hero [role="group"] button,
+.hero [role="group"] a[href] {
+  font-size: clamp(15px, 1vw, 16px) !important;
+}
+
 /* Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
   .heroSlide {
