@@ -3,9 +3,11 @@
 'use client';
 
 import type { ReactNode } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import type { Swiper as SwiperType } from 'swiper';
 import { Autoplay, EffectFade } from 'swiper/modules';
 import styles from './FeatureSection.module.css';
 
@@ -13,6 +15,13 @@ import styles from './FeatureSection.module.css';
 interface Slide {
   src: string;
   alt: string;
+}
+
+interface AutoplayConfig {
+  delay?: number;
+  disableOnInteraction?: boolean;
+  pauseOnMouseEnter?: boolean;
+  enabled?: boolean;
 }
 
 interface FeatureSectionProps {
@@ -31,6 +40,8 @@ interface FeatureSectionProps {
   eyebrowClassName?: string; // For custom eyebrow styles (e.g., Hero vs School)
   headlineClassName?: string; // For custom headline styles
   isHero?: boolean; // Flag to identify hero section for special styling
+  // === Slider Props ===
+  autoplayConfig?: AutoplayConfig; // Custom autoplay configuration per component
 }
 
 export default function FeatureSection({
@@ -46,10 +57,46 @@ export default function FeatureSection({
   eyebrowClassName = '',
   headlineClassName = '',
   isHero = false,
+  autoplayConfig,
 }: FeatureSectionProps) {
   // Content always first (order-1), Slider always second (order-2) on all screens
   const contentOrderClass = 'order-1';
   const mediaOrderClass = 'order-2';
+
+  // Default autoplay configuration
+  const defaultAutoplay = {
+    delay: 4500,
+    disableOnInteraction: false,
+    pauseOnMouseEnter: false,
+  };
+
+  // Merge custom autoplay config with defaults
+  const autoplaySettings = autoplayConfig?.enabled === false 
+    ? false 
+    : {
+        delay: autoplayConfig?.delay ?? defaultAutoplay.delay,
+        disableOnInteraction: autoplayConfig?.disableOnInteraction ?? defaultAutoplay.disableOnInteraction,
+        pauseOnMouseEnter: autoplayConfig?.pauseOnMouseEnter ?? defaultAutoplay.pauseOnMouseEnter,
+      };
+
+  const [swiperInstance, setSwiperInstance] = useState<SwiperType | null>(null);
+  const [imagesLoaded, setImagesLoaded] = useState(0);
+
+  // Reset image counter when slides change
+  useEffect(() => {
+    setImagesLoaded(0);
+  }, [slides]);
+
+  // Update swiper when images are loaded to fix blank slides in loop mode
+  useEffect(() => {
+    if (swiperInstance && imagesLoaded === slides.length && slides.length > 1) {
+      // Small delay to ensure all images are rendered
+      setTimeout(() => {
+        swiperInstance.update();
+        swiperInstance.slideTo(0, 0); // Reset to first slide
+      }, 100);
+    }
+  }, [imagesLoaded, slides.length, swiperInstance]);
 
   return (
     <section
@@ -80,12 +127,10 @@ export default function FeatureSection({
                 modules={[Autoplay, EffectFade]}
                 effect="fade"
                 fadeEffect={{ crossFade: true }}
-                autoplay={{ 
-                  delay: 4500, 
-                  disableOnInteraction: false,
-                  pauseOnMouseEnter: false
-                }}
+                autoplay={autoplaySettings}
                 loop={slides.length > 1}
+                loopAdditionalSlides={slides.length > 1 ? 2 : 0}
+                loopPreventsSliding={false}
                 keyboard={{ enabled: true }}
                 speed={600}
                 allowTouchMove={true}
@@ -93,10 +138,25 @@ export default function FeatureSection({
                 watchOverflow={true}
                 role="region"
                 aria-label={`${title || headline} image gallery`}
+                onSwiper={(swiper) => {
+                  setSwiperInstance(swiper);
+                  // Initial update after swiper is initialized
+                  if (slides.length > 1) {
+                    setTimeout(() => {
+                      swiper.update();
+                    }, 100);
+                  }
+                }}
+                onSlideChange={() => {
+                  // Ensure slides are properly rendered on change
+                  if (swiperInstance) {
+                    swiperInstance.update();
+                  }
+                }}
               >
                 {slides.map((slide, index) => (
-                  <SwiperSlide key={index}>
-                    <div className="relative w-full h-full">
+                  <SwiperSlide key={`${slide.src}-${index}`}>
+                    <div className="relative w-full h-full bg-[var(--ica-bg)]">
                       <Image
                         src={slide.src}
                         alt={slide.alt}
@@ -106,6 +166,16 @@ export default function FeatureSection({
                         loading={index === 0 ? 'eager' : 'lazy'}
                         sizes="(min-width: 1025px) 50vw, (min-width: 768px) 50vw, 100vw"
                         quality={85}
+                        onError={(e) => {
+                          console.error(`Failed to load image: ${slide.src}`, e);
+                        }}
+                        onLoad={() => {
+                          // Track loaded images to update swiper when all are ready
+                          setImagesLoaded((prev) => {
+                            const newCount = prev + 1;
+                            return newCount;
+                          });
+                        }}
                       />
                     </div>
                   </SwiperSlide>

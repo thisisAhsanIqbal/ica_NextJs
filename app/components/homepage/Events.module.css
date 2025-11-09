@@ -79,15 +79,6 @@
   box-shadow: -6px 6px 0px 1px rgba(30.000000000000007, 49.00000000000001, 47.00000000000001, 0.45) !important;
 }
 
-/* Reverse column order: Image first (order-1), Content second (order-2) */
-.icaEvents :global(.order-1) {
-  order: 2 !important;
-}
-
-.icaEvents :global(.order-2) {
-  order: 1 !important;
-}
-
 /* Events slider - Responsive aspect ratios */
 /* Mobile: 16:10 aspect ratio (landscape) */
 @media (max-width: 767px) {
