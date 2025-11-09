@@ -50,6 +50,17 @@
   flex-wrap: wrap;
 }
 
+/* Reverse column order for screens above 767px: Image first (order-2), Content second (order-1) */
+@media (min-width: 768px) {
+  .icaHistory :global(.order-1) {
+    order: 2 !important;
+  }
+
+  .icaHistory :global(.order-2) {
+    order: 1 !important;
+  }
+}
+
 @media (max-width: 768px){
   .historyHighlight {
     padding: 0.6rem 0.8rem;

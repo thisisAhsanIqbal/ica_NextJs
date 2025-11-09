@@ -147,12 +147,6 @@ export default function FeatureSection({
                     }, 100);
                   }
                 }}
-                onSlideChange={() => {
-                  // Ensure slides are properly rendered on change
-                  if (swiperInstance) {
-                    swiperInstance.update();
-                  }
-                }}
               >
                 {slides.map((slide, index) => (
                   <SwiperSlide key={`${slide.src}-${index}`}>

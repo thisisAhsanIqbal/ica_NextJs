@@ -55,6 +55,17 @@
   width: 100%;
 }
 
+/* Reverse column order for screens above 767px: Image first (order-2), Content second (order-1) */
+@media (min-width: 768px) {
+  .icaStudio :global(.order-1) {
+    order: 2 !important;
+  }
+
+  .icaStudio :global(.order-2) {
+    order: 1 !important;
+  }
+}
+
 /* Studio slider - Responsive aspect ratios */
 /* Mobile: 16:10 aspect ratio (landscape) */
 @media (max-width: 767px) {

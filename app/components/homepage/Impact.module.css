@@ -10,7 +10,7 @@
 
 h3.sessionInfo {
   font-family: var(--font-ui) !important;
-  font-size: clamp(19px, 2.5vw, 22px) !important;
+  font-size: 18px !important;
   font-weight: 600 !important;
   color: var(--ica-green-deep) !important;
   margin: 0 !important;
