@@ -128,7 +128,7 @@ export default function Footer() {
                 aria-label="Visit our Facebook page (opens in new tab)"
               >
                 <Image
-                  src="/asserts/fb.svg"
+                  src="/asserts/home/fb.svg"
                   alt=""
                   width={32}
                   height={32}
