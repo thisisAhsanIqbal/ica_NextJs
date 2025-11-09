@@ -111,8 +111,6 @@ export default function Studio({
 
       {paragraph && <p>{paragraph}</p>}
 
-      
-
       {highlight && (
 
         <p className={styles.studioHighlight}>{highlight}</p>

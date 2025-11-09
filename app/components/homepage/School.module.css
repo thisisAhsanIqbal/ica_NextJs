@@ -5,142 +5,52 @@
   background: var(--ica-bg);
 }
 
-.eyebrow {
-  font-size: 75px;
-  font-weight: 300;
-  line-height: 1;
-  color: var(--ica-green-deep);
-  margin: 0 0 0.6rem;
+/* Ensure title uses ivypresto-display */
+.icaSchool :global(h2) {
   font-family: var(--font-heading) !important;
-  min-height: 1.1em;
+  font-size: clamp(80px, 6vw, 85px) !important;
 }
 
-.eyebrow a {
-  color: inherit;
-  text-decoration: none;
-}
-
-.eyebrow a:hover,
-.eyebrow a:focus,
-.eyebrow a:active {
-  color: inherit;
-  text-decoration: none;
-}
-
-.icaSchoolCopy h3 {
-  font-size: 24px;
-  line-height: 1.3em;
-  margin: 0.4rem 0 1rem;
-  color: var(--ica-green-deep);
-  font-weight: 700;
+/* Ensure headline uses Termina */
+.icaSchool :global(h3) {
   font-family: var(--font-ui) !important;
-  text-transform: none;
-  min-height: 1.3em;
+  font-size: clamp(23px, 2.5vw, 25px) !important;
 }
 
-.icaSchoolCopy p {
-  font-family: var(--font-body);
-  font-size: 22px;
-  line-height: 1.3;
-  font-weight: 400;
-  color: var(--ica-green-deep);
-  margin: 0 0 1rem 0;
-  text-align: justify;
-  min-height: 2.6em;
+/* Ensure paragraphs use brand body font (roboto-condensed) */
+.icaSchool :global(p) {
+  font-family: var(--font-body) !important;
+  font-weight: 400 !important;
+  color: var(--ica-green-deep) !important;
+  font-size: 21px !important;
 }
 
-.btnIcaLime {
-  font-size: 18px;
-  margin-top: 1rem;
-  text-align: center;
-  /* Button styles from ica-buttons.css */
-  font-family: var(--font-ui);
-  text-transform: uppercase;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  padding: 0.9rem 1.6rem;
-  border: none;
-  position: relative;
-  display: inline-block;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-decoration: none;
-  border-radius: 0;
-  line-height: 1.2;
-  background: var(--ica-lime);
-  color: var(--ica-green-deep);
-  box-shadow: -6px 6px 0px 1px rgba(158, 164, 129, 0.8);
-}
-
-.btnIcaLime:hover {
-  transform: translateY(-2px);
-}
-
-.btnIcaLimeFullWidth {
-  width: 100%;
-  display: block;
-}
-
-/* ===== RESPONSIVE TYPOGRAPHY ===== */
-@media (max-width: 850px) and (min-width: 769px) {
-  .eyebrow {
-    font-size: 65px;
+/* School slider - Responsive aspect ratios */
+/* Mobile: 16:10 aspect ratio (landscape) */
+@media (max-width: 767px) {
+  .icaSchool :global(.swiper) {
+    aspect-ratio: 16 / 10 !important;
+    height: auto !important;
+    min-height: 300px !important;
+    max-height: 450px !important;
   }
 }
 
-/* Headline Font Size Breakpoints */
-@media (max-width: 480px) {
-  .icaSchoolCopy h3 {
-    font-size: 28px;
-    line-height: 1.0em;
+/* Tablet: 9:16 aspect ratio (portrait orientation) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .icaSchool :global(.swiper) {
+    aspect-ratio: 9 / 16 !important;
+    height: auto !important;
+    max-height: 550px !important;
   }
 }
 
-@media (min-width: 481px) and (max-width: 560px) {
-  .icaSchoolCopy h3 {
-    font-size: 28px;
-    line-height: 1.0em;
+/* Desktop: 1:1 aspect ratio (square) */
+@media (min-width: 1025px) {
+  .icaSchool :global(.swiper) {
+    aspect-ratio: 1 / 1 !important;
+    height: auto !important;
+    max-height: none !important;
   }
 }
 
-@media (min-width: 561px) and (max-width: 767px) {
-  .icaSchoolCopy h3 {
-    font-size: 32px;
-  }
-}
-
-@media (min-width: 768px) and (max-width: 830px) {
-  .icaSchoolCopy h3 {
-    font-size: 17px;
-  }
-}
-
-@media (min-width: 831px) and (max-width: 930px) {
-  .icaSchoolCopy h3 {
-    font-size: 19px;
-  }
-}
-
-@media (min-width: 931px) and (max-width: 960px) {
-  .icaSchoolCopy h3 {
-    font-size: 21px;
-  }
-}
-
-@media (min-width: 961px) and (max-width: 1024px) {
-  .icaSchoolCopy h3 {
-    font-size: 22px;
-  }
-}
-
-@media (min-width: 1025px) and (max-width: 1199px) {
-  .icaSchoolCopy h3 {
-    font-size: 18px;
-  }
-}
-
-@media (min-width: 1200px) {
-  .icaSchoolCopy h3 {
-    font-size: 20px;
-  }
-}

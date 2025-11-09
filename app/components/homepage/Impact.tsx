@@ -124,6 +124,7 @@ export default function Impact({
             <Button
               variant="primary"
               href={additionalSession.cta.url}
+              width="full"
               aria-describedby="impact-title"
             >
               {additionalSession.cta.label}

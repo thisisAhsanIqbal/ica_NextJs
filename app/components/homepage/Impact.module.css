@@ -2,13 +2,7 @@
 
 /* CSS Variables */
 .icaImpact {
-  --ica-green-deep: #1e312f;
-  --ica-bg: #f9f6f4;
-  --ica-lavender: #CFADD1; /* From CSS file */
-  --ica-text-muted: rgba(0, 0, 0, 0.7);
-  --font-heading: "ivypresto-display", "Bodoni Moda", Georgia, serif;
-  --font-ui: "Termina", "Helvetica Neue", Helvetica, Arial, sans-serif;
-
+  /* All color and font variables are defined globally in globals.css */
   background: var(--ica-lavender);
   position: relative;
 }
@@ -21,52 +15,30 @@
   box-sizing: border-box;
 }
 
-.icaImpactCopy .eyebrow {
-  font-size: 70px;
-  font-weight: 300;
-  line-height: 1;
-  color: var(--ica-green-deep);
-  margin: 0 0 .6rem;
+
+/* Ensure title uses ivypresto-display */
+.icaImpact :global(h2) {
   font-family: var(--font-heading) !important;
-  min-height: 1.1em;
+  font-size: clamp(80px, 6vw, 85px) !important;
 }
 
-.icaImpactCopy .eyebrow a {
-  color: inherit;
-  text-decoration: none;
-}
-
-.icaImpactCopy .eyebrow a:hover,
-.icaImpactCopy .eyebrow a:focus,
-.icaImpactCopy .eyebrow a:active {
-  color: inherit;
-  text-decoration: none;
-}
-
-.icaImpactCopy h3 {
-  font-size: 19px;
-  line-height: 1.3em;
-  margin: .4rem 0 1rem;
-  color: var(--ica-green-deep);
-  font-weight: 600;
+/* Ensure headline uses Termina */
+.icaImpact :global(h3) {
   font-family: var(--font-ui) !important;
-  letter-spacing: -0.2px;
-  min-height: 1.3em;
+  font-size: clamp(21px, 2.5vw, 22px) !important;
 }
 
-.icaImpactCopy p {
-  font-family: "roboto-condensed", sans-serif !important;
-  font-size: 20px;
-  line-height: 1.3;
-  font-weight: 400;
-  color: var(--ica-text-muted, rgba(0, 0, 0, 0.7));
-  margin: 0;
-  text-align: justify;
-  min-height: 2.6em;
+/* Ensure paragraphs use brand body font (roboto-condensed) */
+.icaImpact :global(p) {
+  font-family: var(--font-body) !important;
+  font-weight: 400 !important;
+  color: var(--ica-green-deep) !important;
+  font-size: clamp(19px, 2.5vw, 22px) !important;
+  margin-bottom: 1rem !important;
 }
 
 .sessionInfoContainer {
-  margin: 1.5rem 0 0 0;
+  margin: 0.2rem 0 0 0;
   display: flex;
   flex-direction: column;
   gap: 1.0rem;
@@ -74,7 +46,7 @@
 
 p.sessionInfo {
   font-family: var(--font-ui) !important;
-  font-size: 19px !important;
+  font-size: clamp(19px, 2.5vw, 22px) !important;
   font-weight: 600 !important;
   color: var(--ica-green-deep) !important;
   margin: 0 !important;
@@ -87,98 +59,40 @@ p.sessionInfo {
 .impactCtaButtons {
   display: flex;
   gap: 2rem;
-  margin-top: 1.2rem;
+  margin-top: 0.2rem;
   align-items: flex-start;
 }
 
-/* === ADDED BUTTON STYLES === */
-/* Base button style */
-.btnIca, .btnIcaWhite {
-  font-family: var(--font-ui);
-  text-transform: uppercase;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  padding: 0.9rem 1.6rem;
-  border: none;
-  position: relative;
-  display: inline-block;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-decoration: none;
-  font-size: clamp(16px, 2.5vw, 18px);
-  border-radius: 0;
-  line-height: 1.2;
-  white-space: nowrap;
-  flex: 1 1 0;
-  min-width: 0;
-  width: 100%;
-  text-align: center;
-}
 
-/* Dark Button (Winter) */
-.btnIca {
-  background: var(--ica-green-deep);
-  color: var(--ica-bg);
-  box-shadow: -6px 6px 0px 1px rgba(30, 49, 47, 0.45);
-}
-.btnIca:hover {
-  background: var(--ica-bg);
-  color: var(--ica-green-deep);
-  transform: translateY(-2px);
-}
-
-/* White Button (Summer) */
-.btnIcaWhite {
-  background: var(--ica-bg);
-  color: var(--ica-green-deep);
-  box-shadow: -6px 6px 0px 1px rgba(30, 49, 47, 0.25);
-  border: 2px solid var(--ica-green-deep);
-}
-.btnIcaWhite:hover {
-  background: var(--ica-green-deep);
-  color: var(--ica-bg);
-  transform: translateY(-2px);
-}
-/* === END BUTTON STYLES === */
-
-/* ===== RESPONSIVE TYPOGRAPHY ===== */
-@media (max-width: 980px) and (min-width: 900px){
-  .icaImpactCopy .eyebrow { font-size: 75px; }
-}
-@media (max-width: 950px) and (min-width: 850px){
-  .icaImpactCopy .eyebrow { font-size: 70px; }
-}
-@media (max-width: 850px) and (min-width: 769px){
-  .icaImpactCopy .eyebrow { font-size: 65px; }
-}
-@media (max-width: 767px){
-  .icaImpactCopy .eyebrow { font-size: 70px; }
-}
-@media (max-width: 540px){
-  .icaImpactCopy .eyebrow { font-size: 70px; }
-}
-@media (max-width: 1240px) and (min-width: 1100px){
-  .icaImpactCopy h3 { font-size: 20px; }
-}
-@media (max-width: 1100px) and (min-width: 778px){
-  .icaImpactCopy h3 { font-size: 18px; }
-}
-@media (max-width: 778px) and (min-width: 769px){
-  .icaImpactCopy h3 { font-size: 17px; }
-}
-@media (max-width: 767px){
-  .icaImpactCopy h3 { font-size: 18px; }
-}
-@media (max-width: 540px){
-  .icaImpactCopy h3 { font-size: 16px; }
-}
-
-/* Reduced Motion */
-@media (prefers-reduced-motion: reduce) {
-  .icaImpactSlide {
-    transition: none;
+/* IMPACT slider - Responsive aspect ratios */
+/* Mobile: 16:10 aspect ratio (landscape) */
+@media (max-width: 767px) {
+  .icaImpact :global(.swiper) {
+    aspect-ratio: 16 / 10 !important;
+    height: auto !important;
+    min-height: 300px !important;
+    max-height: 450px !important;
   }
 }
+
+/* Tablet: 9:16 aspect ratio (portrait orientation) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .icaImpact :global(.swiper) {
+    aspect-ratio: 9 / 16 !important;
+    height: auto !important;
+    max-height: 550px !important;
+  }
+}
+
+/* Desktop: 1:1 aspect ratio (square) */
+@media (min-width: 1025px) {
+  .icaImpact :global(.swiper) {
+    aspect-ratio: 1 / 1 !important;
+    height: auto !important;
+    max-height: none !important;
+  }
+}
+
 
 /* Print Styles */
 @media print {

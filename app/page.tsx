@@ -91,7 +91,7 @@ export default function Home() {
       <ArtsAreas {...artsAreasData} />
       <School
         title="The School"
-        headline="High-level arts meets high-achieving academics"
+        headline="The Pilot Program for ICA's K–12 day school is launching Fall 2026."
         paragraphs={[
           'Illinois Conservatory for the Arts is a non-profit educational institution dedicated to providing exceptional arts education and programming.',
           'ICA is committed to providing high-level arts programming that integrates seamlessly with rigorous academic standards. Our mission is to nurture artistic excellence while fostering academic achievement.'

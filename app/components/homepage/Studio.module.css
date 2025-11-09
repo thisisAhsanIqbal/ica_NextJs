@@ -2,12 +2,30 @@
 
 /* CSS Variables */
 .icaStudio {
-  --ica-green-deep: #1e312f;
-  --ica-bg: #f9f6f4;
-  --ica-mint: #D4E4E1; /* Using Mint from the CSS file */
-  
+  /* All color and font variables are defined globally in globals.css */
   background: var(--ica-mint);
   font-display: swap;
+}
+
+/* Ensure title uses ivypresto-display */
+.icaStudio :global(h2) {
+  font-family: var(--font-heading) !important;
+  font-size: clamp(80px, 6vw, 85px) !important;
+}
+
+/* Ensure headline uses Termina */
+.icaStudio :global(h3) {
+  font-family: var(--font-ui) !important;
+  font-size: clamp(21px, 2.5vw, 22px) !important;
+}
+
+/* Ensure paragraphs use brand body font (roboto-condensed) */
+.icaStudio :global(p) {
+  font-family: var(--font-body) !important;
+  font-weight: 400 !important;
+  color: var(--ica-green-deep) !important;
+  font-size: clamp(21px, 2.5vw, 23px) !important;
+  margin: 0 0 0.5rem 0 !important;
 }
 
 .studioHighlight {
@@ -19,11 +37,13 @@
   font-size: 14px;
   font-weight: 700;
   color: var(--ica-green-deep) !important;
-  margin: 1.0rem 0 0.5rem 0;
+  margin: 0.5rem 0 0.5rem 0 !important;
   text-align: left;
   line-height: 2.6em;
   text-transform: uppercase;
-  display: inline;
+  display: inline-block;
+  width: fit-content;
+  max-width: 100%;
 }
 
 .studioCtaButtons {
@@ -32,59 +52,56 @@
   margin-top: 1.2rem;
   align-items: flex-start;
   flex-wrap: wrap;
-}
-
-/* === ADDED BUTTON STYLES === */
-.btnIca, .btnIcaWhite {
-  font-family: var(--font-ui);
-  text-transform: uppercase;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  padding: 0.9rem 1.6rem;
-  border: none;
-  position: relative;
-  display: inline-block;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-decoration: none;
-  font-size: clamp(16px, 2.5vw, 18px);
-  border-radius: 0;
-  line-height: 1.2;
-  white-space: nowrap;
-  flex: 1 1 0;
-  min-width: 0;
   width: 100%;
-  text-align: center;
 }
 
-.btnIca {
-  background: var(--ica-green-deep);
-  color: var(--ica-bg);
-  box-shadow: -6px 6px 0px 1px rgba(30, 49, 47, 0.45);
-}
-.btnIca:hover {
-  background: var(--ica-bg);
-  color: var(--ica-green-deep);
-  transform: translateY(-2px);
-}
-
-.btnIcaWhite {
-  background: var(--ica-bg);
-  color: var(--ica-green-deep);
-  box-shadow: -6px 6px 0px 1px rgba(30, 49, 47, 0.25);
-  border: 2px solid var(--ica-green-deep);
-}
-.btnIcaWhite:hover {
-  background: var(--ica-green-deep);
-  color: var(--ica-bg);
-  transform: translateY(-2px);
-}
-/* === END BUTTON STYLES === */
-
+/* Studio slider - Responsive aspect ratios */
+/* Mobile: 16:10 aspect ratio (landscape) */
 @media (max-width: 767px) {
-  .studioCtaButtons {
-    flex-direction: row;
-    width: 100%;
-    flex-wrap: wrap;
+  .icaStudio :global(.swiper) {
+    aspect-ratio: 16 / 10 !important;
+    height: auto !important;
+    min-height: 300px !important;
+    max-height: 450px !important;
+  }
+  
+  /* Custom object positioning for image cropping on mobile */
+  .icaStudio :global(.swiper img) {
+    object-position: center 25% !important;
+  }
+}
+
+/* Tablet: 9:16 aspect ratio (portrait orientation) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .icaStudio :global(.swiper) {
+    aspect-ratio: 9 / 16 !important;
+    height: auto !important;
+    max-height: 550px !important;
+  }
+  
+  /* Custom object positioning for image cropping on tablet */
+  .icaStudio :global(.swiper img) {
+    object-position: center 30% !important;
+  }
+}
+
+/* Desktop: 1:1 aspect ratio (square) */
+@media (min-width: 1025px) {
+  .icaStudio :global(.swiper) {
+    aspect-ratio: 1 / 1 !important;
+    height: auto !important;
+    max-height: none !important;
+  }
+  
+  /* Custom object positioning for image cropping on desktop */
+  .icaStudio :global(.swiper img) {
+    object-position: center 30% !important;
+  }
+}
+
+/* XL screens: center positioning */
+@media (min-width: 1280px) {
+  .icaStudio :global(.swiper img) {
+    object-position: center !important;
   }
 }
