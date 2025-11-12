@@ -165,6 +165,35 @@ export default function RootLayout({
           fetchPriority="high"
           type="image/webp"
         />
+        
+        {/* ============================================
+            PWA CONFIGURATION
+            Progressive Web App Meta Tags
+            ============================================ */}
+        
+        {/* PWA Manifest */}
+        <link rel="manifest" href="/manifest.json" />
+        
+        {/* Theme Color - Matches manifest theme_color */}
+        <meta name="theme-color" content="#CFADD1" />
+        <meta name="msapplication-TileColor" content="#CFADD1" />
+        
+        {/* Apple Touch Icon - iOS home screen icon */}
+        <link rel="apple-touch-icon" href="/pwa/icon-180.png" />
+        
+        {/* Favicons */}
+        <link rel="icon" type="image/png" sizes="16x16" href="/pwa/icon-16.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/pwa/icon-32.png" />
+        <link rel="icon" type="image/png" sizes="96x96" href="/pwa/icon-96.png" />
+        
+        {/* Apple Mobile Web App Capable */}
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-title" content="ICA" />
+        
+        {/* Microsoft Tiles */}
+        <meta name="msapplication-TileImage" content="/pwa/icon-144.png" />
+        <meta name="msapplication-config" content="/browserconfig.xml" />
       </head>
       <body>
         <FontLoader />

@@ -1,3 +1,22 @@
+const withPWA = require('next-pwa')({
+  dest: 'public',
+  register: true,
+  skipWaiting: true,
+  disable: process.env.NODE_ENV === 'development', // Disable PWA in development
+  runtimeCaching: [
+    {
+      urlPattern: /^https?.*/,
+      handler: 'NetworkFirst',
+      options: {
+        cacheName: 'offlineCache',
+        expiration: {
+          maxEntries: 200,
+        },
+      },
+    },
+  ],
+})
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // Optimize images for better LCP
@@ -10,15 +29,11 @@ const nextConfig = {
   },
   // Enable compression
   compress: true,
-  // Optimize production builds
-  swcMinify: true,
-  // Optimize fonts
-  optimizeFonts: true,
   // Reduce JavaScript bundle size
   experimental: {
     optimizeCss: true,
   },
 }
 
-module.exports = nextConfig
+module.exports = withPWA(nextConfig)
 
