@@ -1,0 +1,298 @@
+/* components/PastFacultySlider.module.css */
+
+/* --- Main Section --- */
+.facultySection {
+    width: 100%;
+    margin: 2rem 0;
+    overflow: hidden; /* Contains the marquee */
+  }
+  
+  /* --- Marquee --- */
+  .marqueeContainer {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 1.5rem 0;
+  }
+  
+  .marqueeContent {
+    display: flex;
+    align-items: center;
+    /* Optimized animation with GPU acceleration */
+    animation: marquee-scroll 45s linear infinite;
+    will-change: transform;
+    transform: translateZ(0); /* Force GPU acceleration */
+  }
+  
+  .marqueeText {
+    font-family: "Termina", sans-serif; /* Assuming font is globally available */
+    font-size: 50px;
+    font-weight: 500;
+    color: #03332e;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 0 1rem;
+  }
+  
+  .marqueeIcon {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    margin: 0 1rem;
+  }
+  
+  @keyframes marquee-scroll {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-50%); /* Scroll by half (since we doubled content) */
+    }
+  }
+  
+  /* --- Slider Container --- */
+  .sliderContainer {
+    position: relative;
+    width: 100%;
+    max-width: 1600px; /* Example max-width */
+    margin: 0 auto;
+    padding: 0 4rem; /* Provides space for nav buttons */
+    box-sizing: border-box;
+  }
+  
+  /* --- Embla Carousel Customization --- */
+  .facultySwiper {
+    position: relative;
+    padding-bottom: 2.5rem; /* Space for progress bar */
+  }
+  
+  .emblaViewport {
+    overflow: hidden;
+    width: 100%;
+  }
+  
+  .emblaContainer {
+    display: flex;
+    touch-action: pan-y;
+    margin-left: -10px; /* Negative margin to offset slide spacing */
+  }
+  
+  .facultySlide {
+    flex: 0 0 100%;
+    padding-left: 10px; /* Slide spacing */
+    padding-top: 5px;
+    padding-bottom: 5px;
+    min-width: 0;
+  }
+  
+  /* Responsive slide widths */
+  @media (min-width: 601px) {
+    .facultySlide {
+      flex: 0 0 calc(50% - 10px);
+      padding-left: 10px;
+    }
+  }
+  
+  @media (min-width: 1081px) {
+    .facultySlide {
+      flex: 0 0 calc(33.333% - 15px);
+      padding-left: 15px;
+    }
+    .emblaContainer {
+      margin-left: -15px;
+    }
+  }
+  
+  @media (min-width: 1600px) {
+    .facultySlide {
+      flex: 0 0 calc(25% - 20px);
+      padding-left: 20px;
+    }
+    .emblaContainer {
+      margin-left: -20px;
+    }
+  }
+  
+  /* Navigation Buttons */
+  .emblaButtonPrev,
+  .emblaButtonNext {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    color: #03332e;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.14);
+    transition: background-color 0.2s ease, transform 0.2s ease;
+  }
+  
+  .emblaButtonPrev:hover,
+  .emblaButtonNext:hover {
+    background-color: rgba(255, 255, 255, 1);
+    transform: translateY(-50%) scale(1.05);
+  }
+  
+  .emblaButtonPrev:active,
+  .emblaButtonNext:active {
+    transform: translateY(-50%) scale(0.95);
+  }
+  
+  .emblaButtonPrev {
+    left: 0;
+  }
+  
+  .emblaButtonNext {
+    right: 0;
+  }
+  
+  /* Progress Bar */
+  .emblaProgress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+  
+  .emblaProgressBar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background: #03332e;
+    transform-origin: 0 0;
+    transition: transform 0.2s ease;
+  }
+  
+  /* --- Person Card (from your CSS) --- */
+  /* Note: .facultySlide padding is already defined above in responsive section */
+  
+  .personCard {
+    position: relative;
+    width: 100%;
+    display: block;
+    aspect-ratio: 3 / 4;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .personCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+  }
+  
+  .cardImageContainer {
+    position: relative;
+    border-radius: 30px;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .cardImage {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    background-color: #f5f5f5;
+  }
+  
+  .cardInfoBox {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    z-index: 2;
+    background: #f9f6f4;
+    color: #03332e;
+    padding: 20px;
+    text-align: center;
+    min-height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box; /* Ensures padding is included in width */
+  }
+  
+  .personName {
+    font-family: "Termina", sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: #03332e;
+    margin: 0 0 6px 0;
+    text-transform: uppercase;
+    line-height: 1.2;
+  }
+  
+  .personCredit {
+    font-family: "Roboto Condensed", sans-serif; /* Example font */
+    font-style: italic;
+    font-weight: 500;
+    font-size: 12px;
+    color: #03332e;
+    margin: 0 0 4px 0;
+    line-height: 1.3;
+    text-transform: uppercase;
+  }
+  
+  .personRole {
+    font-family: "Roboto Condensed", sans-serif; /* Example font */
+    font-size: 12px;
+    color: #03332e;
+    margin: 0;
+    line-height: 1.3;
+    text-transform: uppercase;
+    font-weight: 400;
+  }
+  
+  /* --- Responsive Adjustments --- */
+  @media (max-width: 767px) {
+    .marqueeText {
+      font-size: 34px;
+    }
+    .marqueeContent {
+      animation-name: marquee-scroll-mobile;
+      animation-duration: 25s;
+    }
+    .sliderContainer {
+      padding: 0 0.5rem; /* Less padding on mobile */
+    }
+    .emblaButtonPrev,
+    .emblaButtonNext {
+      display: none; /* Hide nav buttons on mobile (optional) */
+    }
+  }
+  
+  @keyframes marquee-scroll-mobile {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  /* Screen reader only class */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }

@@ -3,6 +3,7 @@ import ArtsAreas from './components/homepage/ArtsAreas';
 import School from './components/homepage/School';
 import Impact from './components/homepage/Impact';
 import History from './components/homepage/History';
+import PastFacultySlider from './components/homepage/PastFacultySlider';
 import Events from './components/homepage/Events';
 import Studio from './components/homepage/Studio';
 import Testimonials from './components/homepage/Testimonials';
@@ -287,6 +288,7 @@ export default function Home() {
           }
         ]}
       />
+      <PastFacultySlider />
       <Testimonials
         typingWords={[
           'empowers students',

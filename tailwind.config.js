@@ -65,6 +65,22 @@ module.exports = {
         // 'lg': '1024px', (default)
         // 'xl': '1280px', (default)
       },
+      
+      // 6. Add marquee animations
+      animation: {
+        'marquee-scroll': 'marquee-scroll 45s linear infinite',
+        'marquee-scroll-mobile': 'marquee-scroll-mobile 25s linear infinite',
+      },
+      keyframes: {
+        'marquee-scroll': {
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
+        'marquee-scroll-mobile': {
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
+      },
     },
   },
   plugins: [],
