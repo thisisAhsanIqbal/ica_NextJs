@@ -59,6 +59,7 @@
   --testimonials-container-max-width: 1200px;
   --testimonials-section-gap: 2rem;
   --global-padding-desktop: clamp(3rem, 6vw, 5rem);
+  --global-padding-mobile: clamp(2rem, 4vw, 3rem);
 }
 
 * {
