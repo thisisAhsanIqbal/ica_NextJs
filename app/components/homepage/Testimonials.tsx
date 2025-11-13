@@ -53,7 +53,7 @@ export default function Testimonials({
   // Interleave TwoColumnQuotes and SpotlightQuotes in the correct order
   // Order: TwoColumnQuotes 1 -> SpotlightQuote 1 (LEON) -> TwoColumnQuotes 2 -> SpotlightQuote 2 (NICOLAS)
   const renderOrderedSections = () => {
-    const sections: JSX.Element[] = [];
+    const sections: React.ReactNode[] = [];
     let twoColumnIndex = 0;
     let spotlightIndex = 0;
 
