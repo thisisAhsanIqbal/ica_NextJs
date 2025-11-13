@@ -35,6 +35,8 @@ const nextConfig = {
   },
   // Enable Fast Refresh for better hot reloading
   reactStrictMode: true,
+  // Turbopack configuration (empty to silence webpack config warning from next-pwa)
+  turbopack: {},
 }
 
 module.exports = withPWA(nextConfig)
