@@ -43,6 +43,25 @@ export default function History({
     alt: slide.alt,
   }));
 
+  // Ensure trailing slash for internal URLs
+  const ensureTrailingSlash = (url: string): string => {
+    // Don't modify external URLs (http/https)
+    if (url.startsWith('http://') || url.startsWith('https://')) {
+      return url;
+    }
+    // Add trailing slash if missing for internal URLs
+    return url.endsWith('/') ? url : `${url}/`;
+  };
+
+  // Map button labels to their slugs/URLs
+  const getButtonUrl = (label: string, fallbackUrl: string) => {
+    const normalizedLabel = label.toLowerCase();
+    if (normalizedLabel.includes('meet the team') || normalizedLabel.includes('team')) {
+      return '/team/';
+    }
+    return ensureTrailingSlash(fallbackUrl); // Ensure trailing slash for fallback URL
+  };
+
   return (
     <FeatureSection
       title={title}
@@ -60,7 +79,7 @@ export default function History({
         {primaryButton?.label && primaryButton?.url && (
           <Button
             variant="white"
-            href={primaryButton.url}
+            href={getButtonUrl(primaryButton.label, primaryButton.url)}
             aria-describedby="history-title"
             width="full"
           >
@@ -70,7 +89,7 @@ export default function History({
         {secondaryButton?.label && secondaryButton?.url && (
           <Button
             variant="white"
-            href={secondaryButton.url}
+            href={getButtonUrl(secondaryButton.label, secondaryButton.url)}
             aria-describedby="history-title"
             width="full"
           >

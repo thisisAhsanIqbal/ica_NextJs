@@ -93,11 +93,29 @@ export default function Impact({
                 ? 'white'
                 : 'primary'; // Default
 
+            // Ensure trailing slash for internal URLs
+            const ensureTrailingSlash = (url: string): string => {
+              // Don't modify external URLs (http/https)
+              if (url.startsWith('http://') || url.startsWith('https://')) {
+                return url;
+              }
+              // Add trailing slash if missing for internal URLs
+              return url.endsWith('/') ? url : `${url}/`;
+            };
+
+            // Map button labels to their slugs
+            const getButtonSlug = (label: string) => {
+              const normalizedLabel = label.toLowerCase();
+              if (normalizedLabel === 'winter') return '/impact-mt-winter/';
+              if (normalizedLabel === 'summer') return '/impact-mt-summer/';
+              return ensureTrailingSlash(button.url); // Ensure trailing slash for fallback URL
+            };
+
             return (
               <Button
                 key={index}
                 variant={buttonVariant as 'primary' | 'white'}
-                href={button.url}
+                href={getButtonSlug(button.label)}
                 aria-describedby="impact-title"
                 className="flex-1 min-w-0 w-full"
               >
@@ -123,7 +141,7 @@ export default function Impact({
           >
             <Button
               variant="primary"
-              href={additionalSession.cta.url}
+              href="/impact-dance/"
               width="full"
               aria-describedby="impact-title"
             >

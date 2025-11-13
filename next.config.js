@@ -19,6 +19,8 @@ const withPWA = require('next-pwa')({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Preserve trailing slashes in URLs
+  trailingSlash: true,
   // Optimize images for better LCP
   images: {
     formats: ['image/avif', 'image/webp'],

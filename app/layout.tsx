@@ -16,6 +16,7 @@ import PromotionalHeader from './components/shared/PromotionalHeader'
 import Footer from './components/shared/Footer'
 import FontLoader from './components/ui/FontLoader'
 import Template from './template'
+import { PopupProvider } from './contexts/PopupContext'
 
 export const metadata: Metadata = {
   title: {
@@ -196,20 +197,22 @@ export default function RootLayout({
         <meta name="msapplication-config" content="/browserconfig.xml" />
       </head>
       <body>
-        <FontLoader />
-        {/* Skip to main content link for accessibility */}
-        <a href="#main-content" className="skip-to-main">
-          Skip to main content
-        </a>
-        <InfoHeader />
-        <Header />
-        <PromotionalHeader />
-        <main id="main-content">
-          <Template>
-            {children}
-          </Template>
-        </main>
-        <Footer />
+        <PopupProvider>
+          <FontLoader />
+          {/* Skip to main content link for accessibility */}
+          <a href="#main-content" className="skip-to-main">
+            Skip to main content
+          </a>
+          <InfoHeader />
+          <Header />
+          <PromotionalHeader />
+          <main id="main-content">
+            <Template>
+              {children}
+            </Template>
+          </main>
+          <Footer />
+        </PopupProvider>
       </body>
     </html>
   )

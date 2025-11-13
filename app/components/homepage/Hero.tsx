@@ -1,12 +1,12 @@
 // components/Hero.tsx
 'use client';
 
-import { useState, useId } from 'react';
+import { useId } from 'react';
 import FeatureSection from './FeatureSection';
 import styles from './Hero.module.css';
-import DonatePopup from '../ui/DonatePopup';
-import NewsletterPopup from '../ui/NewsletterPopup';
 import Button from '../ui/Button';
+import { usePopup } from '@/app/contexts/PopupContext';
+import { homeStayConnectedPopup, homeDonatePopup } from '@/app/data/popupData';
 
 interface HeroImage {
   src: string;
@@ -41,8 +41,7 @@ export default function Hero({
   tertiaryButton,
   heroImages,
 }: HeroProps) {
-  const [isDonateOpen, setIsDonateOpen] = useState(false);
-  const [isNewsletterOpen, setIsNewsletterOpen] = useState(false);
+  const { openPopup } = usePopup();
 
   const reactId = useId();
   const heroId = `hero-${reactId.replace(/:/g, '-')}`;
@@ -52,6 +51,25 @@ export default function Hero({
     src: img.src,
     alt: img.alt,
   }));
+
+  // Ensure trailing slash for internal URLs
+  const ensureTrailingSlash = (url: string): string => {
+    // Don't modify external URLs (http/https)
+    if (url.startsWith('http://') || url.startsWith('https://')) {
+      return url;
+    }
+    // Add trailing slash if missing for internal URLs
+    return url.endsWith('/') ? url : `${url}/`;
+  };
+
+  // Map button labels to their slugs/URLs
+  const getButtonUrl = (label: string, fallbackUrl: string) => {
+    const normalizedLabel = label.toLowerCase();
+    if (normalizedLabel.includes('learn more')) {
+      return '/team/';
+    }
+    return ensureTrailingSlash(fallbackUrl); // Ensure trailing slash for fallback URL
+  };
 
   // Parse headline to safely render <br /> and <em> tags
   const parseHeadline = (text: string) => {
@@ -132,7 +150,7 @@ export default function Hero({
             <div className="flex items-stretch w-full max-w-full gap-4 md:gap-7 justify-stretch flex-row flex-nowrap">
               {primaryButton?.url && (
                 <Button
-                  href={primaryButton.url}
+                  href={getButtonUrl(primaryButton.label, primaryButton.url)}
                   variant="primary"
                   className="flex-1 min-w-0 w-full"
                   id={`hero-btn-primary-${heroId}`}
@@ -148,9 +166,8 @@ export default function Hero({
                   variant="primary"
                   className="flex-1 min-w-0 w-full"
                   id={`hero-btn-secondary-${heroId}`}
-                  onClick={() => setIsDonateOpen(true)}
+                  onClick={() => openPopup(homeDonatePopup)}
                   aria-haspopup="dialog"
-                  aria-expanded={isDonateOpen}
                   aria-describedby={`${heroId}-headline`}
                 >
                   {secondaryButton.label}
@@ -166,9 +183,8 @@ export default function Hero({
                   variant="primary"
                   width="full"
                   id={`hero-btn-tertiary-${heroId}`}
-                  onClick={() => setIsNewsletterOpen(true)}
+                  onClick={() => openPopup(homeStayConnectedPopup)}
                   aria-haspopup="dialog"
-                  aria-expanded={isNewsletterOpen}
                   aria-describedby={`${heroId}-headline`}
                 >
                   {tertiaryButton.label}
@@ -179,9 +195,6 @@ export default function Hero({
         )}
       </FeatureSection>
 
-      {/* Popups */}
-      <DonatePopup isOpen={isDonateOpen} onClose={() => setIsDonateOpen(false)} />
-      {/* <NewsletterPopup isOpen={isNewsletterOpen} onClose={() => setIsNewsletterOpen(false)} /> */}
     </header>
   );
 }

@@ -167,33 +167,47 @@ const PastFacultySection: React.FC<PastFacultySectionProps> = ({
     calculateProgress();
   }, [calculateProgress]);
 
+  // Track failed image loads to hide them gracefully
+  const [failedImages, setFailedImages] = useState<Set<string>>(new Set());
+
   // Memoize marquee content to prevent unnecessary re-renders (CLS optimization)
   const marqueeContent = useMemo(
     () => (
       <>
         {[...Array(3)].map((_, repeatIndex) =>
-          marqueeIcons.map((icon, iconIndex) => (
-            <React.Fragment key={`${repeatIndex}-${iconIndex}`}>
-              <span className={styles.marqueeText}>PAST FACULTY</span>
-              <Image
-                src={icon.src}
-                alt={icon.alt}
-                width={48}
-                height={48}
-                className={styles.marqueeIcon}
-                loading="lazy"
-                sizes="48px"
-                aria-hidden="true"
-                onError={(e) => {
-                  console.error(`Failed to load marquee icon: ${icon.src}`, e);
-                }}
-              />
-            </React.Fragment>
-          ))
+          marqueeIcons.map((icon, iconIndex) => {
+            const hasFailed = failedImages.has(icon.src);
+            
+            return (
+              <React.Fragment key={`${repeatIndex}-${iconIndex}`}>
+                <span className={styles.marqueeText}>PAST FACULTY</span>
+                {!hasFailed && (
+                  <Image
+                    src={icon.src}
+                    alt={icon.alt}
+                    width={48}
+                    height={48}
+                    className={styles.marqueeIcon}
+                    loading="lazy"
+                    sizes="48px"
+                    aria-hidden="true"
+                    onError={(e) => {
+                      // Only log in development
+                      if (process.env.NODE_ENV === 'development') {
+                        console.error(`Failed to load marquee icon: ${icon.src}`, e);
+                      }
+                      // Hide the image on error
+                      setFailedImages((prev) => new Set(prev).add(icon.src));
+                    }}
+                  />
+                )}
+              </React.Fragment>
+            );
+          })
         )}
       </>
     ),
-    []
+    [failedImages]
   );
 
   // Memoize navigation handlers for better INP

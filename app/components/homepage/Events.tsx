@@ -41,6 +41,25 @@ export default function Events({
     alt: slide.alt,
   }));
 
+  // Ensure trailing slash for internal URLs
+  const ensureTrailingSlash = (url: string): string => {
+    // Don't modify external URLs (http/https)
+    if (url.startsWith('http://') || url.startsWith('https://')) {
+      return url;
+    }
+    // Add trailing slash if missing for internal URLs
+    return url.endsWith('/') ? url : `${url}/`;
+  };
+
+  // Map button labels to their slugs/URLs
+  const getButtonUrl = (label: string, fallbackUrl: string) => {
+    const normalizedLabel = label.toLowerCase();
+    if (normalizedLabel.includes('see our upcoming events') || normalizedLabel.includes('upcoming events')) {
+      return '/events/';
+    }
+    return ensureTrailingSlash(fallbackUrl); // Ensure trailing slash for fallback URL
+  };
+
   return (
     <FeatureSection
       title={title}
@@ -59,7 +78,7 @@ export default function Events({
         {primaryButton?.label && primaryButton?.url && (
           <Button
             variant="white"
-            href={primaryButton.url}
+            href={getButtonUrl(primaryButton.label, primaryButton.url)}
             aria-label={primaryButton['aria-label']}
             aria-describedby="events-title"
           >
@@ -69,7 +88,7 @@ export default function Events({
         {secondaryButton?.label && secondaryButton?.url && (
           <Button
             variant="white"
-            href={secondaryButton.url}
+            href={getButtonUrl(secondaryButton.label, secondaryButton.url)}
             aria-label={secondaryButton['aria-label']}
             aria-describedby="events-title"
           >

@@ -81,6 +81,26 @@ export default function Studio({
     alt: slide.alt,
   }));
 
+  // Ensure trailing slash for internal URLs
+  const ensureTrailingSlash = (url: string): string => {
+    // Don't modify external URLs (http/https)
+    if (url.startsWith('http://') || url.startsWith('https://')) {
+      return url;
+    }
+    // Add trailing slash if missing for internal URLs
+    return url.endsWith('/') ? url : `${url}/`;
+  };
+
+  // Map button labels to their slugs/URLs
+  const getButtonUrl = (label: string, fallbackUrl: string) => {
+    const normalizedLabel = label.toLowerCase();
+    if (normalizedLabel.includes('learn more')) return '/studio/';
+    if (normalizedLabel.includes('register now') || normalizedLabel.includes('register')) {
+      return 'https://register.ilconservatory.org/studio';
+    }
+    return ensureTrailingSlash(fallbackUrl); // Ensure trailing slash for fallback URL
+  };
+
   return (
 
     // 3. Use the FeatureSection component
@@ -125,7 +145,7 @@ export default function Studio({
 
             variant="primary"
 
-            href={primaryButton.url}
+            href={getButtonUrl(primaryButton.label, primaryButton.url)}
 
             aria-label={primaryButton['aria-label']}
 
@@ -145,7 +165,7 @@ export default function Studio({
 
             variant="white"
 
-            href={secondaryButton.url}
+            href={getButtonUrl(secondaryButton.label, secondaryButton.url)}
 
             className="flex-1 min-w-0 w-full"
 
