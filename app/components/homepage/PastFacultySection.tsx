@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState, useEffect, useMemo, useCallback } from "react";
+import React, { useRef, useState, useEffect, useMemo, useCallback, useId } from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay } from "swiper/modules";
@@ -73,7 +73,7 @@ const defaultFacultyData: FacultyMember[] = [
     credits: "BROADWAY ACTRESS",
   },
   {
-    image: "/asserts/ZonyaLove.webp",
+    image: "/asserts/Zonya_Love.webp",
     name: "ZONYA LOVE",
     role: "BEETLEJUICE, THE COLOR PURPLE TIME",
     credits: "BROADWAY ACTRESS",
@@ -129,22 +129,43 @@ interface PastFacultySectionProps {
 const PastFacultySection: React.FC<PastFacultySectionProps> = ({
   facultyData = defaultFacultyData,
 }) => {
+  // Generate unique IDs to prevent collisions when component is used multiple times
+  const uniqueId = useId();
+  const sectionId = `faculty-slider-${uniqueId}`;
+  const trackId = `${sectionId}-track`;
+  const prevButtonId = `${sectionId}-prev`;
+  const nextButtonId = `${sectionId}-next`;
+  const headingId = `past-faculty-heading-${uniqueId}`;
+  
   const swiperRef = useRef<SwiperType | null>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isSwiperReady, setIsSwiperReady] = useState(false);
 
-  // Throttle progress updates for better INP performance
-  const updateProgress = useCallback((progress: number) => {
+  // Calculate progress based on active index (more reliable than swiper.progress in loop mode)
+  const calculateProgress = useCallback(() => {
+    const swiper = swiperRef.current;
+    if (!swiper || facultyData.length === 0) {
+      setScrollProgress(0);
+      return;
+    }
+
+    // Use realIndex for loop mode - it gives the actual slide index ignoring duplicates
+    const realIndex = swiper.realIndex;
+    const totalSlides = facultyData.length;
+    
+    // Calculate progress: current index / (total - 1) to get 0-1 range
+    // If only 1 slide, progress is always 1 (100%)
+    const progress = totalSlides > 1 
+      ? realIndex / (totalSlides - 1)
+      : 1;
+    
     setScrollProgress(Math.max(0, Math.min(1, progress)));
-  }, []);
+  }, [facultyData]);
 
   // Initial progress update when swiper is ready
   useEffect(() => {
-    const swiper = swiperRef.current;
-    if (swiper) {
-      updateProgress(swiper.progress);
-    }
-  }, [facultyData.length, updateProgress]);
+    calculateProgress();
+  }, [calculateProgress]);
 
   // Memoize marquee content to prevent unnecessary re-renders (CLS optimization)
   const marqueeContent = useMemo(
@@ -163,6 +184,9 @@ const PastFacultySection: React.FC<PastFacultySectionProps> = ({
                 loading="lazy"
                 sizes="48px"
                 aria-hidden="true"
+                onError={(e) => {
+                  console.error(`Failed to load marquee icon: ${icon.src}`, e);
+                }}
               />
             </React.Fragment>
           ))
@@ -184,12 +208,12 @@ const PastFacultySection: React.FC<PastFacultySectionProps> = ({
   return (
     <section
       className={styles.section}
-      id="faculty-second-slider-1"
-      aria-labelledby="past-faculty-heading"
+      id={sectionId}
+      aria-labelledby={headingId}
       role="region"
     >
       {/* SEO: Proper H2 Heading */}
-      <h2 id="past-faculty-heading" className={styles.srOnly}>
+      <h2 id={headingId} className={styles.srOnly}>
         Past Faculty Members
       </h2>
       
@@ -206,9 +230,9 @@ const PastFacultySection: React.FC<PastFacultySectionProps> = ({
           {/* Left Navigation Button */}
           <button
             className={`${styles.navButton} ${styles.navButtonPrev}`}
-            id="faculty-second-slider-1-prev"
+            id={prevButtonId}
             aria-label="View previous faculty member"
-            aria-controls="faculty-second-slider-1-track"
+            aria-controls={trackId}
             type="button"
             title="Previous faculty member"
             onClick={handlePrev}
@@ -235,12 +259,11 @@ const PastFacultySection: React.FC<PastFacultySectionProps> = ({
                   });
                 });
               }}
-              onProgress={(swiper, progress) => {
-                // Swiper's progress is 0-1, but with loop it can go beyond
-                // Normalize it to 0-1 range
-                // Use requestAnimationFrame for better INP
+              onSlideChange={(swiper) => {
+                // Use slideChange event for reliable updates in loop mode
+                // Calculate progress based on realIndex rather than pixel progress
                 requestAnimationFrame(() => {
-                  updateProgress(progress);
+                  calculateProgress();
                 });
               }}
               modules={[Navigation, Autoplay]}
@@ -278,7 +301,7 @@ const PastFacultySection: React.FC<PastFacultySectionProps> = ({
                 },
               }}
               className={styles.track}
-              id="faculty-second-slider-1-track"
+              id={trackId}
               role="group"
               aria-label="Past faculty members"
             >
@@ -304,6 +327,9 @@ const PastFacultySection: React.FC<PastFacultySectionProps> = ({
                         placeholder="blur"
                         blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjUzMyIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjUzMyIgZmlsbD0iI2Y1ZjVmNSIvPjwvc3ZnPg=="
                         itemProp="image"
+                        onError={(e) => {
+                          console.error(`Failed to load faculty image: ${faculty.image} for ${faculty.name}`, e);
+                        }}
                       />
                     </div>
                     {/* Info box positioned at bottom */}
@@ -329,9 +355,9 @@ const PastFacultySection: React.FC<PastFacultySectionProps> = ({
           {/* Right Navigation Button */}
           <button
             className={`${styles.navButton} ${styles.navButtonNext}`}
-            id="faculty-second-slider-1-next"
+            id={nextButtonId}
             aria-label="View next faculty member"
-            aria-controls="faculty-second-slider-1-track"
+            aria-controls={trackId}
             type="button"
             title="Next faculty member"
             onClick={handleNext}
