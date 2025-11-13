@@ -7,6 +7,7 @@ import Events from './components/homepage/Events';
 import Studio from './components/homepage/Studio';
 import Testimonials from './components/homepage/Testimonials';
 import PastFacultySection from './components/homepage/PastFacultySection';
+import KeySupporters from './components/homepage/KeySupporters';
 import NondiscriminatoryPolicy from './components/homepage/NondiscriminatoryPolicy';
 
 export default function Home() {
@@ -368,6 +369,42 @@ export default function Home() {
             name: 'NICOLAS',
             role: 'STUDENT',
             avatar: '/asserts/home/testimonials/Nicolas-student.webp'
+          }
+        ]}
+      />
+      <KeySupporters
+        logos={[
+          {
+            src: '/asserts/home/KeySupporters/Supporters-USbank.png',
+            alt: 'US Bank logo'
+          },
+          {
+            src: '/asserts/home/KeySupporters/Supporters-seca-logo.png',
+            alt: 'SECA logo'
+          },
+          {
+            src: '/asserts/home/KeySupporters/Supporters-deptofcomm.png',
+            alt: 'Department of Commerce logo'
+          },
+          {
+            src: '/asserts/home/KeySupporters/Supporters-Molina_Healthcare_logo.png',
+            alt: 'Molina Healthcare logo'
+          },
+          {
+            src: '/asserts/home/KeySupporters/Supporters-banknaperville.png',
+            alt: 'Bank of Naperville logo'
+          },
+          {
+            src: '/asserts/home/KeySupporters/Supporters-CRE.png',
+            alt: 'CRE logo'
+          },
+          {
+            src: '/asserts/home/KeySupporters/Supporters-aarp.png',
+            alt: 'AARP logo'
+          },
+          {
+            src: '/asserts/home/KeySupporters/Supporters-alesia.png',
+            alt: 'Alesia logo'
           }
         ]}
       />
