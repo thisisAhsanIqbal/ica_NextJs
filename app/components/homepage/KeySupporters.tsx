@@ -55,8 +55,9 @@ export default function KeySupporters({
                 "
               >
                 <Image
-                  // Grayscale by default, Color on hover (Standard for premium sites)
-                  className="w-auto h-auto max-w-full max-h-[80px] object-contain opacity-60 grayscale transition-all duration-300 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 mix-blend-multiply"
+                  // Mobile: Always show color (no grayscale)
+                  // Desktop: Grayscale by default, Color on hover
+                  className="w-auto h-auto max-w-full max-h-[80px] object-contain opacity-60 md:grayscale transition-all duration-300 md:group-hover:grayscale-0 md:group-hover:opacity-100 md:group-hover:scale-110 group-active:grayscale-0 group-active:opacity-100 group-active:scale-110 mix-blend-multiply touch-manipulation"
                   src={logo.src}
                   alt={logo.alt}
                   loading="lazy"
