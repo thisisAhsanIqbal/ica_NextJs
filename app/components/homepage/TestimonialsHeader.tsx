@@ -10,7 +10,7 @@ interface TestimonialsHeaderProps {
 
 const TYPE_SPEED = 120;
 const DELETE_SPEED = 90;
-const END_PAUSE = 1300;
+const END_PAUSE = 2000; // Slightly longer pause feels more natural
 
 export default function TestimonialsHeader({
   words,
@@ -18,41 +18,51 @@ export default function TestimonialsHeader({
   const [wordIndex, setWordIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
-  const [currentText, setCurrentText] = useState('');
+
+  // Calculate current text during render (Derived State) - Removes one useState
+  const currentWord = words[wordIndex % words.length];
+  const currentText = currentWord.substring(0, charIndex);
+
+  // Determine if cursor should blink (blinks when fully typed and waiting)
+  const isWaiting = !isDeleting && charIndex === currentWord.length;
 
   useEffect(() => {
-    const currentWord = words[wordIndex % words.length];
-
-    const typeLoop = () => {
+    const handleTyping = () => {
       if (isDeleting) {
         // Deleting
-        setCurrentText(currentWord.slice(0, charIndex - 1));
-        setCharIndex(charIndex - 1);
-
-        if (charIndex === 0) {
+        if (charIndex > 0) {
+          setCharIndex((prev) => prev - 1);
+        } else {
           setIsDeleting(false);
           setWordIndex((prev) => prev + 1);
         }
       } else {
         // Typing
-        setCurrentText(currentWord.slice(0, charIndex + 1));
-        setCharIndex(charIndex + 1);
-
-        if (charIndex === currentWord.length) {
+        if (charIndex < currentWord.length) {
+          setCharIndex((prev) => prev + 1);
+        } else {
           setIsDeleting(true);
         }
       }
     };
 
-    let nextDelay = isDeleting ? DELETE_SPEED : TYPE_SPEED;
-    if (!isDeleting && charIndex === currentWord.length) {
-      nextDelay = END_PAUSE;
+    let timer: NodeJS.Timeout;
+
+    if (isDeleting) {
+      timer = setTimeout(handleTyping, DELETE_SPEED);
+    } else if (charIndex === currentWord.length) {
+      // Context: Finished typing word, pause before deleting
+      timer = setTimeout(handleTyping, END_PAUSE);
+    } else {
+      // Context: Typing normally
+      timer = setTimeout(handleTyping, TYPE_SPEED);
     }
 
-    const timer = setTimeout(typeLoop, nextDelay);
     return () => clearTimeout(timer);
-    
-  }, [charIndex, isDeleting, wordIndex, words]);
+  }, [charIndex, isDeleting, currentWord, wordIndex]);
+
+  // SEO & A11y: Create a static string of all words for screen readers
+  const screenReaderText = `ICA... ${words.join(', ')}`;
 
   return (
     <section
@@ -62,19 +72,23 @@ export default function TestimonialsHeader({
       <div className={styles.icaTestimonialsLevel1}>
         <div className={styles.sectionInnerWide}>
           <div className={styles.icaTestimonialsLevel2}>
+            
+            {/* Screen Reader Only Text */}
+            <h2 className={styles.srOnly}>{screenReaderText}</h2>
+
             <div
               className={styles.icaTestimonialsTyping}
-              data-duration="3000"
-              aria-label="ICA Mission Statement"
+              aria-hidden="true" // Hide animation from screen readers
             >
               <div className={styles.icaTestimonialsTypingContainer}>
                 <span className={styles.ica}>ICA...</span>
-                <span className={styles.typingTarget} aria-live="polite">
+                <span 
+                  className={`${styles.typingTarget} ${isWaiting ? styles.blinkingCursor : ''}`}
+                >
                   {currentText}
                 </span>
               </div>
             </div>
-            {/* Data node is no longer needed as words are passed via props */}
           </div>
         </div>
       </div>

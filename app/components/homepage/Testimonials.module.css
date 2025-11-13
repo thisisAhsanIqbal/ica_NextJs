@@ -4,7 +4,7 @@
     background: var(--ica-bg);
     color: var(--ica-green-deep);
     overflow-x: hidden;
-    padding: var(--global-padding-desktop) 0;
+    padding: 1rem;
     contain: layout;
     display: flex;
     flex-direction: column;
@@ -112,6 +112,7 @@
   }
   
   .icaTestimonialsLevel3 {
+    padding-bottom: 4rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -129,15 +130,60 @@
   .typingTarget {
     color: var(--ica-green-deep);
     text-transform: uppercase;
-    border-right: 3px solid var(--ica-green-deep);
-    padding-right: 2px;
-    white-space: normal;
+    /* Use inline-block so it flows naturally but allows height control */
+    display: inline-block;
+    min-height: 1.2em;
+    white-space: pre-wrap;
+    position: relative;
     word-break: break-word;
     overflow-wrap: anywhere;
-    display: block;
     text-align: center;
     font-size: 30px !important;
-    min-height: 2.3em;
+  }
+
+  /* The Elegant Cursor */
+  .typingTarget::after {
+    content: "";
+    display: inline-block;
+
+    /* 1. Refined Geometry */
+    width: 2px;            /* Thinner is more elegant than 3px */
+    height: 1.15em;        /* Matches the visual cap-height of the font perfectly */
+    border-radius: 4px;    /* Rounded edges look friendlier and more modern */
+    background-color: var(--ica-green-deep);
+
+    /* 2. Perfect Positioning */
+    margin-left: 5px;      /* Gives the text a little room to breathe */
+    vertical-align: -0.15em; /* Pushes it down slightly to align with the text baseline */
+
+    /* 3. The Animation Link */
+    /* We set opacity to 1 by default so it's visible while typing */
+    opacity: 1;
+  }
+
+  /* Only animate when the specific class is applied (when waiting) */
+  .blinkingCursor::after {
+    animation: breathe-blink 1.2s ease-in-out infinite;
+  }
+
+  /* 4. The "Breathing" Animation */
+  /* Instead of flashing off instantly, it smoothly fades out and back in */
+  @keyframes breathe-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  /* Screen reader only utility class */
+  .srOnly {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
   }
   
   .reviewsBanner {
@@ -208,7 +254,7 @@
   .reviewSlideText {
     font-family: var(--font-heading);
     font-weight: 500;
-    font-size: 30px;
+    font-size: 32px;
     line-height: 1.25;
     min-width: 0;
     word-wrap: break-word;
@@ -327,7 +373,7 @@
     line-height: 1.55;
     font-weight: 500;
     margin: 30px 0;
-    text-align: justify;
+    text-align: left; /* Changed from justify to prevent "rivers of white" in narrow columns */
   }
   
   .quoteHl{

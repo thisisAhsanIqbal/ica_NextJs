@@ -50,6 +50,87 @@ export default function Testimonials({
     ? [twoColumnQuotes, ...twoColumnQuotesSections]
     : twoColumnQuotesSections;
 
+  // Interleave TwoColumnQuotes and SpotlightQuotes in the correct order
+  // Order: TwoColumnQuotes 1 -> SpotlightQuote 1 (LEON) -> TwoColumnQuotes 2 -> SpotlightQuote 2 (NICOLAS)
+  const renderOrderedSections = () => {
+    const sections: JSX.Element[] = [];
+    let twoColumnIndex = 0;
+    let spotlightIndex = 0;
+
+    // Render first TwoColumnQuotes section (ALLY + ANDREEA)
+    if (twoColumnIndex < allTwoColumnSections.length) {
+      sections.push(
+        <TwoColumnQuotes 
+          key={`twoCol-${twoColumnIndex}`}
+          quotes={allTwoColumnSections[twoColumnIndex]} 
+          altBackground={altBackground} 
+        />
+      );
+      twoColumnIndex++;
+    }
+
+    // Render first SpotlightQuote (LEON)
+    if (spotlightIndex < spotlightQuotes.length) {
+      sections.push(
+        <SpotlightQuote 
+          key={`spotlight-${spotlightIndex}`}
+          quote={spotlightQuotes[spotlightIndex]} 
+          ariaLabel={`Testimonials - Spotlight ${spotlightIndex + 1}`} 
+        />
+      );
+      spotlightIndex++;
+    }
+
+    // Render second TwoColumnQuotes section (CAROLINA + AMIRA)
+    if (twoColumnIndex < allTwoColumnSections.length) {
+      sections.push(
+        <TwoColumnQuotes 
+          key={`twoCol-${twoColumnIndex}`}
+          quotes={allTwoColumnSections[twoColumnIndex]} 
+          altBackground={!altBackground} 
+        />
+      );
+      twoColumnIndex++;
+    }
+
+    // Render second SpotlightQuote (NICOLAS)
+    if (spotlightIndex < spotlightQuotes.length) {
+      sections.push(
+        <SpotlightQuote 
+          key={`spotlight-${spotlightIndex}`}
+          quote={spotlightQuotes[spotlightIndex]} 
+          ariaLabel={`Testimonials - Spotlight ${spotlightIndex + 1}`} 
+        />
+      );
+      spotlightIndex++;
+    }
+
+    // Render any remaining sections in order
+    while (twoColumnIndex < allTwoColumnSections.length) {
+      sections.push(
+        <TwoColumnQuotes 
+          key={`twoCol-${twoColumnIndex}`}
+          quotes={allTwoColumnSections[twoColumnIndex]} 
+          altBackground={twoColumnIndex % 2 === 1 ? !altBackground : altBackground} 
+        />
+      );
+      twoColumnIndex++;
+    }
+
+    while (spotlightIndex < spotlightQuotes.length) {
+      sections.push(
+        <SpotlightQuote 
+          key={`spotlight-${spotlightIndex}`}
+          quote={spotlightQuotes[spotlightIndex]} 
+          ariaLabel={`Testimonials - Spotlight ${spotlightIndex + 1}`} 
+        />
+      );
+      spotlightIndex++;
+    }
+
+    return sections;
+  };
+
   return (
     <>
       {typingWords.length > 0 && (
@@ -58,20 +139,7 @@ export default function Testimonials({
       {reviews.length > 0 && (
         <ReviewsSlider reviews={reviews} />
       )}
-      {allTwoColumnSections.map((quotes, sectionIndex) => (
-        <TwoColumnQuotes 
-          key={sectionIndex}
-          quotes={quotes} 
-          altBackground={sectionIndex % 2 === 1 ? !altBackground : altBackground} 
-        />
-      ))}
-      {spotlightQuotes.length > 0 && spotlightQuotes.map((quote, index) => (
-        <SpotlightQuote 
-          key={index} 
-          quote={quote} 
-          ariaLabel={`Testimonials - Spotlight ${index + 1}`} 
-        />
-      ))}
+      {renderOrderedSections()}
     </>
   );
 }

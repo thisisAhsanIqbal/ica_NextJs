@@ -33,6 +33,8 @@ const nextConfig = {
   experimental: {
     optimizeCss: true,
   },
+  // Enable Fast Refresh for better hot reloading
+  reactStrictMode: true,
 }
 
 module.exports = withPWA(nextConfig)
