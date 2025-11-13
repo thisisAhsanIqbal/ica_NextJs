@@ -13,6 +13,7 @@ module.exports = {
       // 1. Add your brand colors
       colors: {
         'ica-green-deep': '#1E312F',
+        'ica-green': '#03332e', // Primary brand green color
         'ica-bg': '#F9F6F4',
         'ica-lavender': '#CFADD1',
         // Inferred from your shadow color rgba(158, 164, 129, 0.8)
@@ -45,6 +46,7 @@ module.exports = {
         // variable is defined in your global.css or update it here.
         // ---
         ui: ['var(--font-ui)', 'sans-serif'],
+        body: ['var(--font-body)', 'sans-serif'],
       },
       
       // 4. Add custom spacing/sizing

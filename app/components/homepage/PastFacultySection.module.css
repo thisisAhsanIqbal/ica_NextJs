@@ -1,0 +1,285 @@
+/* Marquee Styles */
+.marqueeContainer {
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 0;
+}
+
+.marquee {
+  display: flex;
+  width: fit-content;
+  animation: marquee-scroll 45s linear infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee {
+    animation: none;
+  }
+}
+
+.marqueeContent {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.marqueeText {
+  font-family: var(--font-ui, sans-serif);
+  font-size: 34px;
+  font-weight: 500;
+  color: rgb(30, 49, 47);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 0 2px;
+}
+
+.marqueeIcon {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  margin: 0 16px;
+}
+
+@keyframes marquee-scroll {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@media (min-width: 768px) {
+  .marqueeText {
+    font-size: 50px;
+  }
+}
+
+/* Container Styles */
+.section {
+  width: 100%;
+  margin: 10px 0;
+}
+
+/* Screen reader only heading */
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.container {
+  width: 100%;
+  position: relative;
+}
+
+.cardsContainer {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 0;
+  position: relative;
+}
+
+/* Navigation Buttons */
+.navButton {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: rgb(30, 49, 47);
+  border: none;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.14) 0px 10px 20px 0px;
+  transition: all 0.2s ease;
+  z-index: 10;
+  flex-shrink: 0;
+}
+
+.navButton:hover {
+  background-color: rgba(255, 255, 255, 1);
+  transform: scale(1.05);
+}
+
+.navButton:active {
+  transform: scale(0.95);
+}
+
+.navButton:focus-visible {
+  outline: 2px solid rgb(30, 49, 47);
+  outline-offset: 2px;
+}
+
+.navButton span {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.navButtonPrev {
+  margin-right: 12px;
+}
+
+.navButtonNext {
+  margin-left: 12px;
+}
+
+/* Swiper Wrapper */
+.wrapper {
+  flex: 1;
+  width: 100%;
+  overflow: hidden;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.wrapperLoading {
+  opacity: 0;
+  visibility: hidden;
+  min-height: 533px; /* Prevent layout shift - matches card aspect ratio */
+}
+
+.track {
+  width: 100%;
+}
+
+/* Hide all content during initialization */
+.wrapperLoading * {
+  visibility: hidden;
+}
+
+/* Faculty Card Styles */
+.facultyItem {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  overflow: visible;
+  border-radius: 30px;
+}
+
+.cardImageContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 30px;
+}
+
+.cardImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 30px;
+  display: block;
+}
+
+.cardInfoBox {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  background-color: rgb(249, 246, 244);
+  padding: 16px 18px 18px;
+  text-align: center;
+  box-sizing: border-box;
+  min-height: 80px;
+}
+
+.personName {
+  font-family: var(--font-ui, sans-serif);
+  font-size: 20px;
+  font-weight: 600;
+  color: rgb(30, 49, 47);
+  text-transform: uppercase;
+  margin: 0 0 6px;
+  line-height: 1.2;
+}
+
+.personCredit {
+  font-family: var(--font-body, sans-serif);
+  font-size: 15px;
+  font-style: italic;
+  font-weight: 500;
+  color: rgb(30, 49, 47);
+  text-transform: uppercase;
+  margin: 0 0 4px;
+  line-height: 1.4;
+}
+
+.personRole {
+  font-family: var(--font-body, sans-serif);
+  font-size: 14px;
+  font-weight: 400;
+  color: rgb(30, 49, 47);
+  text-transform: uppercase;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Progress Bar */
+.progressContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 16px;
+}
+
+.progressBar {
+  width: 200px;
+  height: 4px;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progressFill {
+  height: 100%;
+  background-color: rgb(30, 49, 47);
+  transition: width 0.3s ease;
+  border-radius: 2px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .navButton {
+    width: 32px;
+    height: 32px;
+  }
+
+  .navButton span {
+    font-size: 16px;
+  }
+
+  .navButtonPrev {
+    margin-right: 8px;
+  }
+
+  .navButtonNext {
+    margin-left: 8px;
+  }
+
+  .cardInfoBox {
+    padding: 12px 14px 14px;
+  }
+
+  .personName {
+    font-size: 18px;
+  }
+
+  .personCredit,
+  .personRole {
+    font-size: 13px;
+  }
+}
+
