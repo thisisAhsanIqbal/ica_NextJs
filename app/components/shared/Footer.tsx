@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import BackToTop from '../ui/BackToTop'
-import Button from '../ui/Button'
+import IcaButton from '../ui/IcaButton'
 import styles from './Footer.module.css'
 
 export default function Footer() {
@@ -26,13 +26,13 @@ export default function Footer() {
             </Link>
           </div>
 
-          {/* 2. Content Section (Headline + Buttons) */}
+          {/* 2. Content Section (Headline + IcaButtons) */}
           <section className={styles.icaContentSection} aria-labelledby="footer-tagline">
             <h2 id="footer-tagline" className={styles.icaHeadline}>
               High-level arts <em>meets</em><br />high-achieving academics.
             </h2>
-            <div className={styles.icaButtons}>
-              <Button 
+            <div className={styles.icaIcaButtons}>
+              <IcaButton 
                 href="mailto:info@ilconservatory.org" 
                 variant="outline"
                 size="small"
@@ -49,8 +49,8 @@ export default function Footer() {
                   loading="lazy"
                 />
                 EMAIL US
-              </Button>
-              <Button
+              </IcaButton>
+              <IcaButton
                 type="button"
                 variant="outline"
                 size="small"
@@ -68,7 +68,7 @@ export default function Footer() {
                   loading="lazy"
                 />
                 CHAT NOW
-              </Button>
+              </IcaButton>
             </div>
           </section>
 

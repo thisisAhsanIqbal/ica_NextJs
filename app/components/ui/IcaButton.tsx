@@ -52,10 +52,10 @@ interface ButtonButtonProps extends BaseButtonProps, Omit<ButtonHTMLAttributes<H
 }
 
 // Union type for all Button props
-type ButtonProps = LinkButtonProps | ButtonButtonProps;
+type IcaButtonProps = LinkButtonProps | ButtonButtonProps;
 
 // Create the component
-export default function Button({
+export default function IcaButton({
   href,
   variant = 'primary',
   size,
@@ -63,7 +63,7 @@ export default function Button({
   className,
   children,
   ...props
-}: ButtonProps) {
+}: IcaButtonProps) {
   // Combine classes dynamically
   const classes = clsx(
     baseStyles,

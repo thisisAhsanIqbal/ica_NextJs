@@ -4,8 +4,15 @@ import React, { createContext, useContext, useState, useCallback, useRef, useEff
 import type { PopupData } from '@/app/types/popup';
 import UniversalPopup from '@/app/components/ui/UniversalPopup';
 
+export interface PopupOptions {
+  onRetry?: () => void;
+  retryButtonText?: string;
+  contactEmail?: string;
+  contactPhone?: string;
+}
+
 interface PopupContextType {
-  openPopup: (data: PopupData) => void;
+  openPopup: (data: PopupData, options?: PopupOptions) => void;
   closePopup: () => void;
   isOpen: boolean;
   currentPopup: PopupData | null;
@@ -13,9 +20,17 @@ interface PopupContextType {
 
 const PopupContext = createContext<PopupContextType | undefined>(undefined);
 
+// Default retry handler - reloads the page
+const defaultRetryHandler = () => {
+  if (typeof window !== 'undefined') {
+    window.location.reload();
+  }
+};
+
 export function PopupProvider({ children }: { children: ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
   const [currentPopup, setCurrentPopup] = useState<PopupData | null>(null);
+  const [popupOptions, setPopupOptions] = useState<PopupOptions | null>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   // Cleanup timeout on unmount
@@ -28,7 +43,7 @@ export function PopupProvider({ children }: { children: ReactNode }) {
     };
   }, []);
 
-  const openPopup = useCallback((data: PopupData) => {
+  const openPopup = useCallback((data: PopupData, options?: PopupOptions) => {
     // Validate popup data
     if (!data) {
       console.error('Cannot open popup: data is null or undefined');
@@ -52,6 +67,7 @@ export function PopupProvider({ children }: { children: ReactNode }) {
 
     try {
       setCurrentPopup(data);
+      setPopupOptions(options || null);
       setIsOpen(true);
     } catch (error) {
       console.error('Error opening popup:', error);
@@ -67,6 +83,7 @@ export function PopupProvider({ children }: { children: ReactNode }) {
       }
       timeoutRef.current = setTimeout(() => {
         setCurrentPopup(null);
+        setPopupOptions(null);
         timeoutRef.current = null;
       }, 300);
     } catch (error) {
@@ -74,12 +91,27 @@ export function PopupProvider({ children }: { children: ReactNode }) {
       // Ensure popup is closed even if there's an error
       setIsOpen(false);
       setCurrentPopup(null);
+      setPopupOptions(null);
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current);
         timeoutRef.current = null;
       }
     }
   }, []);
+
+  // Use custom retry handler if provided, otherwise use default
+  const handleRetry = useCallback(() => {
+    if (popupOptions?.onRetry) {
+      popupOptions.onRetry();
+    } else {
+      defaultRetryHandler();
+    }
+  }, [popupOptions]);
+
+  // Use custom retry button text if provided, otherwise use default
+  const getRetryButtonText = useCallback((): string => {
+    return popupOptions?.retryButtonText || 'Try Again';
+  }, [popupOptions]);
 
   return (
     <PopupContext.Provider value={{ openPopup, closePopup, isOpen, currentPopup }}>
@@ -89,6 +121,10 @@ export function PopupProvider({ children }: { children: ReactNode }) {
           isOpen={isOpen}
           onClose={closePopup}
           data={currentPopup}
+          onRetry={handleRetry}
+          retryButtonText={getRetryButtonText()}
+          contactEmail={popupOptions?.contactEmail || "info@ilconservatory.org"}
+          contactPhone={popupOptions?.contactPhone || "(630) 243-5100"}
         />
       )}
     </PopupContext.Provider>

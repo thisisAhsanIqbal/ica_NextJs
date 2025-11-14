@@ -1,4 +1,4 @@
-import Button from './components/ui/Button'
+import IcaButton from './components/ui/IcaButton'
 import styles from './not-found.module.css'
 
 export default function NotFound() {
@@ -26,12 +26,12 @@ export default function NotFound() {
           </p>
           
           <div className={styles.buttonGroup}>
-            <Button href="/" variant="primary">
+            <IcaButton href="/" variant="primary">
               Return Home
-            </Button>
-            <Button href="/the-school" variant="outline">
+            </IcaButton>
+            <IcaButton href="/the-school" variant="outline">
               Learn About The School
-            </Button>
+            </IcaButton>
           </div>
         </div>
       </div>

@@ -47,14 +47,14 @@ export default function Home() {
         headline="High-level arts <em>meets</em><br />high-achieving academics."
         subhead="Illinois Conservatory for the Arts is a non-profit educational institution in the Western suburbs of Chicago."
         paragraph="ICA is committed to providing high-level arts programming while engaging students in a comprehensive academic education. We believe that creativity and the quest for innovation fosters individuality–allowing the holistic development of each student."
-        primaryButton={{
+        primaryIcaButton={{
           label: 'Learn More',
           url: '/the-school'
         }}
-        secondaryButton={{
+        secondaryIcaButton={{
           label: 'Donate Today'
         }}
-        tertiaryButton={{
+        tertiaryIcaButton={{
           label: 'Stay Connected with ICA!'
         }}
         heroImages={[
@@ -99,8 +99,7 @@ export default function Home() {
           'ICA is committed to providing high-level arts programming that integrates seamlessly with rigorous academic standards. Our mission is to nurture artistic excellence while fostering academic achievement.'
         ]}
         cta={{
-          label: 'Learn More',
-          url: '/the-school'
+          label: 'Join the Intrest List',
         }}
         logoSrc="/asserts/home/Icon The Studio Cream.png"
         logoAlt="The Studio icon"
@@ -133,7 +132,7 @@ export default function Home() {
           'WINTER • Dec 27-Dec 30, 2025 • On Sale Now',
           'SUMMER • 2026 Dates • Coming Soon'
         ]}
-        ctaButtons={[
+        ctaIcaButtons={[
           {
             label: 'WINTER',
             url: '/impact/winter'
@@ -190,12 +189,12 @@ export default function Home() {
         subtitle="The Studio offers evening & weekend classes in Music, Dance, and Theatre for adolescents and teens."
         paragraph="There are two 12-week sessions that take place throughout the year."
         highlight="Registration for The Studio is now open!"
-        primaryButton={{
+        primaryIcaButton={{
           label: 'Learn More',
           url: '/studio/',
           'aria-label': 'Learn more about The Studio evening and weekend classes'
         }}
-        secondaryButton={{
+        secondaryIcaButton={{
           label: 'Register Now',
           url: 'https://register.ilconservatory.org/studio'
         }}
@@ -228,7 +227,7 @@ export default function Home() {
         title="Events"
         subtitle="ICA hosts exciting, star-studded events throughout the year."
         paragraph="Illinois Conservatory for the Arts is committed to community engagement, outreach, and fundraising. Events include concerts, workshops, and community outings."
-        primaryButton={{
+        primaryIcaButton={{
           label: 'See our upcoming events',
           url: '/event/',
           'aria-label': 'Learn more about ICA events and performances'
@@ -264,7 +263,7 @@ export default function Home() {
         title="Our History"
         subtitle="ICA is the dream of three educators who have seen the positive impact of an arts-integrated education on overall academics."
         paragraph="With their combined decades in arts education, our founders recognize that young artists often learn differently because they are multifaceted. ICA believes that fostering creativity in all areas of their school experience benefits a creatively-driven child, whether they aim for a profession in the arts or land in a fulfilling career outside of the arts."
-        primaryButton={{
+        primaryIcaButton={{
           label: 'Meet the team',
           url: '/team/'
         }}

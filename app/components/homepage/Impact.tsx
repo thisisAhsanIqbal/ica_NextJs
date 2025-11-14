@@ -2,7 +2,7 @@
 'use client';
 
 import FeatureSection from './FeatureSection';
-import Button from '../ui/Button';
+import IcaButton from '../ui/IcaButton';
 import styles from './Impact.module.css';
 
 interface CtaButton {
@@ -21,7 +21,7 @@ interface ImpactProps {
   title?: string;
   headline?: string;
   paragraphs?: string[];
-  ctaButtons?: CtaButton[];
+  ctaIcaButtons?: CtaButton[];
   logoSrc?: string;
   logoAlt?: string;
   slides?: SlideImage[];
@@ -36,7 +36,7 @@ export default function Impact({
   title = 'IMPACT',
   headline,
   paragraphs = [],
-  ctaButtons = [],
+  ctaIcaButtons = [],
   logoSrc,
   logoAlt = 'IMPACT Logo',
   slides = [],
@@ -77,14 +77,14 @@ export default function Impact({
         ))}
       </div>
 
-      {/* CTA Buttons (Winter/Summer) */}
-      {ctaButtons.length > 0 && (
+      {/* CTA IcaButtons (Winter/Summer) */}
+      {ctaIcaButtons.length > 0 && (
         <div
           className={styles.impactCtaButtons}
           role="group"
           aria-label="IMPACT program actions"
         >
-          {ctaButtons.map((button, index) => {
+          {ctaIcaButtons.map((button, index) => {
             // Logic to assign button variant based on label, from impact.php
             const buttonVariant =
               button.label.toLowerCase() === 'winter'
@@ -104,7 +104,7 @@ export default function Impact({
             };
 
             // Map button labels to their slugs
-            const getButtonSlug = (label: string) => {
+            const getIcaButtonSlug = (label: string) => {
               const normalizedLabel = label.toLowerCase();
               if (normalizedLabel === 'winter') return '/impact-mt-winter/';
               if (normalizedLabel === 'summer') return '/impact-mt-summer/';
@@ -112,15 +112,15 @@ export default function Impact({
             };
 
             return (
-              <Button
+              <IcaButton
                 key={index}
                 variant={buttonVariant as 'primary' | 'white'}
-                href={getButtonSlug(button.label)}
+                href={getIcaButtonSlug(button.label)}
                 aria-describedby="impact-title"
                 className="flex-1 min-w-0 w-full"
               >
                 {button.label}
-              </Button>
+              </IcaButton>
             );
           })}
         </div>
@@ -139,14 +139,14 @@ export default function Impact({
             role="group"
             aria-label="DANCE program action"
           >
-            <Button
+            <IcaButton
               variant="primary"
               href="/impact-dance/"
               width="full"
               aria-describedby="impact-title"
             >
               {additionalSession.cta.label}
-            </Button>
+            </IcaButton>
           </div>
         </>
       )}

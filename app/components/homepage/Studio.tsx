@@ -5,7 +5,7 @@
 // 1. Import our reusable layout component
 
 import FeatureSection from './FeatureSection';
-import Button from '../ui/Button'; 
+import IcaButton from '../ui/IcaButton'; 
 
 // 2. Keep the module CSS for UNIQUE styles
 
@@ -41,9 +41,9 @@ interface StudioProps {
 
   highlight?: string;
 
-  primaryButton?: CtaButton;
+  primaryIcaButton?: CtaButton;
 
-  secondaryButton?: CtaButton;
+  secondaryIcaButton?: CtaButton;
 
   logoSrc?: string;
 
@@ -63,9 +63,9 @@ export default function Studio({
 
   highlight,
 
-  primaryButton,
+  primaryIcaButton,
 
-  secondaryButton,
+  secondaryIcaButton,
 
   logoSrc,
 
@@ -92,7 +92,7 @@ export default function Studio({
   };
 
   // Map button labels to their slugs/URLs
-  const getButtonUrl = (label: string, fallbackUrl: string) => {
+  const getIcaButtonUrl = (label: string, fallbackUrl: string) => {
     const normalizedLabel = label.toLowerCase();
     if (normalizedLabel.includes('learn more')) return '/studio/';
     if (normalizedLabel.includes('register now') || normalizedLabel.includes('register')) {
@@ -139,41 +139,41 @@ export default function Studio({
 
       <div className={styles.studioCtaButtons}>
 
-        {primaryButton?.label && primaryButton?.url && (
+        {primaryIcaButton?.label && primaryIcaButton?.url && (
 
-          <Button
+          <IcaButton
 
             variant="primary"
 
-            href={getButtonUrl(primaryButton.label, primaryButton.url)}
+            href={getIcaButtonUrl(primaryIcaButton.label, primaryIcaButton.url)}
 
-            aria-label={primaryButton['aria-label']}
+            aria-label={primaryIcaButton['aria-label']}
 
             className="flex-1 min-w-0 w-full"
 
           >
 
-            {primaryButton.label}
+            {primaryIcaButton.label}
 
-          </Button>
+          </IcaButton>
 
         )}
 
-        {secondaryButton?.label && secondaryButton?.url && (
+        {secondaryIcaButton?.label && secondaryIcaButton?.url && (
 
-          <Button
+          <IcaButton
 
             variant="white"
 
-            href={getButtonUrl(secondaryButton.label, secondaryButton.url)}
+            href={getIcaButtonUrl(secondaryIcaButton.label, secondaryIcaButton.url)}
 
             className="flex-1 min-w-0 w-full"
 
           >
 
-            {secondaryButton.label}
+            {secondaryIcaButton.label}
 
-          </Button>
+          </IcaButton>
 
         )}
 

@@ -226,3 +226,5 @@ className="max-w-full max-h-[70px] w-auto h-auto object-contain max-md:max-h-[50
 
 All CSS properties have direct Tailwind equivalents. The design will remain 100% identical. The migration is straightforward and follows the same pattern as other components already migrated in the codebase.
 
+
+

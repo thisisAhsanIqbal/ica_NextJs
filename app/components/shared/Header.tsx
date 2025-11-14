@@ -193,6 +193,12 @@ export default function Header() {
             <span className={styles.navText}>SUPPORT</span>
           </Link>
           
+          {/* Login in Mobile Menu */}
+          <Link href="/login" className={styles.navLink} onClick={closeMenu}>
+            <span className={styles.navBullet}></span>
+            <span className={styles.navText}>LOGIN</span>
+          </Link>
+          
           {/* Shopping Cart in Mobile Menu */}
           <button 
             className={styles.mobileShopButton} 
@@ -293,6 +299,10 @@ export default function Header() {
 
         {/* Actions */}
         <div className={styles.headerActions}>
+          {/* Login Button */}
+          <Link href="/login" className={styles.loginButton}>
+            Login
+          </Link>
           {/* Shop Button */}
           <button className={styles.ctaButton} aria-label="Shopping Cart" type="button">
             <Image

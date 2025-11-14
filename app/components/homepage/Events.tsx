@@ -2,7 +2,7 @@
 'use client';
 
 import FeatureSection from './FeatureSection';
-import Button from '../ui/Button';
+import IcaButton from '../ui/IcaButton';
 import styles from './Events.module.css';
 
 interface CtaButton {
@@ -22,8 +22,8 @@ interface EventsProps {
   title?: string;
   subtitle?: string; // This is the H3 headline
   paragraph?: string;
-  primaryButton?: CtaButton;
-  secondaryButton?: CtaButton;
+  primaryIcaButton?: CtaButton;
+  secondaryIcaButton?: CtaButton;
   slides?: SlideImage[];
 }
 
@@ -31,8 +31,8 @@ export default function Events({
   title = 'Events',
   subtitle,
   paragraph,
-  primaryButton,
-  secondaryButton,
+  primaryIcaButton,
+  secondaryIcaButton,
   slides = [],
 }: EventsProps) {
   // Convert slides to FeatureSection format
@@ -52,7 +52,7 @@ export default function Events({
   };
 
   // Map button labels to their slugs/URLs
-  const getButtonUrl = (label: string, fallbackUrl: string) => {
+  const getIcaButtonUrl = (label: string, fallbackUrl: string) => {
     const normalizedLabel = label.toLowerCase();
     if (normalizedLabel.includes('see our upcoming events') || normalizedLabel.includes('upcoming events')) {
       return '/events/';
@@ -75,25 +75,25 @@ export default function Events({
         role="group"
         aria-label="Events actions"
       >
-        {primaryButton?.label && primaryButton?.url && (
-          <Button
+        {primaryIcaButton?.label && primaryIcaButton?.url && (
+          <IcaButton
             variant="white"
-            href={getButtonUrl(primaryButton.label, primaryButton.url)}
-            aria-label={primaryButton['aria-label']}
+            href={getIcaButtonUrl(primaryIcaButton.label, primaryIcaButton.url)}
+            aria-label={primaryIcaButton['aria-label']}
             aria-describedby="events-title"
           >
-            {primaryButton.label}
-          </Button>
+            {primaryIcaButton.label}
+          </IcaButton>
         )}
-        {secondaryButton?.label && secondaryButton?.url && (
-          <Button
+        {secondaryIcaButton?.label && secondaryIcaButton?.url && (
+          <IcaButton
             variant="white"
-            href={getButtonUrl(secondaryButton.label, secondaryButton.url)}
-            aria-label={secondaryButton['aria-label']}
+            href={getIcaButtonUrl(secondaryIcaButton.label, secondaryIcaButton.url)}
+            aria-label={secondaryIcaButton['aria-label']}
             aria-describedby="events-title"
           >
-            {secondaryButton.label}
-          </Button>
+            {secondaryIcaButton.label}
+          </IcaButton>
         )}
       </div>
     </FeatureSection>

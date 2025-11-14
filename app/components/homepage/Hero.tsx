@@ -4,9 +4,10 @@
 import { useId } from 'react';
 import FeatureSection from './FeatureSection';
 import styles from './Hero.module.css';
-import Button from '../ui/Button';
+import IcaButton from '../ui/IcaButton';
 import { usePopup } from '@/app/contexts/PopupContext';
 import { homeStayConnectedPopup, homeDonatePopup } from '@/app/data/popupData';
+import { createGiveSmartPopupOptions } from '@/app/lib/popupHelpers';
 
 interface HeroImage {
   src: string;
@@ -19,14 +20,14 @@ interface HeroProps {
   headline: string;
   subhead: string;
   paragraph: string;
-  primaryButton: {
+  primaryIcaButton: {
     label: string;
     url: string;
   };
-  secondaryButton: {
+  secondaryIcaButton: {
     label: string;
   };
-  tertiaryButton: {
+  tertiaryIcaButton: {
     label: string;
   };
   heroImages: HeroImage[];
@@ -36,9 +37,9 @@ export default function Hero({
   headline,
   subhead,
   paragraph,
-  primaryButton,
-  secondaryButton,
-  tertiaryButton,
+  primaryIcaButton,
+  secondaryIcaButton,
+  tertiaryIcaButton,
   heroImages,
 }: HeroProps) {
   const { openPopup } = usePopup();
@@ -63,7 +64,7 @@ export default function Hero({
   };
 
   // Map button labels to their slugs/URLs
-  const getButtonUrl = (label: string, fallbackUrl: string) => {
+  const getIcaButtonUrl = (label: string, fallbackUrl: string) => {
     const normalizedLabel = label.toLowerCase();
     if (normalizedLabel.includes('learn more')) {
       return '/team/';
@@ -139,46 +140,46 @@ export default function Hero({
           <p className="!font-[var(--font-body)] !text-[21px] md:!text-[22px] lg:!text-[23px] !leading-[1.3] !font-normal !text-[rgba(0,0,0,0.7)] !m-0 !text-justify">{paragraph}</p>
         )}
 
-        {(primaryButton?.url || secondaryButton?.label || tertiaryButton?.label) && (
+        {(primaryIcaButton?.url || secondaryIcaButton?.label || tertiaryIcaButton?.label) && (
           <div
             className="flex flex-col gap-4 md:gap-[1.2rem] mt-4 md:mt-2 ml-0 md:ml-[5px] p-[3px] justify-start w-full"
             id={`hero-actions-${heroId}`}
             role="group"
             aria-label="Hero section actions"
           >
-            {/* First Row: Two Buttons */}
+            {/* First Row: Two IcaButtons */}
             <div className="flex items-stretch w-full max-w-full gap-4 md:gap-7 justify-stretch flex-row flex-nowrap">
-              {primaryButton?.url && (
-                <Button
-                  href={getButtonUrl(primaryButton.label, primaryButton.url)}
+              {primaryIcaButton?.url && (
+                <IcaButton
+                  href={getIcaButtonUrl(primaryIcaButton.label, primaryIcaButton.url)}
                   variant="primary"
                   className="flex-1 min-w-0 w-full"
                   id={`hero-btn-primary-${heroId}`}
                   aria-describedby={`${heroId}-headline`}
                 >
-                  {primaryButton.label}
-                </Button>
+                  {primaryIcaButton.label}
+                </IcaButton>
               )}
 
-              {secondaryButton?.label && (
-                <Button
+              {secondaryIcaButton?.label && (
+                <IcaButton
                   type="button"
                   variant="primary"
                   className="flex-1 min-w-0 w-full"
                   id={`hero-btn-secondary-${heroId}`}
-                  onClick={() => openPopup(homeDonatePopup)}
+                  onClick={() => openPopup(homeDonatePopup, createGiveSmartPopupOptions(homeDonatePopup))}
                   aria-haspopup="dialog"
                   aria-describedby={`${heroId}-headline`}
                 >
-                  {secondaryButton.label}
-                </Button>
+                  {secondaryIcaButton.label}
+                </IcaButton>
               )}
             </div>
 
-            {/* Second Row: Full-width Button */}
-            {tertiaryButton?.label && (
+            {/* Second Row: Full-width IcaButton */}
+            {tertiaryIcaButton?.label && (
               <div className="flex items-stretch w-full max-w-full gap-0 justify-stretch flex-row flex-nowrap md:gap-0">
-                <Button
+                <IcaButton
                   type="button"
                   variant="primary"
                   width="full"
@@ -187,8 +188,8 @@ export default function Hero({
                   aria-haspopup="dialog"
                   aria-describedby={`${heroId}-headline`}
                 >
-                  {tertiaryButton.label}
-                </Button>
+                  {tertiaryIcaButton.label}
+                </IcaButton>
               </div>
             )}
           </div>

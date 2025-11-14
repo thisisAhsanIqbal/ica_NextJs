@@ -19,6 +19,8 @@ const withPWA = require('next-pwa')({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Exclude downloaded project folders from page detection
+  pageExtensions: ['tsx', 'ts', 'jsx', 'js'],
   // Preserve trailing slashes in URLs
   trailingSlash: true,
   // Optimize images for better LCP

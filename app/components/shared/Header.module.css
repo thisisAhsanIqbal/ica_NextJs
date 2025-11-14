@@ -124,6 +124,37 @@
   gap: 0.75rem;
 }
 
+.loginButton {
+  font-family: var(--font-ui);
+  background-color: var(--ica-teal);
+  color: var(--ica-white);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px -1px rgba(23, 150, 140, 0.2);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loginButton:hover {
+  background-color: var(--ica-green-deep);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(30, 49, 47, 0.3);
+}
+
+.loginButton:active {
+  transform: translateY(0);
+}
+
 .ctaButton {
   font-family: var(--font-ui);
   background-color: var(--ica-teal);
@@ -445,6 +476,7 @@
 
   .desktopNavMenu { display: none; }
   .headerActions { display: none; }
+  .loginButton { display: none; }
 
   .mobileShopButton {
     display: flex;
@@ -482,6 +514,7 @@
   .mobileMenuButton { display: none; }
   .mobileShopButton { display: none; }
   .headerActions { display: flex; }
+  .loginButton { display: flex; }
   .navMenu { display: none; }
 }
 

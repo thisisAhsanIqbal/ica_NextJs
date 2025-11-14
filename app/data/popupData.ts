@@ -21,8 +21,12 @@ export const homeStayConnectedPopup: PopupData = {
   },
   description: 'Join our mailing list to receive the latest news, upcoming events, and exciting updates from the Illinois Conservatory for the Arts. Be the first to learn about performances, student achievements, and opportunities to support our mission of empowering young artists through innovative arts education.',
   script: {
-    type: 'script', // Will be handled as HTML since it's a full script tag
-    content: `<script type='text/javascript' async='true' src='https://app.ontraport.com/js/ontraport/opt_assets/drivers/opf.js' data-opf-uid='p2c241273f33' data-opf-params='borderColor=#000000&borderSize=0px&embed=true&formHeight=441&formWidth=100%&popPosition=mc&instance=n507961016'></script>`,
+    type: 'script', // Change type to 'script'
+    content: 'https://app.ontraport.com/js/ontraport/opt_assets/drivers/opf.js', // 'content' is now just the src URL
+    // All other attributes are added as props
+    async: true, // Use a boolean for 'async'
+    'data-opf-uid': 'p2c241273f33',
+    'data-opf-params': 'borderColor=#000000&borderSize=0px&embed=true&formHeight=441&formWidth=100%&popPosition=mc&instance=n507961016',
   },
 };
 
@@ -40,10 +44,39 @@ export const homeDonatePopup: PopupData = {
   },
   description: 'Illinois Conservatory for the Arts is a 501c3 not-for-profit arts institution. Your support provides high-level arts experiences for students in the Chicagoland area.',
   script: {
-    type: 'iframe',
-    content: 'https://fundraise.givesmart.com/form/L4UzGQ?utm_source=embed&utm_medium=page&utm_campaign=donation',
-    width: '100%',
-    height: '1903px',
+    type: 'html',
+    content: '<iframe id="mc-donation" src="https://fundraise.givesmart.com/form/K-2RDQ?utm_source=embed&utm_medium=page&utm_campaign=donation" width="100%" height="1889" overflow="scroll" onLoad="window.scrollTo(0,0);"></iframe>',
+  },
+};
+
+/**
+ * School - Join the Interest List Popup
+ * Used for the interest list form in the School component
+ */
+export const schoolInterestListPopup: PopupData = {
+  id: 'school-interest-list-popup',
+  title: 'JOIN THE INTEREST LIST',
+  variant: 'school-popup',
+  image: [
+    {
+      src: '/asserts/PrimaryLogo-green-deep.webp',
+      alt: 'Illinois Conservatory for the Arts Logo',
+      width: 160,
+    },
+    {
+      src: '/asserts/Icon-The-School.webp',
+      alt: 'The School Icon',
+      width: 160,
+    },
+  ],
+  description1: "The Pilot Program for ICA's K-12 day school is launching Fall 2025.",
+  description2: 'Fill out the form below to get on the official interest list and access the survey form. Applications will open in Early Spring 2025.',
+  script: {
+    type: 'script',
+    content: 'https://app.ontraport.com/js/ontraport/opt_assets/drivers/opf.js',
+    async: true,
+    'data-opf-uid': 'p2c241273f3',
+    'data-opf-params': 'borderColor=#fff&borderSize=0px&embed=true&formHeight=1271&formWidth=480px&popPosition=mc&instance=n324261454',
   },
 };
 
@@ -61,6 +94,7 @@ export function getPopupById(id: string): PopupData | null {
   const popups: Record<string, PopupData> = {
     'home-stay-connected-popup': homeStayConnectedPopup,
     'home-donate-popup': homeDonatePopup,
+    'school-interest-list-popup': schoolInterestListPopup,
     'stay-connected-popup': homeStayConnectedPopup, // Backward compatibility
     // Add more popups here as needed
   };
@@ -74,6 +108,7 @@ export function getPopupById(id: string): PopupData | null {
 export const allPopups = {
   homeStayConnected: homeStayConnectedPopup,
   homeDonate: homeDonatePopup,
+  schoolInterestList: schoolInterestListPopup,
   stayConnected: homeStayConnectedPopup, // Backward compatibility
 };
 

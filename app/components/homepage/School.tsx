@@ -1,7 +1,9 @@
 'use client';
 
 import FeatureSection from './FeatureSection';
-import Button from '../ui/Button';
+import IcaButton from '../ui/IcaButton';
+import { usePopup } from '@/app/contexts/PopupContext';
+import { schoolInterestListPopup } from '@/app/data/popupData';
 
 interface SchoolProps {
   title?: string;
@@ -32,13 +34,20 @@ function School({
   slides = [],
   onInterestListClick,
 }: SchoolProps) {
+  const { openPopup } = usePopup();
+
   const handleCTAClick = () => {
     if (cta?.url && cta.url !== '#') {
       // Regular link - handled by Link component
       return;
     } else {
-      // Popup trigger
-      onInterestListClick?.();
+      // Popup trigger - use custom handler if provided, otherwise use default popup
+      if (onInterestListClick) {
+        onInterestListClick();
+      } else {
+        // Default: open the interest list popup
+        openPopup(schoolInterestListPopup);
+      }
     }
   };
 
@@ -66,15 +75,15 @@ function School({
       {cta?.label && (
         <>
           {cta.url && cta.url !== '#' ? (
-            <Button
+            <IcaButton
               variant="lime"
               href={cta.url}
               width="full"
             >
               {cta.label}
-            </Button>
+            </IcaButton>
           ) : (
-            <Button
+            <IcaButton
               type="button"
               variant="lime"
               width="full"
@@ -84,7 +93,7 @@ function School({
               aria-label={`${cta.label} - Opens interest list form`}
             >
               {cta.label}
-            </Button>
+            </IcaButton>
           )}
         </>
       )}

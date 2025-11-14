@@ -2,7 +2,7 @@
 'use client';
 
 import FeatureSection from './FeatureSection';
-import Button from '../ui/Button';
+import IcaButton from '../ui/IcaButton';
 import styles from './History.module.css';
 
 interface CtaButton {
@@ -23,8 +23,8 @@ interface HistoryProps {
   subtitle?: string; // This is the H3 headline
   paragraph?: string;
   highlight?: string;
-  primaryButton?: CtaButton;
-  secondaryButton?: CtaButton;
+  primaryIcaButton?: CtaButton;
+  secondaryIcaButton?: CtaButton;
   slides?: SlideImage[];
 }
 
@@ -33,8 +33,8 @@ export default function History({
   subtitle,
   paragraph,
   highlight,
-  primaryButton,
-  secondaryButton,
+  primaryIcaButton,
+  secondaryIcaButton,
   slides = [],
 }: HistoryProps) {
   // Convert slides to FeatureSection format
@@ -54,7 +54,7 @@ export default function History({
   };
 
   // Map button labels to their slugs/URLs
-  const getButtonUrl = (label: string, fallbackUrl: string) => {
+  const getIcaButtonUrl = (label: string, fallbackUrl: string) => {
     const normalizedLabel = label.toLowerCase();
     if (normalizedLabel.includes('meet the team') || normalizedLabel.includes('team')) {
       return '/team/';
@@ -76,25 +76,25 @@ export default function History({
       )}
 
       <div className={styles.historyCtaButtons}>
-        {primaryButton?.label && primaryButton?.url && (
-          <Button
+        {primaryIcaButton?.label && primaryIcaButton?.url && (
+          <IcaButton
             variant="white"
-            href={getButtonUrl(primaryButton.label, primaryButton.url)}
+            href={getIcaButtonUrl(primaryIcaButton.label, primaryIcaButton.url)}
             aria-describedby="history-title"
             width="full"
           >
-            {primaryButton.label}
-          </Button>
+            {primaryIcaButton.label}
+          </IcaButton>
         )}
-        {secondaryButton?.label && secondaryButton?.url && (
-          <Button
+        {secondaryIcaButton?.label && secondaryIcaButton?.url && (
+          <IcaButton
             variant="white"
-            href={getButtonUrl(secondaryButton.label, secondaryButton.url)}
+            href={getIcaButtonUrl(secondaryIcaButton.label, secondaryIcaButton.url)}
             aria-describedby="history-title"
             width="full"
           >
-            {secondaryButton.label}
-          </Button>
+            {secondaryIcaButton.label}
+          </IcaButton>
         )}
       </div>
     </FeatureSection>

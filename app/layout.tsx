@@ -10,13 +10,11 @@ import 'swiper/css/effect-fade'
 import 'swiper/css/autoplay'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
-import InfoHeader from './components/shared/InfoHeader'
-import Header from './components/shared/Header'
-import PromotionalHeader from './components/shared/PromotionalHeader'
-import Footer from './components/shared/Footer'
+import { ClerkProvider } from '@clerk/nextjs'
 import FontLoader from './components/ui/FontLoader'
 import Template from './template'
 import { PopupProvider } from './contexts/PopupContext'
+import ConditionalLayout from './components/shared/ConditionalLayout'
 
 export const metadata: Metadata = {
   title: {
@@ -197,22 +195,18 @@ export default function RootLayout({
         <meta name="msapplication-config" content="/browserconfig.xml" />
       </head>
       <body>
-        <PopupProvider>
-          <FontLoader />
-          {/* Skip to main content link for accessibility */}
-          <a href="#main-content" className="skip-to-main">
-            Skip to main content
-          </a>
-          <InfoHeader />
-          <Header />
-          <PromotionalHeader />
-          <main id="main-content">
-            <Template>
+        <ClerkProvider>
+          <PopupProvider>
+            <FontLoader />
+            {/* Skip to main content link for accessibility */}
+            <a href="#main-content" className="skip-to-main">
+              Skip to main content
+            </a>
+            <ConditionalLayout>
               {children}
-            </Template>
-          </main>
-          <Footer />
-        </PopupProvider>
+            </ConditionalLayout>
+          </PopupProvider>
+        </ClerkProvider>
       </body>
     </html>
   )
