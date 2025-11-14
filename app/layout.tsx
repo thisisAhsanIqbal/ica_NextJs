@@ -195,7 +195,20 @@ export default function RootLayout({
         <meta name="msapplication-config" content="/browserconfig.xml" />
       </head>
       <body>
-        <ClerkProvider>
+        {process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY ? (
+          <ClerkProvider>
+            <PopupProvider>
+              <FontLoader />
+              {/* Skip to main content link for accessibility */}
+              <a href="#main-content" className="skip-to-main">
+                Skip to main content
+              </a>
+              <ConditionalLayout>
+                {children}
+              </ConditionalLayout>
+            </PopupProvider>
+          </ClerkProvider>
+        ) : (
           <PopupProvider>
             <FontLoader />
             {/* Skip to main content link for accessibility */}
@@ -206,7 +219,7 @@ export default function RootLayout({
               {children}
             </ConditionalLayout>
           </PopupProvider>
-        </ClerkProvider>
+        )}
       </body>
     </html>
   )
