@@ -5,7 +5,8 @@
  * These functions can be used when opening popups to provide custom behavior.
  */
 
-import type { PopupData, PopupOptions } from '@/app/contexts/PopupContext';
+import type { PopupData } from '@/app/types/popup';
+import type { PopupOptions } from '@/app/contexts/PopupContext';
 
 /**
  * Check if URL is a fundraise.givesmart.com form URL
