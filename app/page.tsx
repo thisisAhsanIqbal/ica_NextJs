@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Hero from './components/homepage/Hero';
 import ArtsAreas from './components/homepage/ArtsAreas';
 import School from './components/homepage/School';
@@ -9,6 +10,37 @@ import Testimonials from './components/homepage/Testimonials';
 import PastFacultySection from './components/homepage/PastFacultySection';
 import KeySupporters from './components/homepage/KeySupporters';
 import NondiscriminatoryPolicy from './components/homepage/NondiscriminatoryPolicy';
+
+export const metadata: Metadata = {
+  title: 'Illinois Conservatory for the Arts',
+  description: 'Illinois Conservatory for the Arts is a non-profit educational institution in the Western suburbs of Chicago. ICA is committed to providing high-level arts programming while engaging students in a comprehensive academic education. We believe that creativity and the quest for innovation fosters individuality–allowing the holistic development of each student.',
+  keywords: ['Illinois Conservatory for the Arts', 'ICA', 'Naperville', 'Arts education', 'Western suburbs Chicago', 'non-profit education', 'arts programming', 'academic education', 'K-12 school', 'performing arts', 'visual arts', 'media arts', 'arts business', 'IMPACT program', 'The Studio', 'conservatory'],
+  robots: {
+    index: true,
+    follow: true,
+    'max-snippet': -1,
+    'max-video-preview': -1,
+    'max-image-preview': 'large',
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  openGraph: {
+    title: 'Illinois Conservatory for the Arts',
+    description: 'Illinois Conservatory for the Arts is a non-profit educational institution in the Western suburbs of Chicago. ICA is committed to providing high-level arts programming while engaging students in a comprehensive academic education.',
+    type: 'website',
+    url: 'https://ilconservatory.org',
+  },
+  twitter: {
+    card: 'summary',
+    title: 'Illinois Conservatory for the Arts',
+    description: 'Illinois Conservatory for the Arts is a non-profit educational institution in the Western suburbs of Chicago. ICA is committed to providing high-level arts programming while engaging students in a comprehensive academic education.',
+  },
+};
 
 export default function Home() {
   const artsAreasData = {

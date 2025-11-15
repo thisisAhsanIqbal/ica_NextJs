@@ -820,7 +820,7 @@ export default function UniversalPopup({
               <>
                 {/* description1 for non-school popups appears here */}
                 {!isSchool && 'description1' in data && data.description1 && (
-                  <p className={`${styles.heroPopupSubtitle} ${styles.schoolPopupDescription1}`}>{data.description1}</p>
+                  <p className={styles.heroPopupSubtitle}>{data.description1}</p>
                 )}
                 {'description2' in data && data.description2 && (
                   <p className={`${styles.heroPopupSubtitle} ${isSchool ? styles.schoolPopupSubtitle : ''}`}>{data.description2}</p>
