@@ -1,6 +1,20 @@
+'use client'
+
 import styles from './PromotionalHeader.module.css'
+import { usePopup } from '@/app/contexts/PopupContext'
+import { promotionalSaveMySpotPopup, promotionalRegisterNowPopup } from '@/app/data/popupData'
 
 export default function PromotionalHeader() {
+  const { openPopup } = usePopup()
+
+  const handleSaveMySpotClick = () => {
+    openPopup(promotionalSaveMySpotPopup)
+  }
+
+  const handleRegisterNowClick = () => {
+    openPopup(promotionalRegisterNowPopup)
+  }
+
   return (
     <section className={styles.promotionalHeader} aria-label="Promotional announcements">
       {/* IMPACT: Musical Theater */}
@@ -13,7 +27,12 @@ export default function PromotionalHeader() {
               <p className={styles.promoSubtitle}>Summer 2025 Registration</p>
             </div>
             <div className={styles.promoAction}>
-              <button type="button" className={styles.promoButton} aria-label="Save my spot for IMPACT: Musical Theater Summer 2025 Registration">
+              <button 
+                type="button" 
+                className={styles.promoButton} 
+                aria-label="Save my spot for IMPACT: Musical Theater Summer 2025 Registration"
+                onClick={handleSaveMySpotClick}
+              >
                 Save My Spot!
               </button>
             </div>
@@ -31,7 +50,12 @@ export default function PromotionalHeader() {
               <p className={styles.promoSubtitle}>Winter Session</p>
             </div>
             <div className={styles.promoAction}>
-              <button type="button" className={styles.promoButton} aria-label="Register now for IMPACT: Dance Winter Session">
+              <button 
+                type="button" 
+                className={styles.promoButton} 
+                aria-label="Register now for IMPACT: Dance Winter Session"
+                onClick={handleRegisterNowClick}
+              >
                 Register Now!
               </button>
             </div>

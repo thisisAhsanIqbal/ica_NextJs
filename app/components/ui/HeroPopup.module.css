@@ -65,11 +65,11 @@
 
 /* School Popup Variant - White Background with Green-Deep Text */
 .schoolPopup .heroPopupContent {
-  background: var(--ica-white, #FFFFFF);
+  background: var(--ica-bg, #F9F6F4);
 }
 
 .schoolPopupContent {
-  background: var(--ica-white, #FFFFFF) !important;
+  background: var(--ica-bg, #F9F6F4) !important;
 }
 
 .schoolPopupTitle {
@@ -174,13 +174,13 @@
   border: none;
   cursor: pointer;
   padding: 0.5rem;
-  color: var(--ica-white, #FFFFFF);
+  color: var(--ica-bg, #F9F6F4);
 }
 
 .promoCloseIcon {
   width: 24px;
   height: 24px;
-  stroke: var(--ica-white, #FFFFFF);
+  stroke: var(--ica-bg, #F9F6F4);
 }
 
 .heroPopupClose:hover .promoCloseIcon {
@@ -202,9 +202,10 @@
 
 .heroPopupSubtitle {
   font-family: var(--font-body, "roboto-condensed", sans-serif);
-  font-size: 1.1rem;
+  font-size: 19px !important;
   line-height: 1.4;
-  color: var(--ica-white, #FFFFFF);
+  font-weight: 400;
+  color: var(--ica-bg, #F9F6F4);
 }
 
 .heroPopupContentArea {
@@ -248,13 +249,15 @@
 
 /* Date styling */
 .heroPopupDate {
-  font-family: var(--font-body, "roboto-condensed", sans-serif);
-  font-size: 0.95rem;
+  font-family: var(--font-ui, "Termina", sans-serif);
+  font-size: 18px;
+  text-transform: uppercase;
+  font-weight: 600;
   line-height: 1.4;
-  color: var(--ica-white, #FFFFFF);
-  opacity: 0.8;
-  margin: 0.5rem 0 0 0;
-  font-style: italic;
+  color: var(--ica-bg, #F9F6F4);
+  opacity: 1;
+  margin: 0 0 0.5rem 0;
+  font-style: normal;
 }
 
 /* Script container styling */
@@ -287,7 +290,7 @@
 .scriptErrorContainer {
   text-align: center;
   padding: 2rem 1rem;
-  color: var(--ica-white, #FFFFFF);
+  color: var(--ica-bg, #F9F6F4);
   background: rgba(255, 255, 255, 0.1);
   border-radius: 12px;
   width: 100%;
@@ -308,7 +311,7 @@
   font-family: var(--font-ui, "Termina", sans-serif);
   font-size: 1rem;
   line-height: 1.6;
-  color: var(--ica-white, #FFFFFF);
+  color: var(--ica-bg, #F9F6F4);
   opacity: 0.9;
 }
 
@@ -327,7 +330,7 @@
 }
 
 .scriptRetryButton:hover {
-  background: var(--ica-white, #FFFFFF);
+  background: var(--ica-bg, #F9F6F4);
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
@@ -344,7 +347,7 @@
   font-family: var(--font-ui, "Termina", sans-serif);
   font-size: 0.95rem;
   text-transform: uppercase;
-  color: var(--ica-white, #FFFFFF);
+  color: var(--ica-bg, #F9F6F4);
   opacity: 0.8;
 }
 
@@ -364,7 +367,7 @@
 }
 
 .scriptContactLink:hover {
-  color: var(--ica-white, #FFFFFF);
+  color: var(--ica-bg, #F9F6F4);
   text-decoration: underline;
 }
 
@@ -402,7 +405,7 @@
 .scriptLoadingText {
   font-family: var(--font-body, "roboto-condensed", sans-serif);
   font-size: 1rem;
-  color: var(--ica-white, #FFFFFF);
+  color: var(--ica-bg, #F9F6F4);
   opacity: 0.8;
   margin: 0;
 }

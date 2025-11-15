@@ -72,7 +72,7 @@ export default function Footer() {
             <div className={styles.icaBadge}>
               <Link href="/the-school" aria-label="The School">
                 <Image
-                  src="/asserts/Icon-The-School-300x142.webp"
+                  src="/asserts/Icon-The-School.webp"
                   alt="The School"
                   width={130}
                   height={40}

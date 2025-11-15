@@ -81,6 +81,52 @@ export const schoolInterestListPopup: PopupData = {
 };
 
 /**
+ * Promotional Header - Save My Spot! Popup
+ * Used for IMPACT: Musical Theater registration in the promotional header
+ */
+export const promotionalSaveMySpotPopup: PopupData = {
+  id: 'promotional-save-my-spot-popup',
+  title: 'IMPACT: Musical Theater fills up fast!',
+  image: {
+    src: '/asserts/home/impact-MT-logo.webp',
+    alt: 'IMPACT: Musical Theater Logo',
+    width: 250,
+  },
+  description: 'Check to see if a spot is available using the form below.',
+  script: {
+    type: 'script',
+    content: 'https://app.ontraport.com/js/ontraport/opt_assets/drivers/opf.js',
+    async: true,
+    'data-opf-uid': 'p2c241273f33',
+    'data-opf-params': 'borderColor=%23C6D62B&borderSize=2px&embed=true&formHeight=441&formWidth=100%&popPosition=mc&instance=n507961016&textColor=%231E312F&backgroundColor=%23F9F6F4',
+  },
+};
+
+/**
+ * Promotional Header - Register Now! Popup
+ * Used for IMPACT: Dance registration in the promotional header
+ */
+export const promotionalRegisterNowPopup: PopupData = {
+  id: 'promotional-register-now-popup',
+  variant: 'full',
+  title: 'Check availability',
+  image: {
+    src: '/asserts/home/Impact-Dance-logo-main.webp',
+    alt: 'IMPACT: Dance Logo',
+    width: 250,
+  },
+  description1: "IMPACT is popular and fills up fast! You'll be forwarded to the registration form to grab your spot.",
+  date: 'December 30, 2025',
+  script: {
+    type: 'script',
+    content: 'https://app.ontraport.com/js/ontraport/opt_assets/drivers/opf.js',
+    async: true,
+    'data-opf-uid': 'p2c241273f35',
+    'data-opf-params': 'borderColor=#000000&borderSize=0px&embed=true&formHeight=441&formWidth=100%&popPosition=mc&instance=n507961016',
+  },
+};
+
+/**
  * @deprecated Use homeStayConnectedPopup instead
  * Kept for backward compatibility
  */
@@ -95,6 +141,8 @@ export function getPopupById(id: string): PopupData | null {
     'home-stay-connected-popup': homeStayConnectedPopup,
     'home-donate-popup': homeDonatePopup,
     'school-interest-list-popup': schoolInterestListPopup,
+    'promotional-save-my-spot-popup': promotionalSaveMySpotPopup,
+    'promotional-register-now-popup': promotionalRegisterNowPopup,
     'stay-connected-popup': homeStayConnectedPopup, // Backward compatibility
     // Add more popups here as needed
   };
@@ -109,6 +157,8 @@ export const allPopups = {
   homeStayConnected: homeStayConnectedPopup,
   homeDonate: homeDonatePopup,
   schoolInterestList: schoolInterestListPopup,
+  promotionalSaveMySpot: promotionalSaveMySpotPopup,
+  promotionalRegisterNow: promotionalRegisterNowPopup,
   stayConnected: homeStayConnectedPopup, // Backward compatibility
 };
 

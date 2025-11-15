@@ -747,11 +747,11 @@ export default function UniversalPopup({
           ) : (
             /* Single Image Layout - 100% */
             !Array.isArray(data.image) && data.image && 'src' in data.image && data.image.src && (
-              <div className={styles.heroPopupImage} style={{ width: '100%', maxWidth: '160px', margin: '0 auto', justifyContent: 'center' }}>
+              <div className={styles.heroPopupImage} style={{ width: '100%', maxWidth: '250px', margin: '0 auto', justifyContent: 'center' }}>
               <Image
                 src={data.image.src}
                 alt={data.image.alt || 'Popup image'}
-                  width={160}
+                  width={200}
                 height={data.image.height || 200}
                 className={styles.popupImage}
                 loading="lazy"
@@ -796,6 +796,11 @@ export default function UniversalPopup({
 
           {/* Title and Descriptions */}
           <div className={styles.heroPopupHeader}>
+            {/* Date - appears above title for full popups */}
+            {!isMinimal && 'date' in data && data.date && (
+              <p className={`${styles.heroPopupDate} ${isSchool ? styles.schoolPopupDate : ''}`}>{data.date}</p>
+            )}
+            
             <h2 id={titleId} className={`${styles.heroPopupTitle} ${isSchool ? styles.schoolPopupTitle : ''}`}>
               {data.title || 'Popup'}
             </h2>
@@ -813,9 +818,6 @@ export default function UniversalPopup({
                 )}
                 {'description2' in data && data.description2 && (
                   <p className={`${styles.heroPopupSubtitle} ${isSchool ? styles.schoolPopupSubtitle : ''}`}>{data.description2}</p>
-                )}
-                {'date' in data && data.date && (
-                  <p className={`${styles.heroPopupDate} ${isSchool ? styles.schoolPopupDate : ''}`}>{data.date}</p>
                 )}
               </>
             )}
