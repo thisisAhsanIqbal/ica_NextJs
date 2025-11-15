@@ -1,8 +1,11 @@
 // components/Testimonials.tsx
+'use client';
+
 import TestimonialsHeader from './TestimonialsHeader';
 import ReviewsSlider from './ReviewsSlider';
 import TwoColumnQuotes from './TwoColumnQuotes';
 import SpotlightQuote from './SpotlightQuote';
+import ScrollReveal from '../shared/ScrollReveal';
 
 interface Review {
   image_id?: number;
@@ -56,76 +59,119 @@ export default function Testimonials({
     const sections: React.ReactNode[] = [];
     let twoColumnIndex = 0;
     let spotlightIndex = 0;
+    let sectionIndex = 0; // Track total sections for animation delay
 
     // Render first TwoColumnQuotes section (ALLY + ANDREEA)
     if (twoColumnIndex < allTwoColumnSections.length) {
       sections.push(
-        <TwoColumnQuotes 
+        <ScrollReveal 
           key={`twoCol-${twoColumnIndex}`}
-          quotes={allTwoColumnSections[twoColumnIndex]} 
-          altBackground={altBackground} 
-        />
+          direction="up" 
+          delay={0.1 + (sectionIndex * 0.15)} 
+          duration={0.6}
+        >
+          <TwoColumnQuotes 
+            quotes={allTwoColumnSections[twoColumnIndex]} 
+            altBackground={altBackground} 
+          />
+        </ScrollReveal>
       );
       twoColumnIndex++;
+      sectionIndex++;
     }
 
     // Render first SpotlightQuote (LEON)
     if (spotlightIndex < spotlightQuotes.length) {
       sections.push(
-        <SpotlightQuote 
+        <ScrollReveal 
           key={`spotlight-${spotlightIndex}`}
-          quote={spotlightQuotes[spotlightIndex]} 
-          ariaLabel={`Testimonials - Spotlight ${spotlightIndex + 1}`} 
-        />
+          direction="up" 
+          delay={0.1 + (sectionIndex * 0.15)} 
+          duration={0.6}
+        >
+          <SpotlightQuote 
+            quote={spotlightQuotes[spotlightIndex]} 
+            ariaLabel={`Testimonials - Spotlight ${spotlightIndex + 1}`} 
+          />
+        </ScrollReveal>
       );
       spotlightIndex++;
+      sectionIndex++;
     }
 
     // Render second TwoColumnQuotes section (CAROLINA + AMIRA)
     if (twoColumnIndex < allTwoColumnSections.length) {
       sections.push(
-        <TwoColumnQuotes 
+        <ScrollReveal 
           key={`twoCol-${twoColumnIndex}`}
-          quotes={allTwoColumnSections[twoColumnIndex]} 
-          altBackground={!altBackground} 
-        />
+          direction="up" 
+          delay={0.1 + (sectionIndex * 0.15)} 
+          duration={0.6}
+        >
+          <TwoColumnQuotes 
+            quotes={allTwoColumnSections[twoColumnIndex]} 
+            altBackground={!altBackground} 
+          />
+        </ScrollReveal>
       );
       twoColumnIndex++;
+      sectionIndex++;
     }
 
     // Render second SpotlightQuote (NICOLAS)
     if (spotlightIndex < spotlightQuotes.length) {
       sections.push(
-        <SpotlightQuote 
+        <ScrollReveal 
           key={`spotlight-${spotlightIndex}`}
-          quote={spotlightQuotes[spotlightIndex]} 
-          ariaLabel={`Testimonials - Spotlight ${spotlightIndex + 1}`} 
-        />
+          direction="up" 
+          delay={0.1 + (sectionIndex * 0.15)} 
+          duration={0.6}
+        >
+          <SpotlightQuote 
+            quote={spotlightQuotes[spotlightIndex]} 
+            ariaLabel={`Testimonials - Spotlight ${spotlightIndex + 1}`} 
+          />
+        </ScrollReveal>
       );
       spotlightIndex++;
+      sectionIndex++;
     }
 
     // Render any remaining sections in order
     while (twoColumnIndex < allTwoColumnSections.length) {
       sections.push(
-        <TwoColumnQuotes 
+        <ScrollReveal 
           key={`twoCol-${twoColumnIndex}`}
-          quotes={allTwoColumnSections[twoColumnIndex]} 
-          altBackground={twoColumnIndex % 2 === 1 ? !altBackground : altBackground} 
-        />
+          direction="up" 
+          delay={0.1 + (sectionIndex * 0.15)} 
+          duration={0.6}
+        >
+          <TwoColumnQuotes 
+            quotes={allTwoColumnSections[twoColumnIndex]} 
+            altBackground={twoColumnIndex % 2 === 1 ? !altBackground : altBackground} 
+          />
+        </ScrollReveal>
       );
       twoColumnIndex++;
+      sectionIndex++;
     }
 
     while (spotlightIndex < spotlightQuotes.length) {
       sections.push(
-        <SpotlightQuote 
+        <ScrollReveal 
           key={`spotlight-${spotlightIndex}`}
-          quote={spotlightQuotes[spotlightIndex]} 
-          ariaLabel={`Testimonials - Spotlight ${spotlightIndex + 1}`} 
-        />
+          direction="up" 
+          delay={0.1 + (sectionIndex * 0.15)} 
+          duration={0.6}
+        >
+          <SpotlightQuote 
+            quote={spotlightQuotes[spotlightIndex]} 
+            ariaLabel={`Testimonials - Spotlight ${spotlightIndex + 1}`} 
+          />
+        </ScrollReveal>
       );
       spotlightIndex++;
+      sectionIndex++;
     }
 
     return sections;
@@ -134,10 +180,14 @@ export default function Testimonials({
   return (
     <>
       {typingWords.length > 0 && (
-        <TestimonialsHeader words={typingWords} />
+        <ScrollReveal direction="up" delay={0} duration={0.6}>
+          <TestimonialsHeader words={typingWords} />
+        </ScrollReveal>
       )}
       {reviews.length > 0 && (
-        <ReviewsSlider reviews={reviews} />
+        <ScrollReveal direction="up" delay={0.1} duration={0.6}>
+          <ReviewsSlider reviews={reviews} />
+        </ScrollReveal>
       )}
       {renderOrderedSections()}
     </>

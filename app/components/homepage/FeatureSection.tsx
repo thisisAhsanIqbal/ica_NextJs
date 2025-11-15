@@ -10,6 +10,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import type { Swiper as SwiperType } from 'swiper';
 import { Autoplay, EffectFade } from 'swiper/modules';
 import styles from './FeatureSection.module.css';
+import ScrollReveal from '../shared/ScrollReveal';
 
 // Define the props for the slides
 interface Slide {
@@ -106,21 +107,24 @@ export default function FeatureSection({
         {/* 50/50 Grid Layout with Tailwind */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-[clamp(2rem,4vw,4rem)] items-center w-full">
           {/* --- Content Column --- */}
-          <div className={`flex flex-col gap-[clamp(1rem,2vw,1.5rem)] ${contentOrderClass}`}>
-            {title && (
-              <h2 className={`font-[var(--font-heading)] text-[clamp(65px,6vw,75px)] font-light leading-none text-[var(--ica-green-deep)] m-0 mb-[0.6rem] [&_a]:text-inherit [&_a]:no-underline [&_a:hover]:text-inherit [&_a:focus]:text-inherit [&_a:active]:text-inherit ${eyebrowClassName}`}>
-                {titleLink ? <Link href={titleLink}>{title}</Link> : title}
-              </h2>
-            )}
+          <ScrollReveal direction="up" delay={0} duration={0.6} className={contentOrderClass}>
+            <div className="flex flex-col gap-[clamp(1rem,2vw,1.5rem)]">
+              {title && (
+                <h2 className={`font-[var(--font-heading)] text-[clamp(65px,6vw,75px)] font-light leading-none text-[var(--ica-green-deep)] m-0 mb-[0.6rem] [&_a]:text-inherit [&_a]:no-underline [&_a:hover]:text-inherit [&_a:focus]:text-inherit [&_a:active]:text-inherit ${eyebrowClassName}`}>
+                  {titleLink ? <Link href={titleLink}>{title}</Link> : title}
+                </h2>
+              )}
 
-            {headline && <h3 className={`font-[var(--font-ui)] text-[clamp(18px,2.5vw,24px)] leading-[1.3em] font-bold text-[var(--ica-green-deep)] m-0 ${headlineClassName}`}>{headline}</h3>}
+              {headline && <h3 className={`font-[var(--font-ui)] text-[clamp(18px,2.5vw,24px)] leading-[1.3em] font-bold text-[var(--ica-green-deep)] m-0 ${headlineClassName}`}>{headline}</h3>}
 
-            {/* All unique content (paragraphs, buttons) goes here */}
-            {children}
-          </div>
+              {/* All unique content (paragraphs, buttons) goes here */}
+              {children}
+            </div>
+          </ScrollReveal>
 
           {/* --- Media Column --- */}
-          <figure className={`relative flex justify-center items-center w-full min-h-[300px] ${mediaOrderClass}`}>
+          <ScrollReveal direction="up" delay={0.2} duration={0.6} className={mediaOrderClass}>
+            <figure className="relative flex justify-center items-center w-full min-h-[300px]">
             {slides.length > 0 ? (
               <Swiper
                 className={`relative w-full aspect-[1100/650] h-[60vh] rounded-3xl overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.15)] ${styles.slider} ${isHero ? styles.heroSlider : ''}`}
@@ -191,7 +195,8 @@ export default function FeatureSection({
                 loading="lazy"
               />
             )}
-          </figure>
+            </figure>
+          </ScrollReveal>
         </div>
       </div>
     </section>

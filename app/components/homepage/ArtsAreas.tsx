@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import styles from './ArtsAreas.module.css';
+import ScrollReveal from '../shared/ScrollReveal';
 
 interface ArtsAreaItem {
   iconSrc?: string;
@@ -40,54 +41,63 @@ export default function ArtsAreas({
       aria-labelledby="programs-heading"
     >
       <div className={styles.artsAreasSectionInner}>
-        <h2 id="programs-heading" className={styles.artsAreasSectionHeading}>
-          {heading}
-        </h2>
+        <ScrollReveal direction="up" delay={0} duration={0.6}>
+          <h2 id="programs-heading" className={styles.artsAreasSectionHeading}>
+            {heading}
+          </h2>
+        </ScrollReveal>
         <ul className={styles.artsAreasGrid} role="list">
           {items.map((item, index) => {
             const { firstWord, remainingWords } = splitTitle(item.title);
             return (
-              <li key={index} className={styles.artsAreasItem}>
-                <article className={styles.artsAreasCard}>
-                  <div className={styles.artsAreasCardContent}>
-                    {item.iconSrc && (
-                      <Image
-                        src={item.iconSrc}
-                        alt={item.iconAlt || `${item.title} icon`}
-                        width={40}
-                        height={40}
-                        className={styles.artsAreasIcon}
-                        aria-hidden="true"
-                        loading="lazy"
-                        decoding="async"
-                        onError={(e) => {
-                          console.error('Failed to load icon:', item.iconSrc, e);
-                        }}
-                      />
+              <ScrollReveal 
+                key={index} 
+                direction="up" 
+                delay={0.1 + (index * 0.1)} 
+                duration={0.5}
+              >
+                <li className={styles.artsAreasItem}>
+                  <article className={styles.artsAreasCard}>
+                    <div className={styles.artsAreasCardContent}>
+                      {item.iconSrc && (
+                        <Image
+                          src={item.iconSrc}
+                          alt={item.iconAlt || `${item.title} icon`}
+                          width={40}
+                          height={40}
+                          className={styles.artsAreasIcon}
+                          aria-hidden="true"
+                          loading="lazy"
+                          decoding="async"
+                          onError={(e) => {
+                            console.error('Failed to load icon:', item.iconSrc, e);
+                          }}
+                        />
+                      )}
+                    </div>
+                    <h3 className={styles.artsAreasTitle}>
+                      {remainingWords ? (
+                        <>
+                          <span className={styles.artsAreasFirstWord}>{firstWord}</span>
+                          <br className={styles.artsAreasDesktopBreak} />
+                          <span className={styles.artsAreasRemainingWords}>
+                            {remainingWords}
+                          </span>
+                        </>
+                      ) : (
+                        firstWord
+                      )}
+                    </h3>
+                    {item.subs && item.subs.length > 0 && (
+                      <ul className={styles.artsAreasSublist} role="list">
+                        {item.subs.map((sub, subIndex) => (
+                          <li key={subIndex}>{sub}</li>
+                        ))}
+                      </ul>
                     )}
-                  </div>
-                  <h3 className={styles.artsAreasTitle}>
-                    {remainingWords ? (
-                      <>
-                        <span className={styles.artsAreasFirstWord}>{firstWord}</span>
-                        <br className={styles.artsAreasDesktopBreak} />
-                        <span className={styles.artsAreasRemainingWords}>
-                          {remainingWords}
-                        </span>
-                      </>
-                    ) : (
-                      firstWord
-                    )}
-                  </h3>
-                  {item.subs && item.subs.length > 0 && (
-                    <ul className={styles.artsAreasSublist} role="list">
-                      {item.subs.map((sub, subIndex) => (
-                        <li key={subIndex}>{sub}</li>
-                      ))}
-                    </ul>
-                  )}
-                </article>
-              </li>
+                  </article>
+                </li>
+              </ScrollReveal>
             );
           })}
         </ul>
