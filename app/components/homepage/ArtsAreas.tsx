@@ -66,6 +66,7 @@ export default function ArtsAreas({
                           width={40}
                           height={40}
                           className={styles.artsAreasIcon}
+                          style={{ width: 'auto', height: 'auto' }}
                           aria-hidden="true"
                           loading="lazy"
                           decoding="async"

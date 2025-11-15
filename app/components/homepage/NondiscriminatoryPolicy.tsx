@@ -14,7 +14,7 @@ export default function NondiscriminatoryPolicy({
   return (
     <section
       id="ica-nondiscriminatory-policy"
-      className="relative font-normal bg-[var(--ica-green-deep)] py-[var(--global-padding-desktop)] text-center flex flex-col items-center justify-center [contain:layout_style_paint] max-md:py-[var(--global-padding-mobile)]"
+      className="relative font-normal bg-[var(--ica-green-deep)] py-[9rem] text-center flex flex-col items-center justify-center [contain:layout_style_paint]"
       aria-labelledby="policy-heading"
     >
       {/* Ambient Background Glow - Essential for Glassmorphism to be visible */}

@@ -147,23 +147,6 @@ export default function RootLayout({
           href={`https://use.typekit.net/${ICA_TYPEKIT_ID}.css`}
         />
         
-        {/* Step 4: Preload critical logo image for LCP optimization */}
-        <link 
-          rel="preload" 
-          href="/PrimaryLogo.webp" 
-          as="image" 
-          fetchPriority="high"
-        />
-        
-        {/* Step 5: Preload hero image for LCP optimization (hero is likely LCP element) */}
-        <link 
-          rel="preload" 
-          href="/asserts/home/High-level-arts-meets-high-achieving-academics.webp" 
-          as="image" 
-          fetchPriority="high"
-          type="image/webp"
-        />
-        
         {/* ============================================
             PWA CONFIGURATION
             Progressive Web App Meta Tags
@@ -184,7 +167,10 @@ export default function RootLayout({
         <link rel="icon" type="image/png" sizes="32x32" href="/pwa/icon-32.png" />
         <link rel="icon" type="image/png" sizes="96x96" href="/pwa/icon-96.png" />
         
-        {/* Apple Mobile Web App Capable */}
+        {/* Mobile Web App Capable - Standard (new) */}
+        <meta name="mobile-web-app-capable" content="yes" />
+        
+        {/* Apple Mobile Web App Capable - iOS (kept for backward compatibility) */}
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="ICA" />

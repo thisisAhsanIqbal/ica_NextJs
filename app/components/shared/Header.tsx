@@ -75,7 +75,7 @@ export default function Header() {
               priority
               fetchPriority="high"
               className={styles.logoImage}
-              sizes="(max-width: 920px) 150px, 180px"
+              sizes="(max-width: 1010px) 150px, 180px"
               quality={90}
               placeholder="blur"
               blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgwIiBoZWlnaHQ9IjYwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxODAiIGhlaWdodD0iNjAiIGZpbGw9IiNGRkZGRkYiLz48L3N2Zz4="

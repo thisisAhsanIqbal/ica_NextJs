@@ -192,6 +192,7 @@ export default function FeatureSection({
                 width={250}
                 height={118}
                 className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[250px] h-auto drop-shadow-[0_6px_14px_rgba(0,0,0,0.25)] pointer-events-none z-10"
+                style={{ height: 'auto' }}
                 loading="lazy"
               />
             )}

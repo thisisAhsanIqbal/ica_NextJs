@@ -188,6 +188,7 @@ const PastFacultySection: React.FC<PastFacultySectionProps> = ({
                     width={48}
                     height={48}
                     className={styles.marqueeIcon}
+                    style={{ width: 'auto', height: 'auto' }}
                     loading="lazy"
                     sizes="48px"
                     aria-hidden="true"
