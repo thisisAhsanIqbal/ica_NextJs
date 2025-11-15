@@ -7,7 +7,7 @@ import styles from './Header.module.css'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isImpactSubmenuOpen, setIsImpactSubmenuOpen] = useState(false)
+  const [isImpactSubmenuOpen, setIsImpactSubmenuOpen] = useState(true)
 
   const toggleMenu = useCallback(() => {
     setIsMenuOpen(prev => !prev)
@@ -217,10 +217,12 @@ export default function Header() {
           </Link>
           
           {/* Shopping Cart in Mobile Menu */}
-          <button 
+          <a 
+            href="https://shop.ilconservatory.org/" 
+            target="_blank"
+            rel="noopener noreferrer"
             className={styles.mobileShopButton} 
-            aria-label="Shopping Cart" 
-            type="button" 
+            aria-label="Shopping Cart"
             onClick={closeMenu}
           >
             <Image
@@ -235,7 +237,7 @@ export default function Header() {
               aria-hidden="true"
             />
             <span className={styles.shopText}>Shopping Cart</span>
-          </button>
+          </a>
           
           {/* Social Icons in Mobile Menu */}
           <div className={styles.mobileSocialIcons} role="list" aria-label="Social media links">
@@ -317,7 +319,13 @@ export default function Header() {
         {/* Actions */}
         <div className={styles.headerActions}>
           {/* Shop Button */}
-          <button className={styles.ctaButton} aria-label="Shopping Cart" type="button">
+          <a 
+            href="https://shop.ilconservatory.org/" 
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.ctaButton} 
+            aria-label="Shopping Cart"
+          >
             <Image
               src="/shop_icon.svg"
               alt=""
@@ -329,7 +337,7 @@ export default function Header() {
               loading="eager"
               aria-hidden="true"
             />
-          </button>
+          </a>
         </div>
       </div>
     </header>
