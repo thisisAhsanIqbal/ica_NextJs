@@ -184,13 +184,26 @@ export default function Footer() {
       {/* Copyright Bar */}
       <div className={styles.icaCopyright}>
         <div className={styles.icaFooterContainer}>
-          <address className="not-italic">
-            <span>NAPERVILLE, ILLINOIS</span>
+          <address 
+            className="not-italic" 
+            itemScope 
+            itemType="https://schema.org/PostalAddress"
+          >
+            <span itemProp="streetAddress">808 Illinois Rte 59</span>
+            {', '}
+            <span itemProp="addressLocality">Naperville</span>
+            {', '}
+            <span itemProp="addressRegion">IL</span>{' '}
+            <span itemProp="postalCode">60540</span>
+            {', '}
+            <span itemProp="addressCountry">USA</span>
           </address>
-          <p>
+          <small>
             COPYRIGHT{' '}
-            <time dateTime="2024">2024</time> ILLINOIS CONSERVATORY FOR THE ARTS. ALL RIGHTS RESERVED.
-          </p>
+            <time dateTime={new Date().getFullYear().toString()}>
+              {new Date().getFullYear()}
+            </time> ILLINOIS CONSERVATORY FOR THE ARTS. ALL RIGHTS RESERVED.
+          </small>
         </div>
       </div>
 
@@ -199,7 +212,7 @@ export default function Footer() {
         <div className={styles.icaFooterContainer}>
           <p className={styles.icaCreditText}>
             Website Design and Development by{' '}
-            <a href="https://muhammadahsaniqbal.com/" target="_blank" rel="noopener noreferrer">
+            <a href="https://muhammadahsaniqbal.com/" target="_blank" rel="noopener noreferrer author">
               Muhammad Ahsan Iqbal
             </a>
           </p>

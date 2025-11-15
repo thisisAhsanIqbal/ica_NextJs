@@ -93,18 +93,22 @@ export default function RootLayout({
     logo: 'https://ilconservatory.org/PrimaryLogo.webp', // Update with actual domain
     address: {
       '@type': 'PostalAddress',
+      streetAddress: '808 Illinois Rte 59',
       addressLocality: 'Naperville',
       addressRegion: 'IL',
+      postalCode: '60540',
       addressCountry: 'US',
     },
     contactPoint: {
       '@type': 'ContactPoint',
       telephone: '+1-630-243-5100',
+      email: 'info@ilconservatory.org',
       contactType: 'Customer Service',
       areaServed: 'US',
       availableLanguage: 'English',
     },
     sameAs: [
+      'https://www.facebook.com/ilconservatory',
       'https://www.instagram.com/ilconservatory/',
       'https://x.com/ilconservatory',
       'https://www.linkedin.com/company/ilconservatory',
