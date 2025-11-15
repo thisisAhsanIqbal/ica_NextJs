@@ -79,8 +79,11 @@ function School({
               variant="lime"
               href={cta.url}
               width="full"
+              itemProp="url"
+              itemScope
+              itemType="https://schema.org/ReadAction"
             >
-              {cta.label}
+              <span itemProp="name">{cta.label}</span>
             </IcaButton>
           ) : (
             <IcaButton
@@ -91,8 +94,11 @@ function School({
               aria-expanded="false"
               aria-haspopup="dialog"
               aria-label={`${cta.label} - Opens interest list form`}
+              itemProp="potentialAction"
+              itemScope
+              itemType="https://schema.org/RegisterAction"
             >
-              {cta.label}
+              <span itemProp="name">{cta.label}</span>
             </IcaButton>
           )}
         </>

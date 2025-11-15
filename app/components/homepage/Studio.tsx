@@ -150,10 +150,13 @@ export default function Studio({
             aria-label={primaryIcaButton['aria-label']}
 
             className="flex-1 min-w-0 w-full"
+            itemProp="url"
+            itemScope
+            itemType="https://schema.org/ReadAction"
 
           >
 
-            {primaryIcaButton.label}
+            <span itemProp="name">{primaryIcaButton.label}</span>
 
           </IcaButton>
 
@@ -168,10 +171,13 @@ export default function Studio({
             href={getIcaButtonUrl(secondaryIcaButton.label, secondaryIcaButton.url)}
 
             className="flex-1 min-w-0 w-full"
+            itemProp="url"
+            itemScope
+            itemType="https://schema.org/RegisterAction"
 
           >
 
-            {secondaryIcaButton.label}
+            <span itemProp="name">{secondaryIcaButton.label}</span>
 
           </IcaButton>
 

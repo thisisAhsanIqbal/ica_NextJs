@@ -156,8 +156,11 @@ export default function Hero({
                   className="flex-1 min-w-0 w-full"
                   id={`hero-btn-primary-${heroId}`}
                   aria-describedby={`${heroId}-headline`}
+                  itemProp="url"
+                  itemScope
+                  itemType="https://schema.org/ReadAction"
                 >
-                  {primaryIcaButton.label}
+                  <span itemProp="name">{primaryIcaButton.label}</span>
                 </IcaButton>
               )}
 
@@ -170,8 +173,11 @@ export default function Hero({
                   onClick={() => openPopup(homeDonatePopup, createGiveSmartPopupOptions(homeDonatePopup))}
                   aria-haspopup="dialog"
                   aria-describedby={`${heroId}-headline`}
+                  itemProp="potentialAction"
+                  itemScope
+                  itemType="https://schema.org/DonateAction"
                 >
-                  {secondaryIcaButton.label}
+                  <span itemProp="name">{secondaryIcaButton.label}</span>
                 </IcaButton>
               )}
             </div>
@@ -187,8 +193,11 @@ export default function Hero({
                   onClick={() => openPopup(homeStayConnectedPopup)}
                   aria-haspopup="dialog"
                   aria-describedby={`${heroId}-headline`}
+                  itemProp="potentialAction"
+                  itemScope
+                  itemType="https://schema.org/SubscribeAction"
                 >
-                  {tertiaryIcaButton.label}
+                  <span itemProp="name">{tertiaryIcaButton.label}</span>
                 </IcaButton>
               </div>
             )}

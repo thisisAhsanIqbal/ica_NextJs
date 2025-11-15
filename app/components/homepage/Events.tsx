@@ -81,8 +81,11 @@ export default function Events({
             href={getIcaButtonUrl(primaryIcaButton.label, primaryIcaButton.url)}
             aria-label={primaryIcaButton['aria-label']}
             aria-describedby="events-title"
+            itemProp="url"
+            itemScope
+            itemType="https://schema.org/ReadAction"
           >
-            {primaryIcaButton.label}
+            <span itemProp="name">{primaryIcaButton.label}</span>
           </IcaButton>
         )}
         {secondaryIcaButton?.label && secondaryIcaButton?.url && (
@@ -91,8 +94,11 @@ export default function Events({
             href={getIcaButtonUrl(secondaryIcaButton.label, secondaryIcaButton.url)}
             aria-label={secondaryIcaButton['aria-label']}
             aria-describedby="events-title"
+            itemProp="url"
+            itemScope
+            itemType="https://schema.org/ReadAction"
           >
-            {secondaryIcaButton.label}
+            <span itemProp="name">{secondaryIcaButton.label}</span>
           </IcaButton>
         )}
       </div>

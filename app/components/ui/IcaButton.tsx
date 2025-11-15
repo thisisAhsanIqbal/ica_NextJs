@@ -39,6 +39,9 @@ interface BaseButtonProps {
   className?: string;
   children: ReactNode;
   disabled?: boolean;
+  itemProp?: string; // Schema.org microdata
+  itemScope?: boolean; // Schema.org microdata
+  itemType?: string; // Schema.org microdata
 }
 
 // Props for when href is provided (Link)
@@ -62,6 +65,9 @@ export default function IcaButton({
   width,
   className,
   children,
+  itemProp,
+  itemScope,
+  itemType,
   ...props
 }: IcaButtonProps) {
   // Combine classes dynamically
@@ -101,17 +107,35 @@ export default function IcaButton({
     ...getPadding()
   };
 
+  // Schema.org microdata attributes
+  const schemaProps = {
+    ...(itemProp && { itemProp }),
+    ...(itemScope && { itemScope }),
+    ...(itemType && { itemType }),
+  };
+
   // Render a Link or a button
   if (href) {
     return (
-      <Link href={href} className={classes} style={style} {...(props as AnchorHTMLAttributes<HTMLAnchorElement>)}>
+      <Link 
+        href={href} 
+        className={classes} 
+        style={style} 
+        {...schemaProps}
+        {...(props as AnchorHTMLAttributes<HTMLAnchorElement>)}
+      >
         {children}
       </Link>
     );
   }
 
   return (
-    <button className={classes} style={style} {...(props as ButtonHTMLAttributes<HTMLButtonElement>)}>
+    <button 
+      className={classes} 
+      style={style} 
+      {...schemaProps}
+      {...(props as ButtonHTMLAttributes<HTMLButtonElement>)}
+    >
       {children}
     </button>
   );

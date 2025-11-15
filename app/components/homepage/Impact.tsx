@@ -118,8 +118,11 @@ export default function Impact({
                 href={getIcaButtonSlug(button.label)}
                 aria-describedby="impact-title"
                 className="flex-1 min-w-0 w-full"
+                itemProp="url"
+                itemScope
+                itemType="https://schema.org/ReadAction"
               >
-                {button.label}
+                <span itemProp="name">{button.label}</span>
               </IcaButton>
             );
           })}
@@ -144,8 +147,11 @@ export default function Impact({
               href="/impact-dance/"
               width="full"
               aria-describedby="impact-title"
+              itemProp="url"
+              itemScope
+              itemType="https://schema.org/ReadAction"
             >
-              {additionalSession.cta.label}
+              <span itemProp="name">{additionalSession.cta.label}</span>
             </IcaButton>
           </div>
         </>

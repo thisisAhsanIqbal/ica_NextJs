@@ -62,11 +62,28 @@ export default function Header() {
   }, [isMenuOpen, closeMenu])
 
   return (
-    <header className={styles.header} role="banner">
+    <header className={styles.header} role="banner" itemScope itemType="https://schema.org/Organization">
+      {/* Organization Schema Meta Tags */}
+      <meta itemProp="name" content="Illinois Conservatory for the Arts" />
+      <meta itemProp="sameAs" content="https://www.facebook.com/ilconservatory" />
+      <meta itemProp="sameAs" content="https://www.instagram.com/ilconservatory/" />
+      <meta itemProp="sameAs" content="https://x.com/ilconservatory" />
+      <meta itemProp="sameAs" content="https://www.linkedin.com/company/ilconservatory" />
+      <div itemProp="contactPoint" itemScope itemType="https://schema.org/ContactPoint">
+        <meta itemProp="telephone" content="+1-630-243-5100" />
+        <meta itemProp="contactType" content="Customer Service" />
+        <meta itemProp="areaServed" content="US" />
+        <meta itemProp="availableLanguage" content="English" />
+      </div>
+      
       <div className={styles.headerContainer}>
         {/* Logo */}
         <div className={styles.logo}>
-          <Link href="/" aria-label="Illinois Conservatory for the Arts - Home">
+          <Link 
+            href="/" 
+            aria-label="Illinois Conservatory for the Arts - Home"
+            itemProp="url"
+          >
             <Image
               src="/PrimaryLogo.webp"
               alt="Illinois Conservatory for the Arts"
@@ -79,6 +96,7 @@ export default function Header() {
               quality={90}
               placeholder="blur"
               blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgwIiBoZWlnaHQ9IjYwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxODAiIGhlaWdodD0iNjAiIGZpbGw9IiNGRkZGRkYiLz48L3N2Zz4="
+              itemProp="logo"
             />
           </Link>
         </div>
@@ -88,24 +106,26 @@ export default function Header() {
           className={styles.desktopNavMenu}
           role="navigation"
           aria-label="Main navigation"
+          itemScope
+          itemType="https://schema.org/SiteNavigationElement"
         >
-          <Link href="/school/" className={styles.desktopNavLink}>
-            THE SCHOOL
+          <Link href="/school/" className={styles.desktopNavLink} itemProp="url">
+            <span itemProp="name">THE SCHOOL</span>
           </Link>
-          <Link href="/impact" className={styles.desktopNavLink}>
-            IMPACT
+          <Link href="/impact" className={styles.desktopNavLink} itemProp="url">
+            <span itemProp="name">IMPACT</span>
           </Link>
-          <Link href="/studio/" className={styles.desktopNavLink}>
-            THE STUDIO
+          <Link href="/studio/" className={styles.desktopNavLink} itemProp="url">
+            <span itemProp="name">THE STUDIO</span>
           </Link>
-          <Link href="/team/" className={styles.desktopNavLink}>
-            ABOUT
+          <Link href="/team/" className={styles.desktopNavLink} itemProp="url">
+            <span itemProp="name">ABOUT</span>
           </Link>
-          <Link href="/events" className={styles.desktopNavLink}>
-            EVENTS
+          <Link href="/events" className={styles.desktopNavLink} itemProp="url">
+            <span itemProp="name">EVENTS</span>
           </Link>
-          <Link href="/support" className={styles.desktopNavLink}>
-            SUPPORT
+          <Link href="/support" className={styles.desktopNavLink} itemProp="url">
+            <span itemProp="name">SUPPORT</span>
           </Link>
         </nav>
 
@@ -132,25 +152,28 @@ export default function Header() {
           role="navigation"
           aria-label="Main navigation"
           aria-hidden={!isMenuOpen}
+          itemScope
+          itemType="https://schema.org/SiteNavigationElement"
         >
 
-          <Link href="/school/" className={styles.navLink} onClick={closeMenu}>
+          <Link href="/school/" className={styles.navLink} onClick={closeMenu} itemProp="url">
             <span className={styles.navBullet}></span>
-            <span className={styles.navText}>THE SCHOOL</span>
+            <span className={styles.navText} itemProp="name">THE SCHOOL</span>
           </Link>
           
           {/* IMPACT with Submenu */}
           <div className={styles.navItemWithSubmenu}>
             <div className={styles.navLinkWithArrow}>
-              <Link href="/impact" className={styles.navLink} onClick={closeMenu}>
+              <Link href="/impact" className={styles.navLink} onClick={closeMenu} itemProp="url">
                 <span className={styles.navBullet}></span>
-                <span className={styles.navText}>IMPACT</span>
+                <span className={styles.navText} itemProp="name">IMPACT</span>
               </Link>
               <button
                 className={styles.submenuToggle}
                 onClick={toggleImpactSubmenu}
                 aria-expanded={isImpactSubmenuOpen}
                 aria-haspopup="true"
+                aria-controls="impact-submenu"
                 aria-label="Toggle IMPACT submenu"
                 type="button"
               >
@@ -174,46 +197,47 @@ export default function Header() {
               </button>
             </div>
             <ul 
+              id="impact-submenu"
               className={`${styles.submenu} ${isImpactSubmenuOpen ? styles.submenuOpen : ''}`}
               role="menu"
               aria-label="IMPACT submenu"
             >
               <li role="none">
-                <Link href="/impact/impact-dance" className={styles.submenuLink} onClick={closeMenu} role="menuitem">
+                <Link href="/impact/impact-dance" className={styles.submenuLink} onClick={closeMenu} role="menuitem" itemProp="url">
                   <span className={styles.submenuBullet}></span>
-                  <span className={styles.submenuText}>IMPACT DANCE</span>
+                  <span className={styles.submenuText} itemProp="name">IMPACT DANCE</span>
                 </Link>
               </li>
               <li role="none">
-                <Link href="/impact/impact-mt-winter" className={styles.submenuLink} onClick={closeMenu} role="menuitem">
+                <Link href="/impact/impact-mt-winter" className={styles.submenuLink} onClick={closeMenu} role="menuitem" itemProp="url">
                   <span className={styles.submenuBullet}></span>
-                  <span className={styles.submenuText}>IMPACT MT WINTER</span>
+                  <span className={styles.submenuText} itemProp="name">IMPACT MT WINTER</span>
                 </Link>
               </li>
               <li role="none">
-                <Link href="/impact/impact-mt-summer" className={styles.submenuLink} onClick={closeMenu} role="menuitem">
+                <Link href="/impact/impact-mt-summer" className={styles.submenuLink} onClick={closeMenu} role="menuitem" itemProp="url">
                   <span className={styles.submenuBullet}></span>
-                  <span className={styles.submenuText}>IMPACT MT SUMMER</span>
+                  <span className={styles.submenuText} itemProp="name">IMPACT MT SUMMER</span>
                 </Link>
               </li>
             </ul>
           </div>
 
-          <Link href="/studio/" className={styles.navLink} onClick={closeMenu}>
+          <Link href="/studio/" className={styles.navLink} onClick={closeMenu} itemProp="url">
             <span className={styles.navBullet}></span>
-            <span className={styles.navText}>THE STUDIO</span>
+            <span className={styles.navText} itemProp="name">THE STUDIO</span>
           </Link>
-          <Link href="/team/" className={styles.navLink} onClick={closeMenu}>
+          <Link href="/team/" className={styles.navLink} onClick={closeMenu} itemProp="url">
             <span className={styles.navBullet}></span>
-            <span className={styles.navText}>ABOUT</span>
+            <span className={styles.navText} itemProp="name">ABOUT</span>
           </Link>
-          <Link href="/events" className={styles.navLink} onClick={closeMenu}>
+          <Link href="/events" className={styles.navLink} onClick={closeMenu} itemProp="url">
             <span className={styles.navBullet}></span>
-            <span className={styles.navText}>EVENTS</span>
+            <span className={styles.navText} itemProp="name">EVENTS</span>
           </Link>
-          <Link href="/support" className={styles.navLink} onClick={closeMenu}>
+          <Link href="/support" className={styles.navLink} onClick={closeMenu} itemProp="url">
             <span className={styles.navBullet}></span>
-            <span className={styles.navText}>SUPPORT</span>
+            <span className={styles.navText} itemProp="name">SUPPORT</span>
           </Link>
           
           {/* Conservatory Collections in Mobile Menu */}

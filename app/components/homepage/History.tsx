@@ -82,8 +82,11 @@ export default function History({
             href={getIcaButtonUrl(primaryIcaButton.label, primaryIcaButton.url)}
             aria-describedby="history-title"
             width="full"
+            itemProp="url"
+            itemScope
+            itemType="https://schema.org/ReadAction"
           >
-            {primaryIcaButton.label}
+            <span itemProp="name">{primaryIcaButton.label}</span>
           </IcaButton>
         )}
         {secondaryIcaButton?.label && secondaryIcaButton?.url && (
@@ -92,8 +95,11 @@ export default function History({
             href={getIcaButtonUrl(secondaryIcaButton.label, secondaryIcaButton.url)}
             aria-describedby="history-title"
             width="full"
+            itemProp="url"
+            itemScope
+            itemType="https://schema.org/ReadAction"
           >
-            {secondaryIcaButton.label}
+            <span itemProp="name">{secondaryIcaButton.label}</span>
           </IcaButton>
         )}
       </div>

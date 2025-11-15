@@ -42,7 +42,7 @@ export default function Home() {
   };
 
   return (
-    <>
+    <main id="main-content" lang="en">
       <Hero
         headline="High-level arts <em>meets</em><br />high-achieving academics."
         subhead="Illinois Conservatory for the Arts is a non-profit educational institution in the Western suburbs of Chicago."
@@ -409,7 +409,7 @@ export default function Home() {
         ]}
       />
       <NondiscriminatoryPolicy />
-    </>
+    </main>
   )
 }
 
