@@ -1,6 +1,5 @@
 'use client'
 
-import { usePathname } from 'next/navigation'
 import InfoHeader from './InfoHeader'
 import Header from './Header'
 import PromotionalHeader from './PromotionalHeader'
@@ -12,13 +11,6 @@ export default function ConditionalLayout({
 }: {
   children: React.ReactNode
 }) {
-  const pathname = usePathname()
-  const isLoginPage = pathname?.startsWith('/login') || pathname?.startsWith('/sign-up')
-
-  if (isLoginPage) {
-    return <>{children}</>
-  }
-
   return (
     <>
       <InfoHeader />

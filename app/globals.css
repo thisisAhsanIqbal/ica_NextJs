@@ -301,12 +301,6 @@ code {
   padding: 0 !important;
 }
 
-/* Clerk Form Font Customization - Apply Termina font to all Clerk components */
-[class*="cl-"],
-[class*="clerk"] {
-  font-family: var(--font-ui) !important;
-}
-
 /* Shadcn/ui CSS Variables */
 @layer base {
   :root {
@@ -363,41 +357,6 @@ code {
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
   }
-}
-
-/* Specific Clerk component text elements */
-.cl-cardTitle,
-.cl-headerTitle,
-.cl-headerSubtitle,
-.cl-formFieldLabel,
-.cl-formFieldInput,
-.cl-button,
-.cl-footerActionLink,
-.cl-footerActionText,
-.cl-socialButtonsBlockButton,
-.cl-formButtonPrimary,
-.cl-formButtonSecondary,
-.cl-identityPreviewText,
-.cl-identityPreviewEditButton,
-.cl-formResendCodeLink,
-.cl-footerPagesLink,
-.cl-formFieldInputShowPasswordButton,
-.cl-formFieldErrorText,
-.cl-formFieldSuccessText,
-.cl-alertText,
-.cl-dividerText,
-.cl-footerPages,
-.cl-poweredByClerk,
-.cl-formFieldHintText,
-.cl-otpCodeFieldInput,
-.cl-userButtonPopoverCard,
-.cl-userButtonPopoverActionButton,
-.cl-userButtonPopoverFooter,
-.cl-userButtonPopoverActionButtonText {
-  font-family: var(--font-ui) !important;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Prevent body scroll and horizontal overflow when popup is open */

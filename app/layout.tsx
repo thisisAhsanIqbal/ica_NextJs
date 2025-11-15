@@ -10,7 +10,6 @@ import 'swiper/css/effect-fade'
 import 'swiper/css/autoplay'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
-import { ClerkProvider } from '@clerk/nextjs'
 import FontLoader from './components/ui/FontLoader'
 import Template from './template'
 import { PopupProvider } from './contexts/PopupContext'
@@ -195,31 +194,16 @@ export default function RootLayout({
         <meta name="msapplication-config" content="/browserconfig.xml" />
       </head>
       <body>
-        {process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY ? (
-          <ClerkProvider>
-            <PopupProvider>
-              <FontLoader />
-              {/* Skip to main content link for accessibility */}
-              <a href="#main-content" className="skip-to-main">
-                Skip to main content
-              </a>
-              <ConditionalLayout>
-                {children}
-              </ConditionalLayout>
-            </PopupProvider>
-          </ClerkProvider>
-        ) : (
-          <PopupProvider>
-            <FontLoader />
-            {/* Skip to main content link for accessibility */}
-            <a href="#main-content" className="skip-to-main">
-              Skip to main content
-            </a>
-            <ConditionalLayout>
-              {children}
-            </ConditionalLayout>
-          </PopupProvider>
-        )}
+        <PopupProvider>
+          <FontLoader />
+          {/* Skip to main content link for accessibility */}
+          <a href="#main-content" className="skip-to-main">
+            Skip to main content
+          </a>
+          <ConditionalLayout>
+            {children}
+          </ConditionalLayout>
+        </PopupProvider>
       </body>
     </html>
   )
