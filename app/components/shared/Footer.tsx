@@ -3,7 +3,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import BackToTop from '../ui/BackToTop'
-import IcaButton from '../ui/IcaButton'
 import styles from './Footer.module.css'
 
 export default function Footer() {
@@ -31,12 +30,10 @@ export default function Footer() {
             <h2 id="footer-tagline" className={styles.icaHeadline}>
               High-level arts <em>meets</em><br />high-achieving academics.
             </h2>
-            <div className={styles.icaIcaButtons}>
-              <IcaButton 
+            <div className={styles.icaButtons}>
+              <a 
                 href="mailto:info@ilconservatory.org" 
-                variant="outline"
-                size="small"
-                className="flex items-center justify-center gap-2"
+                className={styles.icaButton}
                 aria-label="Email us at info@ilconservatory.org"
               >
                 <Image
@@ -49,12 +46,10 @@ export default function Footer() {
                   loading="lazy"
                 />
                 EMAIL US
-              </IcaButton>
-              <IcaButton
+              </a>
+              <button
                 type="button"
-                variant="outline"
-                size="small"
-                className="flex items-center justify-center gap-2"
+                className={styles.icaButton}
                 onClick={() => window.open('https://m.me/100066957470546', '_blank')}
                 aria-label="Chat now on Messenger"
               >
@@ -68,7 +63,7 @@ export default function Footer() {
                   loading="lazy"
                 />
                 CHAT NOW
-              </IcaButton>
+              </button>
             </div>
           </section>
 
