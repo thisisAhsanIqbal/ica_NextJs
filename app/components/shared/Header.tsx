@@ -216,13 +216,13 @@ export default function Header() {
             <span className={styles.navText}>SUPPORT</span>
           </Link>
           
-          {/* Shopping Cart in Mobile Menu */}
+          {/* Conservatory Collections in Mobile Menu */}
           <a 
             href="https://shop.ilconservatory.org/" 
             target="_blank"
             rel="noopener noreferrer"
             className={styles.mobileShopButton} 
-            aria-label="Shopping Cart"
+            aria-label="Conservatory Collections"
             onClick={closeMenu}
           >
             <Image
@@ -236,7 +236,7 @@ export default function Header() {
               loading="eager"
               aria-hidden="true"
             />
-            <span className={styles.shopText}>Shopping Cart</span>
+            <span className={styles.shopText}>Conservatory Collections</span>
           </a>
           
           {/* Social Icons in Mobile Menu */}
@@ -324,7 +324,7 @@ export default function Header() {
             target="_blank"
             rel="noopener noreferrer"
             className={styles.ctaButton} 
-            aria-label="Shopping Cart"
+            aria-label="Conservatory Collections"
           >
             <Image
               src="/shop_icon.svg"
