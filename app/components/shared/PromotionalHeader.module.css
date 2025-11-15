@@ -10,7 +10,7 @@
 .promoBannerContainer {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 1rem 2rem;
+  padding: 0.1rem 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -102,9 +102,9 @@
 
 /* Responsive */
 @media (min-width: 481px) {
-  .promoTitle { font-size: clamp(16px, 1.5vw, 18px); }
-  .promoSubtitle { font-size: clamp(17px, 1.5vw, 18px); }
-  .promoLabel { font-size: clamp(17px, 1.5vw, 18px); }
+  .promoTitle { font-size: clamp(14px, 1.5vw, 15px); }
+  .promoSubtitle { font-size: clamp(15px, 1.5vw, 16px); }
+  .promoLabel { font-size: clamp(15px, 1.5vw, 16px); }
   .promoButton { font-size: clamp(12px, 1.5vw, 14px); }
 }
 

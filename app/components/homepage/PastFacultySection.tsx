@@ -31,94 +31,64 @@ const marqueeIcons = [
 // Faculty data (from PastFacultySlider.jsx)
 const defaultFacultyData: FacultyMember[] = [
   {
-    image: "/asserts/SamanthaPauly.webp",
-    name: "SAMANTHA PAULY",
-    role: "SIX",
-    credits: "ORIGINAL BROADWAY CAST",
-  },
-  {
-    image: "/asserts/TaylorLouderman.webp",
-    name: "TAYLOR LOUDERMAN",
-    role: "MEAN GIRLS",
-    credits: "TONY NOMINATED BEST ACTRESS",
-  },
-  {
-    image: "/asserts/JJNiemann.webp",
+    image: "/asserts/JJ-Niemann-BacktotheFuture-TheBookof.webp",
     name: "JJ NIEMANN",
-    role: "BOOK OF MORMON, BACK TO THE FUTURE",
-    credits: "TIKTOK STAR / BROADWAY ACTOR",
+    role: "Back to the Future ",
+    credits: "The Book of Mormon",
   },
   {
-    image: "/asserts/MerriSugarman.webp",
+    image: "/asserts/MerriSugarman-Casting.webp",
     name: "MERRI SUGARMAN",
-    role: "TARA RUBIN CASTING",
-    credits: "BROADWAY CASTING DIRECTOR",
+    role: "The Who's Tommy, Ain't Too Proud, Jersey Boys",
+    credits: "Casting Director",
   },
   {
-    image: "/asserts/ErikaHenningson.webp",
-    name: "ERIKA HENNINGSON",
-    role: "JUST IN TIME, MEAN GIRLS",
-    credits: "BROADWAY ACTRESS DIRECTOR",
-  },
-  {
-    image: "/asserts/GalenJWilliams.webp",
-    name: "GALEN J. WILLIAMS",
-    role: "SLAVE PLAY, MOTOWN",
-    credits: "BROADWAY ACTOR",
-  },
-  {
-    image: "/asserts/SalishaThomas.webp",
-    name: "SALISHA THOMAS",
-    role: "ONCE UPON A ONE MORE TIME",
-    credits: "BROADWAY ACTRESS",
-  },
-  {
-    image: "/asserts/Zonya_Love.webp",
-    name: "ZONYA LOVE",
-    role: "BEETLEJUICE, THE COLOR PURPLE TIME",
-    credits: "BROADWAY ACTRESS",
-  },
-  {
-    image: "/asserts/ChazWolcott.webp",
-    name: "CHAZ WOLCOTT",
-    role: "NEWSIES",
-    credits: "BROADWAY ACTOR",
-  },
-  {
-    image: "/asserts/JustinPrescott.webp",
-    name: "JUSTIN PRESCOTT",
-    role: "FUNNY GIRL",
-    credits: "BROADWAY ACTOR",
-  },
-  {
-    image: "/asserts/EmilyKristenMorris.webp",
-    name: "EMILY KRISTEN MORRIS",
-    role: "WICKED",
-    credits: "TIKTOK STAR / BROADWAY ACTRESS",
-  },
-  {
-    image: "/asserts/JudithFranklin.webp",
-    name: "JUDITH FRANKLIN",
-    role: "TINA, SUMMER",
-    credits: "BROADWAY ACTOR",
-  },
-  {
-    image: "/asserts/ChawntaVan.webp",
-    name: "CHAWNTA VAN",
-    role: "LIZZO",
-    credits: "PROFESSIONAL DANCER CAST",
-  },
-  {
-    image: "/asserts/AbbyMueller.webp",
-    name: "ABBY MUELLER",
-    role: "SIX, BEAUTIFUL",
-    credits: "ORIGINAL BROADWAY CAST",
+    image: "/asserts/KaraLindsay-OnceUponaMattress-Beautiful-Newsies.webp",
+    name: "KARA LINDSAY",
+    role: "Once Upon a Mattress ",
+    credits: "Beautiful, Newsies",
   },
   {
     image: "/asserts/FanaTesfagiorgis.webp",
     name: "FANA TESFAGIORGIS",
-    role: "MY FAIR LADY, AILEY",
-    credits: "BROADWAY DANCER",
+    role: "The Alvin Ailey American Dance Theater",
+    credits: "My Fair Lady",
+  },
+  {
+    image: "/asserts/SamanthaPauly-TheGreatGatsbySIX.webp",
+    name: "SAMANTHA PAULY",
+    role: "The Great Gatsby",
+    credits: "SIX",
+  },
+  {
+    image: "/asserts/TaylorLouderman.webp",
+    name: "TAYLOR LOUDERMAN",
+    role: "Mean Girls, Kinky Boots",
+    credits: "Kinky Boots",
+  },
+  {
+    image: "/asserts/PatrickMaravilla-CastingDirectorChicago-AWonderfulWorld.webp",
+    name: "PATRICK MARAVILLA",
+    role: "Chicago, A Wonderful World",
+    credits: "Casting Director",
+  },
+  {
+    image: "/asserts/SarahMeahl-Chess-DeathBecomesHer.webp",
+    name: "SARAH MEAHL",
+    role: "Chess",
+    credits: "Death Becomes Her",
+  },
+  {
+    image: "/asserts/ChawntáVan-Lizzo-TheColorPurple-2023Film.webp",
+    name: "CHAWNTA VAN",
+    role: "Lizzo",
+    credits: "The Color Purple (2023 film)",
+  },
+  {
+    image: "/asserts/ErikaHenningsen-MeanGirls-JustInTime.webp",
+    name: "ERIKA HENNINGSEN",
+    role: "Mean Girls",
+    credits: "Just In Time",
   },
 ];
 
@@ -284,7 +254,7 @@ const PastFacultySection: React.FC<PastFacultySectionProps> = ({
               modules={[Navigation, Autoplay]}
               spaceBetween={10}
               slidesPerView={1}
-              loop={true}
+              loop={facultyData.length > 8}
               watchSlidesProgress={true}
               observer={true}
               observeParents={true}

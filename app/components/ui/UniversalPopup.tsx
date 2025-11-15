@@ -801,6 +801,11 @@ export default function UniversalPopup({
               <p className={`${styles.heroPopupDate} ${isSchool ? styles.schoolPopupDate : ''}`}>{data.date}</p>
             )}
             
+            {/* For school popup: description1 appears above title */}
+            {!isMinimal && isSchool && 'description1' in data && data.description1 && (
+              <p className={`${styles.heroPopupSubtitle} ${styles.schoolPopupDescription1}`}>{data.description1}</p>
+            )}
+            
             <h2 id={titleId} className={`${styles.heroPopupTitle} ${isSchool ? styles.schoolPopupTitle : ''}`}>
               {data.title || 'Popup'}
             </h2>
@@ -810,11 +815,12 @@ export default function UniversalPopup({
               <p className={`${styles.heroPopupSubtitle} ${isSchool ? styles.schoolPopupSubtitle : ''}`}>{data.description}</p>
             )}
 
-            {/* For full popup: description1 and description2 */}
+            {/* For full popup: description1 (if not school) and description2 */}
             {!isMinimal && (
               <>
-                {'description1' in data && data.description1 && (
-                  <p className={`${styles.heroPopupSubtitle} ${isSchool ? styles.schoolPopupDescription1 : ''}`}>{data.description1}</p>
+                {/* description1 for non-school popups appears here */}
+                {!isSchool && 'description1' in data && data.description1 && (
+                  <p className={`${styles.heroPopupSubtitle} ${styles.schoolPopupDescription1}`}>{data.description1}</p>
                 )}
                 {'description2' in data && data.description2 && (
                   <p className={`${styles.heroPopupSubtitle} ${isSchool ? styles.schoolPopupSubtitle : ''}`}>{data.description2}</p>

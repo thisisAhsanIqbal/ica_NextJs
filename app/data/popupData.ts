@@ -69,8 +69,8 @@ export const schoolInterestListPopup: PopupData = {
       width: 160,
     },
   ],
-  description1: "The Pilot Program for ICA's K-12 day school is launching Fall 2025.",
-  description2: 'Fill out the form below to get on the official interest list and access the survey form. Applications will open in Early Spring 2025.',
+  description1: "COMING SOON",
+  description2: 'Fill out the form below to get on the official interest list and access the survey form.',
   script: {
     type: 'script',
     content: 'https://app.ontraport.com/js/ontraport/opt_assets/drivers/opf.js',

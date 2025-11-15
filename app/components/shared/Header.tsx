@@ -89,16 +89,16 @@ export default function Header() {
           role="navigation"
           aria-label="Main navigation"
         >
-          <Link href="/the-school" className={styles.desktopNavLink}>
+          <Link href="/school/" className={styles.desktopNavLink}>
             THE SCHOOL
           </Link>
           <Link href="/impact" className={styles.desktopNavLink}>
             IMPACT
           </Link>
-          <Link href="/the-studio" className={styles.desktopNavLink}>
+          <Link href="/studio/" className={styles.desktopNavLink}>
             THE STUDIO
           </Link>
-          <Link href="/about" className={styles.desktopNavLink}>
+          <Link href="/team/" className={styles.desktopNavLink}>
             ABOUT
           </Link>
           <Link href="/events" className={styles.desktopNavLink}>
@@ -134,7 +134,7 @@ export default function Header() {
           aria-hidden={!isMenuOpen}
         >
 
-          <Link href="/the-school" className={styles.navLink} onClick={closeMenu}>
+          <Link href="/school/" className={styles.navLink} onClick={closeMenu}>
             <span className={styles.navBullet}></span>
             <span className={styles.navText}>THE SCHOOL</span>
           </Link>
@@ -199,11 +199,11 @@ export default function Header() {
             </ul>
           </div>
 
-          <Link href="/the-studio" className={styles.navLink} onClick={closeMenu}>
+          <Link href="/studio/" className={styles.navLink} onClick={closeMenu}>
             <span className={styles.navBullet}></span>
             <span className={styles.navText}>THE STUDIO</span>
           </Link>
-          <Link href="/about" className={styles.navLink} onClick={closeMenu}>
+          <Link href="/team/" className={styles.navLink} onClick={closeMenu}>
             <span className={styles.navBullet}></span>
             <span className={styles.navText}>ABOUT</span>
           </Link>

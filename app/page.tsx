@@ -93,25 +93,26 @@ export default function Home() {
       <ArtsAreas {...artsAreasData} />
       <School
         title="The School"
-        headline="The Pilot Program for ICA's K–12 day school is launching Fall 2026."
+        headline="The Pilot Program for ICA's K–12 day school is coming soon."
         paragraphs={[
           'Illinois Conservatory for the Arts is a non-profit educational institution dedicated to providing exceptional arts education and programming.',
-          'ICA is committed to providing high-level arts programming that integrates seamlessly with rigorous academic standards. Our mission is to nurture artistic excellence while fostering academic achievement.'
+          'At Illinois Conservatory for the Arts, our students will engage in a practicum of pre-professional arts training balanced with rigorous academics.',
+          'Applications will open Early Spring 2026 for a limited number of spots. Selected applicants will audition for ICA with placement for those accepted in Late Spring 2026.'
         ]}
         cta={{
           label: 'Join the Intrest List',
         }}
-        logoSrc="/asserts/home/Icon The Studio Cream.png"
-        logoAlt="The Studio icon"
+        logoSrc="/asserts/IconTheSchool Cream.png"
+        logoAlt="The School icon"
         slides={[
           {
-            src: '/asserts/home/The-School-1.webp',
+            src: '/asserts/home/The-School-2.webp',
             alt: 'The School at Illinois Conservatory for the Arts',
             width: 530,
             height: 450
           },
           {
-            src: '/asserts/home/The-School-2.webp',
+            src: '/asserts/home/The-School-1.webp',
             alt: 'The School at Illinois Conservatory for the Arts',
             width: 530,
             height: 450
@@ -149,7 +150,7 @@ export default function Home() {
             url: '/impact/dance'
           }
         }}
-        logoSrc="/asserts/home/Icon IMPACT Cream.png"
+        logoSrc="/asserts/IconIMPACTCream.png"
         logoAlt="IMPACT Logo"
         slides={[
           {
@@ -198,7 +199,7 @@ export default function Home() {
           label: 'Register Now',
           url: 'https://register.ilconservatory.org/studio'
         }}
-        logoSrc="/asserts/home/Icon The Studio Cream.png"
+        logoSrc="/asserts/IconTheStudioCream.png"
         logoAlt="The Studio Logo"
         slides={[
           {

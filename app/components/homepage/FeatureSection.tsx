@@ -132,8 +132,8 @@ export default function FeatureSection({
                 effect="fade"
                 fadeEffect={{ crossFade: true }}
                 autoplay={autoplaySettings}
-                loop={slides.length > 1}
-                loopAdditionalSlides={slides.length > 1 ? 2 : 0}
+                loop={slides.length >= 4}
+                loopAdditionalSlides={slides.length >= 4 ? 2 : 0}
                 loopPreventsSliding={false}
                 keyboard={{ enabled: true }}
                 speed={600}
@@ -191,8 +191,8 @@ export default function FeatureSection({
                 alt={logoAlt || ''}
                 width={250}
                 height={118}
-                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[250px] h-auto drop-shadow-[0_6px_14px_rgba(0,0,0,0.25)] pointer-events-none z-10"
-                style={{ height: 'auto' }}
+                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 drop-shadow-[0_6px_14px_rgba(0,0,0,0.25)] pointer-events-none z-10"
+                style={{ width: '250px', height: 'auto' }}
                 loading="lazy"
               />
             )}
