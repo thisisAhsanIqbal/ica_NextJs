@@ -7,7 +7,7 @@ import styles from './Header.module.css'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isImpactSubmenuOpen, setIsImpactSubmenuOpen] = useState(true)
+  const [isImpactSubmenuOpen, setIsImpactSubmenuOpen] = useState(false)
 
   const toggleMenu = useCallback(() => {
     setIsMenuOpen(prev => !prev)
@@ -141,15 +141,38 @@ export default function Header() {
           
           {/* IMPACT with Submenu */}
           <div className={styles.navItemWithSubmenu}>
-            <button
-              className={styles.navLink}
-              onClick={toggleImpactSubmenu}
-              aria-expanded={isImpactSubmenuOpen}
-              aria-haspopup="true"
-            >
-              <span className={styles.navBullet}></span>
-              <span className={styles.navText}>IMPACT</span>
-            </button>
+            <div className={styles.navLinkWithArrow}>
+              <Link href="/impact" className={styles.navLink} onClick={closeMenu}>
+                <span className={styles.navBullet}></span>
+                <span className={styles.navText}>IMPACT</span>
+              </Link>
+              <button
+                className={styles.submenuToggle}
+                onClick={toggleImpactSubmenu}
+                aria-expanded={isImpactSubmenuOpen}
+                aria-haspopup="true"
+                aria-label="Toggle IMPACT submenu"
+                type="button"
+              >
+                <svg 
+                  className={`${styles.submenuArrow} ${isImpactSubmenuOpen ? styles.submenuArrowOpen : ''}`}
+                  width="16" 
+                  height="16" 
+                  viewBox="0 0 16 16" 
+                  fill="none" 
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path 
+                    d="M4 6L8 10L12 6" 
+                    stroke="currentColor" 
+                    strokeWidth="2" 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </button>
+            </div>
             <ul 
               className={`${styles.submenu} ${isImpactSubmenuOpen ? styles.submenuOpen : ''}`}
               role="menu"

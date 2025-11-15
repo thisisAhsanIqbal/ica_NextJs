@@ -318,18 +318,88 @@
   position: relative;
 }
 
-.navItemWithSubmenu > .navLink {
+.navLinkWithArrow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1.25rem 1.5rem;
+  min-height: 56px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  position: relative;
+  gap: 0.75rem;
+  transition: background-color 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.navLinkWithArrow:hover {
+  background-color: rgba(23, 150, 140, 0.05);
+}
+
+.navLinkWithArrow:active {
+  background-color: rgba(23, 150, 140, 0.1);
+}
+
+.navItemWithSubmenu > .navLinkWithArrow > .navLink {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  width: 100%;
+  flex: 1;
   position: relative;
   gap: 0.75rem;
+  padding: 0;
+  min-height: auto;
+  border: none;
+  text-decoration: none;
+  color: var(--ica-green-deep);
+  font-family: var(--font-ui);
+  background: none;
+  text-align: left;
+  cursor: pointer;
 }
 
-/* Remove arrow */
+.navItemWithSubmenu > .navLinkWithArrow > .navLink:hover {
+  background-color: transparent;
+}
+
+.navItemWithSubmenu > .navLinkWithArrow > .navLink:active {
+  background-color: transparent;
+}
+
+.submenuToggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  color: var(--ica-green-deep);
+  transition: transform 0.3s ease, color 0.3s ease;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  flex-shrink: 0;
+}
+
+.submenuToggle:hover {
+  color: var(--ica-teal);
+}
+
+.submenuToggle:active {
+  transform: scale(0.95);
+}
+
 .submenuArrow {
-  display: none;
+  width: 16px;
+  height: 16px;
+  color: currentColor;
+  transition: transform 0.3s ease;
+  display: block;
+}
+
+.submenuArrowOpen {
+  transform: rotate(180deg);
 }
 
 .submenu {
@@ -404,7 +474,7 @@
   justify-content: space-between;
   gap: 1.5rem;
   width: 100%;
-  padding: 2rem 1.5rem 1.5rem 1.5rem;
+  padding: 1rem 1.5rem 1.5rem 1.5rem;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
   margin-top: 0;
 }
