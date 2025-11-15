@@ -14,6 +14,7 @@ import FontLoader from './components/ui/FontLoader'
 import Template from './template'
 import { PopupProvider } from './contexts/PopupContext'
 import ConditionalLayout from './components/shared/ConditionalLayout'
+import { GoogleTagManager } from '@next/third-parties/google'
 
 export const metadata: Metadata = {
   title: {
@@ -77,6 +78,10 @@ export const metadata: Metadata = {
 
 // Adobe Fonts Configuration
 const ICA_TYPEKIT_ID = 'nmi4cis' // ICA Ahsan Project ID
+
+// Google Tag Manager Configuration
+// You can override this with NEXT_PUBLIC_GTM_ID environment variable if needed
+const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || 'GTM-MGLV2RG4'
 
 export default function RootLayout({
   children,
@@ -184,6 +189,11 @@ export default function RootLayout({
         <meta name="msapplication-config" content="/browserconfig.xml" />
       </head>
       <body>
+        {/* Google Tag Manager - Official Next.js Package
+            Automatically handles: preconnect, script loading, noscript fallback
+            Loads after page becomes interactive for optimal performance */}
+        {GTM_ID && <GoogleTagManager gtmId={GTM_ID} />}
+        
         <PopupProvider>
           <FontLoader />
           {/* Skip to main content link for accessibility */}

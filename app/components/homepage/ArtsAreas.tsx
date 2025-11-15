@@ -80,6 +80,7 @@ export default function ArtsAreas({
                       {remainingWords ? (
                         <>
                           <span className={styles.artsAreasFirstWord}>{firstWord}</span>
+                          <span className={styles.artsAreasSpace}> </span>
                           <br className={styles.artsAreasDesktopBreak} />
                           <span className={styles.artsAreasRemainingWords}>
                             {remainingWords}

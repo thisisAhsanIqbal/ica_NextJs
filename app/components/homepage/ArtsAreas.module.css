@@ -109,6 +109,10 @@
   display: inline;
 }
 
+.artsAreasSpace {
+  display: none; /* Hidden on desktop, shown on mobile */
+}
+
 .artsAreasDesktopBreak {
   display: block;
 }
@@ -166,8 +170,8 @@
     display: none;
   }
 
-  .artsAreasTitle .artsAreasFirstWord::after {
-    content: ' ';
+  .artsAreasSpace {
+    display: inline; /* Show space on mobile when line break is hidden */
   }
 
   .artsAreasSectionHeading {
